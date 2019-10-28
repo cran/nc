@@ -308,16 +308,16 @@ specify the pattern:</p>
 #&gt; $fun.list$chrom
 #&gt; function (x) 
 #&gt; x
-#&gt; &lt;bytecode: 0x270acb8&gt;
+#&gt; &lt;bytecode: 0x0000000013333c60&gt;
 #&gt; &lt;environment: namespace:base&gt;
 #&gt; 
 #&gt; $fun.list$chromStart
 #&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))
-#&gt; &lt;bytecode: 0x2ca8ad8&gt;
+#&gt; &lt;bytecode: 0x0000000013b0c1f8&gt;
 #&gt; 
 #&gt; $fun.list$chromEnd
 #&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))
-#&gt; &lt;bytecode: 0x2ca8ad8&gt;
+#&gt; &lt;bytecode: 0x0000000013b0c1f8&gt;
 #&gt; 
 #&gt; 
 #&gt; $pattern
@@ -334,7 +334,7 @@ conversion functions to use with the capture groups.</p>
 
 <pre><code class="r">bad.vec &lt;- c(bad=&quot;does not match&quot;, pos.vec)
 nc::capture_first_vec(bad.vec, range.pattern)
-#&gt; Error in stop_for_na(make.na): subject 1 did not match regex below
+#&gt; Error in stop_for_na(make.na): subject 1 did not match regex below; to output missing rows use nomatch.error=FALSE
 #&gt; (?:(chr.*?):([0-9,]+)(?:-([0-9,]+))?)
 </code></pre>
 
@@ -362,8 +362,8 @@ and RE2. Each engine has different features, which are discussed in
 u.pattern &lt;- list(emoji=&quot;\\p{EMOJI_Presentation}&quot;)
 old.opt &lt;- options(nc.engine=&quot;ICU&quot;)
 nc::capture_first_vec(u.subject, u.pattern)
-#&gt;    emoji
-#&gt; 1:     😎
+#&gt;           emoji
+#&gt; 1: &lt;U+0001F60E&gt;
 nc::capture_first_vec(u.subject, u.pattern, engine=&quot;PCRE&quot;) 
 #&gt; Warning in regexpr(L$pattern, subject.vec, perl = TRUE): PCRE pattern compilation error
 #&gt;  &#39;unknown property name after \P or \p&#39;
@@ -376,7 +376,7 @@ nc::capture_first_vec(u.subject, u.pattern, engine=&quot;RE2&quot;)
 options(old.opt)
 </code></pre>
 
-<h2>Capture first match in columns of a data.frame</h2>
+<h2>Capture first match from one or more data.frame character columns</h2>
 
 <p>We also provide <code>nc::capture_first_df</code> which extracts text
 from several columns of a data.frame, using a different 
