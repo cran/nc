@@ -84,38 +84,6 @@ capture_all_str <- structure(function # Capture all matches in a single subject 
     chromEnd=int.pattern))
   str(match.dt)
 
-  ## Data downloaded from
-  ## https://en.wikipedia.org/wiki/Hindu%E2%80%93Arabic_numeral_system
-  numerals <- system.file(
-    "extdata", "Hindu-Arabic-numerals.txt.gz", package="nc")
-
-  ## Use engine="ICU" for unicode character classes
-  ## http://userguide.icu-project.org/strings/regexp e.g. match any
-  ## character with a numeric value of 2 (including japanese etc).
-  nc::capture_all_str(
-    numerals,
-    " ",
-    two="[\\p{numeric_value=2}]",
-    " ",
-    engine="ICU")
-
-  ## Create a table of numerals with script names.
-  digits.pattern <- list()
-  for(digit in 0:9){
-    digits.pattern[[length(digits.pattern)+1]] <- list(
-      "[|]",
-      nc::group(digit, "[^{|]+"),
-      "[|]")
-  }
-  nc::capture_all_str(
-    numerals,
-    "\n",
-    digits.pattern,
-    "[|]",
-    " *",
-    "\\[\\[",
-    name="[^\\]|]+")
-
   ## Extract all fields from each alignment block, using two regex
   ## patterns, then dcast.
   info.txt.gz <- system.file(
@@ -323,11 +291,11 @@ capture_all_str <- structure(function # Capture all matches in a single subject 
     refs.vec,
     "@",
     type="[^{]+",
-    "{",
+    "[{]",
     ref="[^,]+",
     ",\n",
     fields="(?:.*\n)+?.*",
-    "}\\s*(?:$|\n)")
+    "[}]\\s*(?:$|\n)")
   str(refs.dt)
 
   ## parsing each field of each entry.
@@ -347,46 +315,126 @@ capture_all_str <- structure(function # Capture all matches in a single subject 
   ## the URL of my talk is now
   ## https://user2011.r-project.org/TalkSlides/Lightening/2-StatisticsAndProg_3-Hocking.pdf
 
-  ## Parsing wikimedia tables: each begins with {| and ends with |}.
-  emoji.txt.gz <- system.file(
-    "extdata", "wikipedia-emoji-text.txt.gz", package="nc")
-  tables <- nc::capture_all_str(
-    emoji.txt.gz,
-    "\n[{][|]",
-    first=".*",
-    '\n[|][+] style="',
-    nc::field("font-size", ":", '.*?'),
-    '" [|] ',
-    title=".*",
-    lines="(?:\n.*)*?",
-    "\n[|][}]")
-  str(tables)
+  if(!grepl("solaris", R.version$platform)){#To avoid CRAN check error on solaris
+    ## Parsing wikimedia tables: each begins with {| and ends with |}.
+    emoji.txt.gz <- system.file(
+      "extdata", "wikipedia-emoji-text.txt.gz", package="nc")
+    tables <- nc::capture_all_str(
+      emoji.txt.gz,
+      "\n[{][|]",
+      first=".*",
+      '\n[|][+] style="',
+      nc::field("font-size", ":", '.*?'),
+      '" [|] ',
+      title=".*",
+      lines="(?:\n.*)*?",
+      "\n[|][}]")
+    str(tables)
+    ## Rows are separated by |-
+    rows.dt <- tables[, {
+      row.vec <- strsplit(lines, "|-", fixed=TRUE)[[1]][-1]
+      .(row.i=seq_along(row.vec), row=row.vec)
+    }, by=title]
+    str(rows.dt)
+    ## Try to parse columns from each row. Doesn't work for second table
+    ## https://en.wikipedia.org/w/index.php?title=Emoji&oldid=920745513#Skin_color
+    ## because some entries have rowspan=2.
+    contents.dt <- rows.dt[, nc::capture_all_str(
+      row,
+      "[|] ",
+      content=".*?",
+      "(?: [|]|\n|$)"),
+      by=.(title, row.i)]
+    contents.dt[, .(cols=.N), by=.(title, row.i)]
+    ## Make data table from
+    ## https://en.wikipedia.org/w/index.php?title=Emoji&oldid=920745513#Emoji_versus_text_presentation
+    contents.dt[, col.i := 1:.N, by=.(title, row.i)]
+    data.table::dcast(
+      contents.dt[title=="Sample emoji variation sequences"],
+      row.i ~ col.i,
+      value.var="content")
+  }
 
-  ## Rows are separated by |-
-  rows.dt <- tables[, {
-    row.vec <- strsplit(lines, "|-", fixed=TRUE)[[1]][-1]
-    .(row.i=seq_along(row.vec), row=row.vec)
-  }, by=title]
-  str(rows.dt)
+  ## Simple way to extract code chunks from Rmd.
+  vignette.Rmd <- system.file(
+    "extdata", "vignette.Rmd", package="nc")
+  non.greedy.lines <- list(
+    list(".*\n"), "*?")
+  optional.name <- list(
+    list(" ", name="[^,}]+"), "?")
+  Rmd.dt <- nc::capture_all_str(
+    vignette.Rmd,
+    before=non.greedy.lines,
+    "```\\{r",
+    optional.name,
+    parameters=".*",
+    "\\}\n",
+    code=non.greedy.lines,
+    "```")
+  Rmd.dt[, chunk := 1:.N]
+  Rmd.dt[, .(chunk, name, parameters, some.code=substr(code, 1, 20))]
 
-  ## Try to parse columns from each row. Doesn't work for second table
-  ## https://en.wikipedia.org/w/index.php?title=Emoji&oldid=920745513#Skin_color
-  ## because some entries have rowspan=2.
-  contents.dt <- rows.dt[, nc::capture_all_str(
-    row,
-    "[|] ",
-    content=".*?",
-    "(?: [|]|\n|$)"),
-    by=.(title, row.i)]
-  contents.dt[, .(cols=.N), by=.(title, row.i)]
+  ## Extract individual parameter names and values.
+  Rmd.dt[, nc::capture_all_str(
+    parameters,
+    ", *",
+    variable="[^= ]+",
+    " *= *",
+    value="[^ ,]+"),
+    by=chunk]
 
-  ## Make data table from
-  ## https://en.wikipedia.org/w/index.php?title=Emoji&oldid=920745513#Emoji_versus_text_presentation
-  contents.dt[, col.i := 1:.N, by=.(title, row.i)]
-  data.table::dcast(
-    contents.dt[title=="Sample emoji variation sequences"],
-    row.i ~ col.i,
-    value.var="content")
+  ## Simple way to extract code chunks from Rnw.
+  vignette.Rnw <- system.file(
+    "extdata", "vignette.Rnw", package="nc")
+  Rnw.dt <- nc::capture_all_str(
+    vignette.Rnw,
+    before=non.greedy.lines,
+    "<<",
+    name="[^,>]*",
+    parameters=".*",
+    ">>=\n",
+    code=non.greedy.lines,
+    "@")
+  Rnw.dt[, .(name, parameters, some.code=substr(code, 1, 20))]
+
+  ## The next example involves timing some compression programs that
+  ## were run on a 159 megabyte input/uncompressed text file. Here is
+  ## how to get a data table from the time command line output.
+  times.out <- system.file(
+    "extdata", "compress-times.out", package="nc", mustWork=TRUE)
+  times.dt <- nc::capture_all_str(
+    times.out,
+    "coverage.bedGraph ",
+    program=".*?",
+    " coverage.bedGraph.",
+    suffix=".*",
+    "\n\nreal\t",
+    minutes.only="[0-9]+", as.numeric,
+    "m",
+    seconds.only="[0-9.]+", as.numeric)
+  times.dt[, seconds := minutes.only*60+seconds.only]
+  times.dt
+
+  ## join with output from du command line program.
+  sizes.out <- system.file(
+    "extdata", "compress-sizes.out", package="nc", mustWork=TRUE)
+  sizes.dt <- data.table::fread(
+    file=sizes.out,
+    col.names=c("megabytes", "file"))
+  sizes.dt[, suffix := sub("coverage.bedGraph.?", "", file)]
+  join.dt <- times.dt[sizes.dt, on="suffix"][order(megabytes)]
+  join.dt[file=="coverage.bedGraph", seconds := 0]
+  join.dt
+
+  ## visualize with ggplot2.
+  if(require(ggplot2)){
+    ggplot(join.dt, aes(
+      seconds, megabytes, label=suffix))+
+      geom_text(vjust=-0.5)+
+      geom_point()+
+      scale_x_log10()+
+      scale_y_log10()
+  }
 
 })
 

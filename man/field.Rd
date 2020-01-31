@@ -4,7 +4,8 @@
 \description{Capture a field with a pattern of the form
 list("field.name", \code{between.pattern},
 field.name=list(\code{...})) -- see examples.}
-\usage{field(field.name, between.pattern, ...)}
+\usage{field(field.name, between.pattern, 
+    ...)}
 \arguments{
   \item{field.name}{Field name, used as a pattern and as a capture \code{\link{group}} (output
 column) name.}
@@ -52,7 +53,7 @@ nc::capture_all_str(
   g("Likelihood", as.numeric),
   g("Alpha", as.numeric))
 
-## Another example where field is useful. 
+## Another example where field is useful.
 trackDb.txt.gz <- system.file(
   "extdata", "trackDb.txt.gz", package="nc")
 trackDb.vec <- readLines(trackDb.txt.gz)

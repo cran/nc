@@ -9,7 +9,8 @@ columns of different types in a "wide" input data table
 with regular names.
 For melting into a single result column,
 see \code{\link{capture_melt_single}}.}
-\usage{capture_melt_multiple(subject.df, ..., na.rm = FALSE, 
+\usage{capture_melt_multiple(subject.df, 
+    ..., na.rm = FALSE, 
     verbose = getOption("datatable.verbose"))}
 \arguments{
   \item{subject.df}{The data.frame with column name subjects.}
@@ -41,7 +42,8 @@ of the column capture group, and
 measure.vars=a list of corresponding column indices.}
 \examples{
 
-  ## Example 1: melt iris columns to compare Sepal and Petal dims.
+  ## Example 1: melt iris columns to compare Sepal and Petal dims, as
+  ## in cdata package, https://winvector.github.io/cdata/
   (iris.part.cols <- nc::capture_melt_multiple(
     iris,
     column=".*?",
@@ -100,10 +102,10 @@ family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child
   ## nc::field can be used to define group name and pattern at the
   ## same time, to avoid repetitive code.
   (children.nc <- nc::capture_melt_multiple(
-     family.dt,
-     column=".+",
-     "_",
-     nc::field("child", "", "[1-3]"),
-     na.rm=TRUE))
+    family.dt,
+    column=".+",
+    "_",
+    nc::field("child", "", "[1-3]"),
+    na.rm=TRUE))
 
 }

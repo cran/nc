@@ -133,7 +133,8 @@ capture_melt_multiple <- structure(function # Capture and melt into multiple col
 ### each other capture group.
 }, ex=function(){
 
-  ## Example 1: melt iris columns to compare Sepal and Petal dims.
+  ## Example 1: melt iris columns to compare Sepal and Petal dims, as
+  ## in cdata package, https://winvector.github.io/cdata/
   (iris.part.cols <- nc::capture_melt_multiple(
     iris,
     column=".*?",
@@ -192,11 +193,11 @@ family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child
   ## nc::field can be used to define group name and pattern at the
   ## same time, to avoid repetitive code.
   (children.nc <- nc::capture_melt_multiple(
-     family.dt,
-     column=".+",
-     "_",
-     nc::field("child", "", "[1-3]"),
-     na.rm=TRUE))
+    family.dt,
+    column=".+",
+    "_",
+    nc::field("child", "", "[1-3]"),
+    na.rm=TRUE))
 
 })
 

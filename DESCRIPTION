@@ -1,7 +1,7 @@
 Package: nc
 Maintainer: Toby Dylan Hocking <toby.hocking@r-project.org>
 Author: Toby Dylan Hocking
-Version: 2019.10.19
+Version: 2020.1.16
 License: GPL-3
 Title: Named Capture to Data Tables
 Description: User-friendly functions for extracting a data
@@ -25,6 +25,6 @@ VignetteBuilder: knitr
 URL: https://github.com/tdhock/nc
 BugReports: https://github.com/tdhock/nc/issues
 NeedsCompilation: no
-Packaged: 2019-10-28 18:22:40 UTC; th798
+Packaged: 2020-01-31 16:29:29 UTC; th798
 Repository: CRAN
-Date/Publication: 2019-10-28 20:00:05 UTC
+Date/Publication: 2020-01-31 23:00:02 UTC

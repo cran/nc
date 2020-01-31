@@ -1,5 +1,24 @@
 TODOs
 
+capture_melt_multiple(fill=TRUE) for adding NA entries for missing
+columns? are there any compelling use cases?
+
+2020.1.16
+
+test for pattern with literal groups.
+
+2019.12.12
+
+time command line example for capture_all_str.
+
+more informative error message for capture_first_df.
+
+2019.11.22
+
+quantifier.
+
+Do not run emoji examples on Solaris.
+
 2019.10.19
 
 dot prefix now ok for capture_melt_multiple.
