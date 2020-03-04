@@ -1,10 +1,10 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 compare <- function(..., exclude="variable"){
   mc <- match.call()
   default.names <- paste(lapply(mc[-1], "[[", 1))
@@ -38,11 +38,11 @@ compare <- function(..., exclude="variable"){
   L
 }
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(data.table)
 data.table(iris)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 iris.parts <- compare(
   nc::capture_melt_multiple(
     iris,
@@ -78,7 +78,7 @@ iris.parts <- compare(
     columnsToCopy="Species"))
 iris.parts$nc
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(ggplot2)
 ggplot()+
   theme_bw()+
@@ -90,7 +90,7 @@ ggplot()+
     Petal, Sepal),
     data=iris.parts$nc)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 iris.dims <- compare(
   nc::capture_melt_multiple(
     iris,
@@ -105,7 +105,7 @@ iris.dims <- compare(
     sep="."))
 iris.dims$nc
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 ggplot()+
   theme_bw()+
   theme(panel.spacing=grid::unit(0, "lines"))+
@@ -116,14 +116,14 @@ ggplot()+
     Length, Width),
     data=iris.dims$nc)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 TC <- data.table::data.table(
   age.treatment=c(1, 5),
   sex.control=c("M", "M"),
   sex.treatment=c("F", "F"),
   age.control=c(10, 50))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 input.list <- list(
   "nc"=nc::capture_melt_multiple(
     TC,
@@ -158,11 +158,11 @@ for(pkg in names(input.list)){
 output.list
 sapply(output.list, function(DT)identical(DT$sex, c("F", "F", "M", "M")))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 data(who, package="tidyr")
 names(who)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 compare(
   nc::capture_melt_single(
     who,
@@ -177,7 +177,7 @@ compare(
     names_to=c("diagnosis", "gender", "ages"),
     names_pattern="new_?(.*)_(.)(.*)"))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(dplyr)
 who.pattern <- "new_?(.*)_(.)((0|[0-9]{2})([0-9]{0,2}))"
 who.typed <- compare(
@@ -204,7 +204,7 @@ who.typed <- compare(
     ymax.num=ifelse(ymax.chr=="", Inf, as.numeric(ymax.chr))))
 str(who.typed)  
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 gather.result <- tidyr::gather(
   who,
   "variable",
@@ -221,21 +221,21 @@ tidyr::extract(
   ymin.num=as.numeric(ymin.int),
   ymax.num=ifelse(is.na(ymax.int), Inf, as.numeric(ymax.int)))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 reshape2.result <- reshape2:::melt.data.frame(
   who,
   measure.vars=grep(who.pattern, names(who)),
   na.rm=TRUE,
   value.name="count")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dt.result <- data.table::melt.data.table(
   data.table(who),
   measure.vars=patterns(who.pattern),
   na.rm=TRUE,
   value.name="count")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 who.df <- data.frame(who)
 is.varying <- grepl(who.pattern, names(who))
 names(who.df)[is.varying] <- paste0("count.", names(who)[is.varying])
@@ -245,7 +245,7 @@ stats.result <- stats::reshape(
   timevar="variable",
   varying=is.varying)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 if(requireNamespace("cdata")){
   cdata.result <- cdata::rowrecs_to_blocks(
     who, 
@@ -256,7 +256,7 @@ if(requireNamespace("cdata")){
     columnsToCopy=grep(who.pattern, names(who), value=TRUE, invert=TRUE))
 }
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 ## Example 1: melting a wider iris data back to original.
 library(data.table)
 iris.dt <- data.table(
@@ -324,7 +324,7 @@ if(require("ggplot2")){
 
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 ## Example 2. Lots of column types, from example(melt.data.table).
 DT <- data.table(
   i_1 = c(1:5, NA),
@@ -380,7 +380,7 @@ tidyr::pivot_longer(
   names_to=c(".value", "number"))
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 ## Example 3, three children, one family per row, from data.table
 ## vignette.
 family.dt <- fread(text="
@@ -412,7 +412,7 @@ reshape(
   timevar="child.str")
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 ## Comparison with base R. 1. mfrow means parts on rows, mfcol means
 ## parts on columns. 2. same number of lines of code. 3. nc/ggplot2
 ## code has more names and fewer numbers.
@@ -429,7 +429,7 @@ for(col.i in 1:ncol(imat)){
 }
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 pen.peaks.wide <- data.table::data.table(
   data.set=c("foo", "bar"),
   "10.1"=c(5L, 10L),

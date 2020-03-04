@@ -313,11 +313,11 @@ specify the pattern:</p>
 #&gt; 
 #&gt; $fun.list$chromStart
 #&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))
-#&gt; &lt;bytecode: 0x00000000136b9b60&gt;
+#&gt; &lt;bytecode: 0x0000000014e2e848&gt;
 #&gt; 
 #&gt; $fun.list$chromEnd
 #&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))
-#&gt; &lt;bytecode: 0x00000000136b9b60&gt;
+#&gt; &lt;bytecode: 0x0000000014e2e848&gt;
 #&gt; 
 #&gt; 
 #&gt; $pattern
@@ -492,22 +492,336 @@ nc::capture_first_df(sacct.df, JobID=job.pattern)
   &quot;:&quot;,
   seconds=int.pattern)
 nc::capture_first_df(sacct.df, JobID=job.pattern, Elapsed=elapsed.pattern)
-#&gt;     Elapsed              JobID      job task task1 taskN   type hours
-#&gt; 1: 07:04:42        13937810_25 13937810   25    NA    NA            7
-#&gt; 2: 07:04:42  13937810_25.batch 13937810   25    NA    NA  batch     7
-#&gt; 3: 07:04:49 13937810_25.extern 13937810   25    NA    NA extern     7
-#&gt; 4: 00:00:00     14022192_[1-3] 14022192   NA     1     3            0
-#&gt; 5: 00:00:00       14022204_[4] 14022204   NA     4    NA            0
-#&gt;    minutes seconds
-#&gt; 1:       4      42
-#&gt; 2:       4      42
-#&gt; 3:       4      49
-#&gt; 4:       0       0
-#&gt; 5:       0       0
+#&gt;     Elapsed              JobID      job task task1 taskN   type hours minutes
+#&gt; 1: 07:04:42        13937810_25 13937810   25    NA    NA            7       4
+#&gt; 2: 07:04:42  13937810_25.batch 13937810   25    NA    NA  batch     7       4
+#&gt; 3: 07:04:49 13937810_25.extern 13937810   25    NA    NA extern     7       4
+#&gt; 4: 00:00:00     14022192_[1-3] 14022192   NA     1     3            0       0
+#&gt; 5: 00:00:00       14022204_[4] 14022204   NA     4    NA            0       0
+#&gt;    seconds
+#&gt; 1:      42
+#&gt; 2:      42
+#&gt; 3:      49
+#&gt; 4:       0
+#&gt; 5:       0
 </code></pre>
 
 <p>Overall the result is another data table with an additional column for
 each capture group. </p>
+
+<h2>Complex example: fsa file names</h2>
+
+<p>In this section we explain how to use various features to parse the
+fsa file names in
+<a href="https://lftdi.camden.rutgers.edu/provedit/files/">PROVEDIt</a>. Here are
+a few representative examples:</p>
+
+<pre><code class="r">fsa.vec &lt;- c(#control samples:
+  &quot;A01-Ladder-PP16-001.10sec.fsa&quot;,
+  &quot;D07_Ladder-IP_004.5sec.fsa&quot;,
+  &quot;A12_RB121514ADG_001.10sec.fsa&quot;, 
+  &quot;A10_RB102191515LEA-IP_001.10sec.fsa&quot;,
+  ##single-source samples:
+  &quot;A02-RD12-0002-35-0.5PP16-001.10sec.fsa&quot;, 
+  &quot;G01_RD14-0003-35d3S30-0.01563P-Q10.0_003.10sec.fsa&quot;,
+  &quot;A06_RD14-0003-24d3a-0.0625IP-Q0.8_001.10sec.fsa&quot;, 
+  &quot;A08-RD12-0002-01d-0.125PP16-001.10sec.fsa&quot;,
+  &quot;A10-RD12-0002-04d1-0.0625PP16-001.10sec.fsa&quot;, 
+  &quot;C02_RD14-0003-15d2b-0.25IP-Q0.5_003.5sec.fsa&quot;,
+  ##mixture samples:
+  &quot;A02-RD12-0002-1_2-1;9-0.125PP16-001.10sec.fsa&quot;, 
+  &quot;H07_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND_004.5sec.fsa&quot;)
+</code></pre>
+
+<p>The goal is to build a regex that can convert this character vector to
+a data table with different columns for the different variables. The
+structure of the file names is explained in <a href="https://lftdi.camden.rutgers.edu/wp-content/uploads/2019/12/PROVEDIt-Database-Naming-Convention-Laboratory-Methodsv1.pdf">the supplementary
+materials
+PDF</a>. We
+will build a complex regex in terms of simpler sub-patterns. First
+let&#39;s just match the start of each file name, which has the row/column
+of the 96-well plate in which the sample was tested:</p>
+
+<pre><code class="r">well.pattern &lt;- list(
+  &quot;^&quot;,
+  well.letter=&quot;[A-H]&quot;,
+  well.number=&quot;[0-9]+&quot;, as.integer)
+nc::capture_first_vec(fsa.vec, well.pattern)
+#&gt;     well.letter well.number
+#&gt;  1:           A           1
+#&gt;  2:           D           7
+#&gt;  3:           A          12
+#&gt;  4:           A          10
+#&gt;  5:           A           2
+#&gt;  6:           G           1
+#&gt;  7:           A           6
+#&gt;  8:           A           8
+#&gt;  9:           A          10
+#&gt; 10:           C           2
+#&gt; 11:           A           2
+#&gt; 12:           H           7
+</code></pre>
+
+<p>Now, let&#39;s match the end of each file name:</p>
+
+<pre><code class="r">end.pattern &lt;- list(
+  &quot;[-_]&quot;,
+  capillary=&quot;[0-9]+&quot;, as.integer,
+  &quot;[.]&quot;,
+  seconds=&quot;[0-9]+&quot;, as.integer,
+  &quot;sec[.]fsa$&quot;)
+nc::capture_first_vec(fsa.vec, end.pattern)
+#&gt;     capillary seconds
+#&gt;  1:         1      10
+#&gt;  2:         4       5
+#&gt;  3:         1      10
+#&gt;  4:         1      10
+#&gt;  5:         1      10
+#&gt;  6:         3      10
+#&gt;  7:         1      10
+#&gt;  8:         1      10
+#&gt;  9:         1      10
+#&gt; 10:         3       5
+#&gt; 11:         1      10
+#&gt; 12:         4       5
+</code></pre>
+
+<p>Now, let&#39;s take a look at what&#39;s in between:</p>
+
+<pre><code class="r">between.dt &lt;- nc::capture_first_vec(
+  fsa.vec, well.pattern, between=&quot;.*?&quot;, end.pattern)
+between.dt$between
+#&gt;  [1] &quot;-Ladder-PP16&quot;                                          
+#&gt;  [2] &quot;_Ladder-IP&quot;                                            
+#&gt;  [3] &quot;_RB121514ADG&quot;                                          
+#&gt;  [4] &quot;_RB102191515LEA-IP&quot;                                    
+#&gt;  [5] &quot;-RD12-0002-35-0.5PP16&quot;                                 
+#&gt;  [6] &quot;_RD14-0003-35d3S30-0.01563P-Q10.0&quot;                     
+#&gt;  [7] &quot;_RD14-0003-24d3a-0.0625IP-Q0.8&quot;                        
+#&gt;  [8] &quot;-RD12-0002-01d-0.125PP16&quot;                              
+#&gt;  [9] &quot;-RD12-0002-04d1-0.0625PP16&quot;                            
+#&gt; [10] &quot;_RD14-0003-15d2b-0.25IP-Q0.5&quot;                          
+#&gt; [11] &quot;-RD12-0002-1_2-1;9-0.125PP16&quot;                          
+#&gt; [12] &quot;_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND&quot;
+</code></pre>
+
+<p>Notice that PP16/P/IP are the kit types. There may optionally be a DNA
+template mass before, and optionally a Q score after. Let&#39;s match those:</p>
+
+<pre><code class="r">mass.pattern &lt;- list(
+  template.nanograms=&quot;[0-9.]*&quot;, as.numeric)
+kit.pattern &lt;- nc::quantifier(
+  kit=nc::alternatives(&quot;PP16&quot;, &quot;IP&quot;, &quot;P&quot;),
+  &quot;?&quot;)
+q.pattern &lt;- nc::quantifier(
+  &quot;-Q&quot;,
+  Q.chr=nc::alternatives(&quot;LAND&quot;, &quot;[0-9.]+&quot;),
+  &quot;?&quot;)
+old.opt &lt;- options(width=100)
+(before.dt &lt;- nc::capture_first_vec(
+  between.dt$between,
+  &quot;^&quot;,
+  before=&quot;.*?&quot;,
+  mass.pattern, kit.pattern, q.pattern, &quot;$&quot;))
+#&gt;                                         before template.nanograms  kit Q.chr
+#&gt;  1:                                   -Ladder-                 NA PP16      
+#&gt;  2:                                   _Ladder-                 NA   IP      
+#&gt;  3:                               _RB121514ADG                 NA           
+#&gt;  4:                           _RB102191515LEA-                 NA   IP      
+#&gt;  5:                             -RD12-0002-35-            0.50000 PP16      
+#&gt;  6:                        _RD14-0003-35d3S30-            0.01563    P  10.0
+#&gt;  7:                          _RD14-0003-24d3a-            0.06250   IP   0.8
+#&gt;  8:                            -RD12-0002-01d-            0.12500 PP16      
+#&gt;  9:                           -RD12-0002-04d1-            0.06250 PP16      
+#&gt; 10:                          _RD14-0003-15d2b-            0.25000   IP   0.5
+#&gt; 11:                        -RD12-0002-1_2-1;9-            0.12500 PP16      
+#&gt; 12: _RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-            0.75000   IP  LAND
+options(old.opt)
+</code></pre>
+
+<p>Now to match the before column, we need some alternatives. The first
+four rows are controls, and the other rows are samples which are
+indicated by a project ID (prefix RD) and then a sample ID. The
+mixture samples at the bottom contain semicolon-delimited mixture
+proportions.</p>
+
+<pre><code class="r">project.pattern &lt;- list(project=&quot;RD[0-9]+-[0-9]+&quot;, &quot;-&quot;)
+single.pattern &lt;- list(id=&quot;[0-9]+&quot;, as.integer)
+mixture.pattern &lt;- list(
+  ids.chr=&quot;[0-9_]+&quot;,
+  &quot;-&quot;,
+  parts.chr=&quot;[0-9;]+&quot;,
+  &quot;-&quot;)
+single.or.mixture &lt;- list(
+  project.pattern,
+  nc::alternatives(mixture.pattern, single.pattern))
+control.pattern &lt;- list(control=&quot;[^-_]+&quot;)
+single.mixture.control &lt;- list(&quot;[-_]&quot;, nc::alternatives(
+  single.or.mixture, control.pattern))
+(rest.dt &lt;- nc::capture_first_vec(
+  before.dt$before, single.mixture.control, rest=&quot;.*&quot;))
+#&gt;       project        ids.chr parts.chr id        control   rest
+#&gt;  1:                                    NA         Ladder      -
+#&gt;  2:                                    NA         Ladder      -
+#&gt;  3:                                    NA    RB121514ADG       
+#&gt;  4:                                    NA RB102191515LEA      -
+#&gt;  5: RD12-0002                          35                     -
+#&gt;  6: RD14-0003                          35                d3S30-
+#&gt;  7: RD14-0003                          24                  d3a-
+#&gt;  8: RD12-0002                           1                    d-
+#&gt;  9: RD12-0002                           4                   d1-
+#&gt; 10: RD14-0003                          15                  d2b-
+#&gt; 11: RD12-0002            1_2       1;9 NA                      
+#&gt; 12: RD14-0003 35_36_37_38_39 1;4;4;4;1 NA                M2I35-
+</code></pre>
+
+<p>The rest may contain some information related to the dilution and
+treatment, which we can parse as follows:</p>
+
+<pre><code class="r">dilution.pattern &lt;- nc::quantifier(
+  &quot;[dM]&quot;,
+  dilution.number=&quot;[0-9]?&quot;, as.integer,
+  &quot;?&quot;)
+treatment.pattern &lt;- nc::quantifier(
+  treatment.letter=&quot;[a-zA-Z]&quot;,
+  nc::quantifier(treatment.number=&quot;[0-9]+&quot;, as.integer, &quot;?&quot;),
+  &quot;?&quot;)
+dilution.treatment &lt;- list(
+  dilution.pattern,
+  treatment.pattern,
+  &quot;[_-]?&quot;)
+nc::capture_first_vec(rest.dt$rest, &quot;^&quot;, dilution.treatment, &quot;$&quot;)
+#&gt;     dilution.number treatment.letter treatment.number
+#&gt;  1:              NA                                NA
+#&gt;  2:              NA                                NA
+#&gt;  3:              NA                                NA
+#&gt;  4:              NA                                NA
+#&gt;  5:              NA                                NA
+#&gt;  6:               3                S               30
+#&gt;  7:               3                a               NA
+#&gt;  8:              NA                                NA
+#&gt;  9:               1                                NA
+#&gt; 10:               2                b               NA
+#&gt; 11:              NA                                NA
+#&gt; 12:               2                I               35
+</code></pre>
+
+<p>Now we just have to put all of those patterns together to get a full
+match:</p>
+
+<pre><code class="r">fsa.pattern &lt;- list(
+  well.pattern,
+  single.mixture.control,
+  dilution.treatment,
+  mass.pattern, kit.pattern, q.pattern,  
+  end.pattern)
+(match.dt &lt;- nc::capture_first_vec(fsa.vec, fsa.pattern))
+#&gt;     well.letter well.number   project        ids.chr parts.chr id
+#&gt;  1:           A           1                                    NA
+#&gt;  2:           D           7                                    NA
+#&gt;  3:           A          12                                    NA
+#&gt;  4:           A          10                                    NA
+#&gt;  5:           A           2 RD12-0002                          35
+#&gt;  6:           G           1 RD14-0003                          35
+#&gt;  7:           A           6 RD14-0003                          24
+#&gt;  8:           A           8 RD12-0002                           1
+#&gt;  9:           A          10 RD12-0002                           4
+#&gt; 10:           C           2 RD14-0003                          15
+#&gt; 11:           A           2 RD12-0002            1_2       1;9 NA
+#&gt; 12:           H           7 RD14-0003 35_36_37_38_39 1;4;4;4;1 NA
+#&gt;            control dilution.number treatment.letter treatment.number
+#&gt;  1:         Ladder              NA                                NA
+#&gt;  2:         Ladder              NA                                NA
+#&gt;  3:    RB121514ADG              NA                                NA
+#&gt;  4: RB102191515LEA              NA                                NA
+#&gt;  5:                             NA                                NA
+#&gt;  6:                              3                S               30
+#&gt;  7:                              3                a               NA
+#&gt;  8:                             NA                                NA
+#&gt;  9:                              1                                NA
+#&gt; 10:                              2                b               NA
+#&gt; 11:                             NA                                NA
+#&gt; 12:                              2                I               35
+#&gt;     template.nanograms  kit Q.chr capillary seconds
+#&gt;  1:                 NA PP16               1      10
+#&gt;  2:                 NA   IP               4       5
+#&gt;  3:                 NA                    1      10
+#&gt;  4:                 NA   IP               1      10
+#&gt;  5:            0.50000 PP16               1      10
+#&gt;  6:            0.01563    P  10.0         3      10
+#&gt;  7:            0.06250   IP   0.8         1      10
+#&gt;  8:            0.12500 PP16               1      10
+#&gt;  9:            0.06250 PP16               1      10
+#&gt; 10:            0.25000   IP   0.5         3       5
+#&gt; 11:            0.12500 PP16               1      10
+#&gt; 12:            0.75000   IP  LAND         4       5
+</code></pre>
+
+<p>And to verify we parsed everything correctly we print the subjects
+next to each row:</p>
+
+<pre><code class="r">disp.dt &lt;- data.table::data.table(match.dt)
+names(disp.dt) &lt;- paste(1:ncol(disp.dt))
+old.opt &lt;- options(&quot;datatable.print.colnames&quot;=&quot;none&quot;)
+split(disp.dt, fsa.vec)
+#&gt; $`A01-Ladder-PP16-001.10sec.fsa`
+#&gt; 1: A 1       NA Ladder NA   NA NA PP16     1 10
+#&gt; 
+#&gt; $`A02-RD12-0002-1_2-1;9-0.125PP16-001.10sec.fsa`
+#&gt; 1: A 2 RD12-0002 1_2 1;9 NA   NA   NA 0.125 PP16     1 10
+#&gt; 
+#&gt; $`A02-RD12-0002-35-0.5PP16-001.10sec.fsa`
+#&gt; 1: A 2 RD12-0002     35   NA   NA 0.5 PP16     1 10
+#&gt; 
+#&gt; $`A06_RD14-0003-24d3a-0.0625IP-Q0.8_001.10sec.fsa`
+#&gt; 1: A 6 RD14-0003     24   3 a NA 0.0625 IP 0.8  1 10
+#&gt; 
+#&gt; $`A08-RD12-0002-01d-0.125PP16-001.10sec.fsa`
+#&gt; 1: A 8 RD12-0002     1   NA   NA 0.125 PP16     1 10
+#&gt; 
+#&gt; $`A10-RD12-0002-04d1-0.0625PP16-001.10sec.fsa`
+#&gt; 1: A 10 RD12-0002     4   1   NA 0.0625 PP16     1 10
+#&gt; 
+#&gt; $`A10_RB102191515LEA-IP_001.10sec.fsa`
+#&gt; 1: A 10       NA RB102191515LEA NA   NA NA IP     1 10
+#&gt; 
+#&gt; $A12_RB121514ADG_001.10sec.fsa
+#&gt; 1: A 12       NA RB121514ADG NA   NA NA        1 10
+#&gt; 
+#&gt; $`C02_RD14-0003-15d2b-0.25IP-Q0.5_003.5sec.fsa`
+#&gt; 1: C 2 RD14-0003     15   2 b NA 0.25 IP 0.5  3  5
+#&gt; 
+#&gt; $`D07_Ladder-IP_004.5sec.fsa`
+#&gt; 1: D 7       NA Ladder NA   NA NA IP     4  5
+#&gt; 
+#&gt; $`G01_RD14-0003-35d3S30-0.01563P-Q10.0_003.10sec.fsa`
+#&gt; 1: G 1 RD14-0003     35   3 S 30 0.01563  P 10.0  3 10
+#&gt; 
+#&gt; $`H07_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND_004.5sec.fsa`
+#&gt; 1: H 7 RD14-0003 35_36_37_38_39 1;4;4;4;1 NA   2 I 35 0.75 IP LAND  4  5
+options(old.opt)
+</code></pre>
+
+<p>Incidentally, if you print the regex as a string it looks like
+something that would be essentially impossible to write/maintain by
+hand (without <code>nc</code> helper functions):</p>
+
+<pre><code class="r">nc::var_args_list(fsa.pattern)$pattern
+#&gt; [1] &quot;(?:(?:^([A-H])([0-9]+))(?:[-_](?:(?:(?:(RD[0-9]+-[0-9]+)-)(?:(?:([0-9_]+)-([0-9;]+)-)|(?:([0-9]+))))|(?:([^-_]+))))(?:(?:(?:[dM]([0-9]?))?)(?:(?:([a-zA-Z])(?:(?:([0-9]+))?))?)[_-]?)(?:([0-9.]*))(?:(?:(PP16|IP|P))?)(?:(?:-Q(LAND|[0-9.]+))?)(?:[-_]([0-9]+)[.]([0-9]+)sec[.]fsa$))&quot;
+</code></pre>
+
+<p>In conclusion, we have shown how <code>nc</code> can help build complex regex
+patterns from simple, understandable sub-patterns in R code. The
+general workflow we have followed in this section can be generalized
+to other projects. First, identify a small set of subjects to use for
+testing (<code>fsa.vec</code> in the code above). Second, create some
+sub-patterns for the start/end of the subjects, and create a
+sub-pattern that will capture everything else in between. Third,
+create some more sub-patterns to match the &ldquo;everything else&rdquo; in the
+previous step (e.g. <code>before.dt$before</code>, <code>between.dt$between</code>,
+<code>rest.dt$rest</code> above). Repeat the process until there is nothing left
+to match, and then concatenate the sub-patterns to match the whole
+subject.</p>
 
 </body>
 

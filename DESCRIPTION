@@ -1,7 +1,7 @@
 Package: nc
 Maintainer: Toby Dylan Hocking <toby.hocking@r-project.org>
 Author: Toby Dylan Hocking
-Version: 2020.1.16
+Version: 2020.2.27
 License: GPL-3
 Title: Named Capture to Data Tables
 Description: User-friendly functions for extracting a data
@@ -20,11 +20,11 @@ Description: User-friendly functions for extracting a data
 Depends: R (>= 2.14)
 Imports: data.table
 Suggests: testthat, re2r, stringi, ggplot2, tidyr (>= 1.0.0), cdata,
-        dplyr, reshape2, knitr
+        dplyr, reshape2, knitr, R.utils
 VignetteBuilder: knitr
 URL: https://github.com/tdhock/nc
 BugReports: https://github.com/tdhock/nc/issues
 NeedsCompilation: no
-Packaged: 2020-01-31 16:29:29 UTC; th798
+Packaged: 2020-03-02 23:26:05 UTC; th798
 Repository: CRAN
-Date/Publication: 2020-01-31 23:00:02 UTC
+Date/Publication: 2020-03-04 05:40:02 UTC

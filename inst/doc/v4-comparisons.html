@@ -532,21 +532,18 @@ followed by melting is the World Health Organization data:</p>
 
 <pre><code class="r">data(who, package=&quot;tidyr&quot;)
 names(who)
-#&gt;  [1] &quot;country&quot;      &quot;iso2&quot;         &quot;iso3&quot;         &quot;year&quot;        
-#&gt;  [5] &quot;new_sp_m014&quot;  &quot;new_sp_m1524&quot; &quot;new_sp_m2534&quot; &quot;new_sp_m3544&quot;
-#&gt;  [9] &quot;new_sp_m4554&quot; &quot;new_sp_m5564&quot; &quot;new_sp_m65&quot;   &quot;new_sp_f014&quot; 
-#&gt; [13] &quot;new_sp_f1524&quot; &quot;new_sp_f2534&quot; &quot;new_sp_f3544&quot; &quot;new_sp_f4554&quot;
-#&gt; [17] &quot;new_sp_f5564&quot; &quot;new_sp_f65&quot;   &quot;new_sn_m014&quot;  &quot;new_sn_m1524&quot;
-#&gt; [21] &quot;new_sn_m2534&quot; &quot;new_sn_m3544&quot; &quot;new_sn_m4554&quot; &quot;new_sn_m5564&quot;
-#&gt; [25] &quot;new_sn_m65&quot;   &quot;new_sn_f014&quot;  &quot;new_sn_f1524&quot; &quot;new_sn_f2534&quot;
-#&gt; [29] &quot;new_sn_f3544&quot; &quot;new_sn_f4554&quot; &quot;new_sn_f5564&quot; &quot;new_sn_f65&quot;  
-#&gt; [33] &quot;new_ep_m014&quot;  &quot;new_ep_m1524&quot; &quot;new_ep_m2534&quot; &quot;new_ep_m3544&quot;
-#&gt; [37] &quot;new_ep_m4554&quot; &quot;new_ep_m5564&quot; &quot;new_ep_m65&quot;   &quot;new_ep_f014&quot; 
-#&gt; [41] &quot;new_ep_f1524&quot; &quot;new_ep_f2534&quot; &quot;new_ep_f3544&quot; &quot;new_ep_f4554&quot;
-#&gt; [45] &quot;new_ep_f5564&quot; &quot;new_ep_f65&quot;   &quot;newrel_m014&quot;  &quot;newrel_m1524&quot;
-#&gt; [49] &quot;newrel_m2534&quot; &quot;newrel_m3544&quot; &quot;newrel_m4554&quot; &quot;newrel_m5564&quot;
-#&gt; [53] &quot;newrel_m65&quot;   &quot;newrel_f014&quot;  &quot;newrel_f1524&quot; &quot;newrel_f2534&quot;
-#&gt; [57] &quot;newrel_f3544&quot; &quot;newrel_f4554&quot; &quot;newrel_f5564&quot; &quot;newrel_f65&quot;
+#&gt;  [1] &quot;country&quot;      &quot;iso2&quot;         &quot;iso3&quot;         &quot;year&quot;         &quot;new_sp_m014&quot; 
+#&gt;  [6] &quot;new_sp_m1524&quot; &quot;new_sp_m2534&quot; &quot;new_sp_m3544&quot; &quot;new_sp_m4554&quot; &quot;new_sp_m5564&quot;
+#&gt; [11] &quot;new_sp_m65&quot;   &quot;new_sp_f014&quot;  &quot;new_sp_f1524&quot; &quot;new_sp_f2534&quot; &quot;new_sp_f3544&quot;
+#&gt; [16] &quot;new_sp_f4554&quot; &quot;new_sp_f5564&quot; &quot;new_sp_f65&quot;   &quot;new_sn_m014&quot;  &quot;new_sn_m1524&quot;
+#&gt; [21] &quot;new_sn_m2534&quot; &quot;new_sn_m3544&quot; &quot;new_sn_m4554&quot; &quot;new_sn_m5564&quot; &quot;new_sn_m65&quot;  
+#&gt; [26] &quot;new_sn_f014&quot;  &quot;new_sn_f1524&quot; &quot;new_sn_f2534&quot; &quot;new_sn_f3544&quot; &quot;new_sn_f4554&quot;
+#&gt; [31] &quot;new_sn_f5564&quot; &quot;new_sn_f65&quot;   &quot;new_ep_m014&quot;  &quot;new_ep_m1524&quot; &quot;new_ep_m2534&quot;
+#&gt; [36] &quot;new_ep_m3544&quot; &quot;new_ep_m4554&quot; &quot;new_ep_m5564&quot; &quot;new_ep_m65&quot;   &quot;new_ep_f014&quot; 
+#&gt; [41] &quot;new_ep_f1524&quot; &quot;new_ep_f2534&quot; &quot;new_ep_f3544&quot; &quot;new_ep_f4554&quot; &quot;new_ep_f5564&quot;
+#&gt; [46] &quot;new_ep_f65&quot;   &quot;newrel_m014&quot;  &quot;newrel_m1524&quot; &quot;newrel_m2534&quot; &quot;newrel_m3544&quot;
+#&gt; [51] &quot;newrel_m4554&quot; &quot;newrel_m5564&quot; &quot;newrel_m65&quot;   &quot;newrel_f014&quot;  &quot;newrel_f1524&quot;
+#&gt; [56] &quot;newrel_f2534&quot; &quot;newrel_f3544&quot; &quot;newrel_f4554&quot; &quot;newrel_f5564&quot; &quot;newrel_f65&quot;
 </code></pre>
 
 <p>Each column which starts with <code>new</code> has three distinct pieces of
@@ -570,30 +567,18 @@ convenient way to do that is via:</p>
     names_to=c(&quot;diagnosis&quot;, &quot;gender&quot;, &quot;ages&quot;),
     names_pattern=&quot;new_?(.*)_(.)(.*)&quot;))
 #&gt; $`nc::capture_melt_single`
-#&gt;                          country iso2 iso3 year diagnosis gender ages
-#&gt;     1:               Afghanistan   AF  AFG 1997        sp      m  014
-#&gt;     2:               Afghanistan   AF  AFG 1998        sp      m  014
-#&gt;     3:               Afghanistan   AF  AFG 1999        sp      m  014
-#&gt;     4:               Afghanistan   AF  AFG 2000        sp      m  014
-#&gt;     5:               Afghanistan   AF  AFG 2001        sp      m  014
-#&gt;    ---                                                               
-#&gt; 76042:                  Viet Nam   VN  VNM 2013       rel      f   65
-#&gt; 76043: Wallis and Futuna Islands   WF  WLF 2013       rel      f   65
-#&gt; 76044:                     Yemen   YE  YEM 2013       rel      f   65
-#&gt; 76045:                    Zambia   ZM  ZMB 2013       rel      f   65
-#&gt; 76046:                  Zimbabwe   ZW  ZWE 2013       rel      f   65
-#&gt;        value
-#&gt;     1:     0
-#&gt;     2:    30
-#&gt;     3:     8
-#&gt;     4:    52
-#&gt;     5:   129
-#&gt;    ---      
-#&gt; 76042:  3110
-#&gt; 76043:     2
-#&gt; 76044:   360
-#&gt; 76045:   669
-#&gt; 76046:   725
+#&gt;                          country iso2 iso3 year diagnosis gender ages value
+#&gt;     1:               Afghanistan   AF  AFG 1997        sp      m  014     0
+#&gt;     2:               Afghanistan   AF  AFG 1998        sp      m  014    30
+#&gt;     3:               Afghanistan   AF  AFG 1999        sp      m  014     8
+#&gt;     4:               Afghanistan   AF  AFG 2000        sp      m  014    52
+#&gt;     5:               Afghanistan   AF  AFG 2001        sp      m  014   129
+#&gt;    ---                                                                     
+#&gt; 76042:                  Viet Nam   VN  VNM 2013       rel      f   65  3110
+#&gt; 76043: Wallis and Futuna Islands   WF  WLF 2013       rel      f   65     2
+#&gt; 76044:                     Yemen   YE  YEM 2013       rel      f   65   360
+#&gt; 76045:                    Zambia   ZM  ZMB 2013       rel      f   65   669
+#&gt; 76046:                  Zimbabwe   ZW  ZWE 2013       rel      f   65   725
 #&gt; 
 #&gt; $`tidyr::pivot_longer`
 #&gt; # A tibble: 405,440 x 8
@@ -619,6 +604,7 @@ specified pattern. The following example shows how to rename the
 functions:</p>
 
 <pre><code class="r">library(dplyr)
+#&gt; Warning: package &#39;dplyr&#39; was built under R version 3.6.2
 #&gt; 
 #&gt; Attaching package: &#39;dplyr&#39;
 #&gt; The following objects are masked from &#39;package:data.table&#39;:
@@ -824,24 +810,24 @@ print(iris.wide, topn=2, nrows=10)
 #&gt; ---                                                         
 #&gt; 74:          91                    5.5                   2.6
 #&gt; 75:          64                    6.1                   2.9
-#&gt;     treatment.Petal.Length treatment.Petal.Width treatment.Species
-#&gt;  1:                    4.1                   1.0        versicolor
-#&gt;  2:                    5.6                   2.1         virginica
-#&gt; ---                                                               
-#&gt; 74:                    4.4                   1.2        versicolor
-#&gt; 75:                    4.7                   1.4        versicolor
-#&gt;     control.i control.Sepal.Length control.Sepal.Width
-#&gt;  1:        60                  5.2                 2.7
-#&gt;  2:       113                  6.8                 3.0
-#&gt; ---                                                   
-#&gt; 74:        57                  6.3                 3.3
-#&gt; 75:        72                  6.1                 2.8
-#&gt;     control.Petal.Length control.Petal.Width control.Species
-#&gt;  1:                  3.9                 1.4      versicolor
-#&gt;  2:                  5.5                 2.1       virginica
-#&gt; ---                                                         
-#&gt; 74:                  4.7                 1.6      versicolor
-#&gt; 75:                  4.0                 1.3      versicolor
+#&gt;     treatment.Petal.Length treatment.Petal.Width treatment.Species control.i
+#&gt;  1:                    4.1                   1.0        versicolor        60
+#&gt;  2:                    5.6                   2.1         virginica       113
+#&gt; ---                                                                         
+#&gt; 74:                    4.4                   1.2        versicolor        57
+#&gt; 75:                    4.7                   1.4        versicolor        72
+#&gt;     control.Sepal.Length control.Sepal.Width control.Petal.Length
+#&gt;  1:                  5.2                 2.7                  3.9
+#&gt;  2:                  6.8                 3.0                  5.5
+#&gt; ---                                                              
+#&gt; 74:                  6.3                 3.3                  4.7
+#&gt; 75:                  6.1                 2.8                  4.0
+#&gt;     control.Petal.Width control.Species
+#&gt;  1:                 1.4      versicolor
+#&gt;  2:                 2.1       virginica
+#&gt; ---                                    
+#&gt; 74:                 1.6      versicolor
+#&gt; 75:                 1.3      versicolor
 
 ## This is the usual data.table syntax for getting the original iris back.
 iris.melted &lt;- melt(iris.wide, value.factor=TRUE, measure.vars = patterns(
@@ -861,30 +847,18 @@ identical(iris.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
   group=&quot;[^.]+&quot;,
   &quot;[.]&quot;,
   column=&quot;.*&quot;))
-#&gt;          group Petal.Length Petal.Width Sepal.Length Sepal.Width
-#&gt;   1:   control          3.9         1.4          5.2         2.7
-#&gt;   2:   control          5.5         2.1          6.8         3.0
-#&gt;   3:   control          5.6         1.4          6.1         2.6
-#&gt;   4:   control          1.5         0.1          4.9         3.1
-#&gt;   5:   control          1.4         0.2          5.1         3.5
-#&gt;  ---                                                            
-#&gt; 146: treatment          1.6         0.2          4.8         3.1
-#&gt; 147: treatment          1.3         0.4          5.4         3.9
-#&gt; 148: treatment          5.4         2.1          6.9         3.1
-#&gt; 149: treatment          4.4         1.2          5.5         2.6
-#&gt; 150: treatment          4.7         1.4          6.1         2.9
-#&gt;         Species   i
-#&gt;   1: versicolor  60
-#&gt;   2:  virginica 113
-#&gt;   3:  virginica 135
-#&gt;   4:     setosa  10
-#&gt;   5:     setosa   1
-#&gt;  ---               
-#&gt; 146:     setosa  31
-#&gt; 147:     setosa  17
-#&gt; 148:  virginica 140
-#&gt; 149: versicolor  91
-#&gt; 150: versicolor  64
+#&gt;          group Petal.Length Petal.Width Sepal.Length Sepal.Width    Species   i
+#&gt;   1:   control          3.9         1.4          5.2         2.7 versicolor  60
+#&gt;   2:   control          5.5         2.1          6.8         3.0  virginica 113
+#&gt;   3:   control          5.6         1.4          6.1         2.6  virginica 135
+#&gt;   4:   control          1.5         0.1          4.9         3.1     setosa  10
+#&gt;   5:   control          1.4         0.2          5.1         3.5     setosa   1
+#&gt;  ---                                                                           
+#&gt; 146: treatment          1.6         0.2          4.8         3.1     setosa  31
+#&gt; 147: treatment          1.3         0.4          5.4         3.9     setosa  17
+#&gt; 148: treatment          5.4         2.1          6.9         3.1  virginica 140
+#&gt; 149: treatment          4.4         1.2          5.5         2.6 versicolor  91
+#&gt; 150: treatment          4.7         1.4          6.1         2.9 versicolor  64
 identical(nc.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
 #&gt; [1] TRUE
 

@@ -457,30 +457,18 @@ nc::capture_all_str(
   any.lines.pattern,
   &quot;\\s+&quot;,
   nc::field(&quot;type&quot;, &quot; &quot;, &quot;[^\n]+&quot;))
-#&gt;                         track cellType sampleName sampleID dataType
-#&gt;   1:               all_labels                           NA         
-#&gt;   2:                 problems                           NA         
-#&gt;   3:            jointProblems                           NA         
-#&gt;   4:            peaks_summary                           NA         
-#&gt;   5:         bcell_McGill0091                           NA         
-#&gt;  ---                                                               
-#&gt; 111: tcell_McGill0106Coverage    tcell McGill0106      106 Coverage
-#&gt; 112:    tcell_McGill0106Peaks    tcell McGill0106      106    Peaks
-#&gt; 113:         tcell_McGill0107                           NA         
-#&gt; 114: tcell_McGill0107Coverage    tcell McGill0107      107 Coverage
-#&gt; 115:    tcell_McGill0107Peaks    tcell McGill0107      107    Peaks
-#&gt;          type
-#&gt;   1: bigBed 9
-#&gt;   2: bigBed 3
-#&gt;   3: bigBed 3
-#&gt;   4: bigBed 5
-#&gt;   5:   bigWig
-#&gt;  ---         
-#&gt; 111:   bigWig
-#&gt; 112:   bigWig
-#&gt; 113:   bigWig
-#&gt; 114:   bigWig
-#&gt; 115:   bigWig
+#&gt;                         track cellType sampleName sampleID dataType     type
+#&gt;   1:               all_labels                           NA          bigBed 9
+#&gt;   2:                 problems                           NA          bigBed 3
+#&gt;   3:            jointProblems                           NA          bigBed 3
+#&gt;   4:            peaks_summary                           NA          bigBed 5
+#&gt;   5:         bcell_McGill0091                           NA            bigWig
+#&gt;  ---                                                                        
+#&gt; 111: tcell_McGill0106Coverage    tcell McGill0106      106 Coverage   bigWig
+#&gt; 112:    tcell_McGill0106Peaks    tcell McGill0106      106    Peaks   bigWig
+#&gt; 113:         tcell_McGill0107                           NA            bigWig
+#&gt; 114: tcell_McGill0107Coverage    tcell McGill0107      107 Coverage   bigWig
+#&gt; 115:    tcell_McGill0107Peaks    tcell McGill0107      107    Peaks   bigWig
 </code></pre>
 
 <p>Exercise for the reader (easy): modify the above regex in order to capture
