@@ -248,7 +248,6 @@ example is the familiar iris data, which have flower part and
 measurement dimension encoded in each of four column names:</p>
 
 <pre><code class="r">library(data.table)
-#&gt; Warning: package &#39;data.table&#39; was built under R version 3.6.2
 (iris.dt &lt;- data.table(i=1:nrow(iris), iris[,1:4], Species=paste(iris$Species)))
 #&gt;        i Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 #&gt;   1:   1          5.1         3.5          1.4         0.2    setosa
@@ -344,7 +343,6 @@ Species), two reshape columns (Sepal, Petal), and one capture columns
 than petals:</p>
 
 <pre><code class="r">library(ggplot2)
-#&gt; Warning: package &#39;ggplot2&#39; was built under R version 3.6.2
 ggplot()+
   theme_bw()+
   theme(panel.spacing=grid::unit(0, &quot;lines&quot;))+

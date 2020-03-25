@@ -1,7 +1,7 @@
 Package: nc
 Maintainer: Toby Dylan Hocking <toby.hocking@r-project.org>
 Author: Toby Dylan Hocking
-Version: 2020.2.27
+Version: 2020.3.23
 License: GPL-3
 Title: Named Capture to Data Tables
 Description: User-friendly functions for extracting a data
@@ -17,6 +17,8 @@ Description: User-friendly functions for extracting a data
  to three regular expression C libraries (PCRE, RE2, ICU).
  Output can also include numeric columns via
  user-specified type conversion functions.
+ RE2 engine (re2r package) was removed from CRAN in Mar 2020
+ so must be installed from github.
 Depends: R (>= 2.14)
 Imports: data.table
 Suggests: testthat, re2r, stringi, ggplot2, tidyr (>= 1.0.0), cdata,
@@ -24,7 +26,8 @@ Suggests: testthat, re2r, stringi, ggplot2, tidyr (>= 1.0.0), cdata,
 VignetteBuilder: knitr
 URL: https://github.com/tdhock/nc
 BugReports: https://github.com/tdhock/nc/issues
+Additional_repositories: https://tdhock.github.io/drat
 NeedsCompilation: no
-Packaged: 2020-03-02 23:26:05 UTC; th798
+Packaged: 2020-03-24 17:50:42 UTC; th798
 Repository: CRAN
-Date/Publication: 2020-03-04 05:40:02 UTC
+Date/Publication: 2020-03-25 13:50:09 UTC
