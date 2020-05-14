@@ -342,19 +342,22 @@ Species), two reshape columns (Sepal, Petal), and one capture columns
 (dim).  These can help us visualize whether or not sepals are bigger
 than petals:</p>
 
-<pre><code class="r">library(ggplot2)
-ggplot()+
-  theme_bw()+
-  theme(panel.spacing=grid::unit(0, &quot;lines&quot;))+
-  facet_grid(dim ~ Species)+
-  coord_equal()+
-  geom_abline(slope=1, intercept=0, color=&quot;grey&quot;)+
-  geom_point(aes(
-    Petal, Sepal),
-    data=iris.part.cols)
+<pre><code class="r">
+if(require(ggplot2)){
+  ggplot()+
+    theme_bw()+
+    theme(panel.spacing=grid::unit(0, &quot;lines&quot;))+
+    facet_grid(dim ~ Species)+
+    coord_equal()+
+    geom_abline(slope=1, intercept=0, color=&quot;grey&quot;)+
+    geom_point(aes(
+      Petal, Sepal),
+      data=iris.part.cols)
+}
+#&gt; Loading required package: ggplot2
 </code></pre>
 
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-5"/></p>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-5"/></p>
 
 <p>It is clear from the plot above that sepals are indeed both longer and
 wider than petals, on each measured plant.</p>
@@ -362,7 +365,13 @@ wider than petals, on each measured plant.</p>
 <p>Another data set where it is useful to do column name pattern matching
 followed by melting is the World Health Organization data:</p>
 
-<pre><code class="r">data(who, package=&quot;tidyr&quot;)
+<pre><code class="r">
+if(requireNamespace(&quot;tidyr&quot;)){
+  data(who, package=&quot;tidyr&quot;)
+}else{
+  who &lt;- data.frame(id=1, new_sp_m5564=2, newrel_f65=3)
+}
+#&gt; Loading required namespace: tidyr
 names(who)
 #&gt;  [1] &quot;country&quot;      &quot;iso2&quot;         &quot;iso3&quot;         &quot;year&quot;         &quot;new_sp_m014&quot; 
 #&gt;  [6] &quot;new_sp_m1524&quot; &quot;new_sp_m2534&quot; &quot;new_sp_m3544&quot; &quot;new_sp_m4554&quot; &quot;new_sp_m5564&quot;
@@ -460,110 +469,14 @@ str(who.typed)
 <ul>
 <li>non-character captured output columns can be obtained by specifying
 type conversion functions in the pattern.</li>
-<li><code>value.name</code> is used as the column name for the reshaped data in the output (as in <code>melt.data.table</code>).</li>
+<li><code>value.name</code> is used as the column name for the reshaped data in the
+output (as in <code>melt.data.table</code>).</li>
 </ul>
 
-<h2>Comparison with tidyr</h2>
-
-<p>The <code>nc::capture_melt_single</code> function was inspired by the <code>tidyr</code>
-package, which can accomplish the same computation via:</p>
-
-<pre><code class="r">tidyr::pivot_longer(
-  who, new_sp_m014:newrel_f65,
-  names_to=c(&quot;diagnosis&quot;, &quot;gender&quot;, &quot;ages&quot;),
-  names_pattern=&quot;new_?(.*)_(.)(.*)&quot;)
-#&gt; # A tibble: 405,440 x 8
-#&gt;    country     iso2  iso3   year diagnosis gender ages  value
-#&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;
-#&gt;  1 Afghanistan AF    AFG    1980 sp        m      014      NA
-#&gt;  2 Afghanistan AF    AFG    1980 sp        m      1524     NA
-#&gt;  3 Afghanistan AF    AFG    1980 sp        m      2534     NA
-#&gt;  4 Afghanistan AF    AFG    1980 sp        m      3544     NA
-#&gt;  5 Afghanistan AF    AFG    1980 sp        m      4554     NA
-#&gt;  6 Afghanistan AF    AFG    1980 sp        m      5564     NA
-#&gt;  7 Afghanistan AF    AFG    1980 sp        m      65       NA
-#&gt;  8 Afghanistan AF    AFG    1980 sp        f      014      NA
-#&gt;  9 Afghanistan AF    AFG    1980 sp        f      1524     NA
-#&gt; 10 Afghanistan AF    AFG    1980 sp        f      2534     NA
-#&gt; # ... with 405,430 more rows
-</code></pre>
-
-<p>The syntax above is somewhat repetitive, since it requires specifying
-columns to melt as the second argument, and it also requires
-<code>names_pattern</code> which could be used to identify the columns to melt,
-e.g.</p>
-
-<pre><code class="r">names.pattern &lt;- &quot;new_?(.*)_(.)(.*)&quot;
-tidyr::pivot_longer(
-  who, grep(names.pattern, names(who)),
-  names_to=c(&quot;diagnosis&quot;, &quot;gender&quot;, &quot;ages&quot;),
-  names_pattern=names.pattern)
-#&gt; # A tibble: 405,440 x 8
-#&gt;    country     iso2  iso3   year diagnosis gender ages  value
-#&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;
-#&gt;  1 Afghanistan AF    AFG    1980 sp        m      014      NA
-#&gt;  2 Afghanistan AF    AFG    1980 sp        m      1524     NA
-#&gt;  3 Afghanistan AF    AFG    1980 sp        m      2534     NA
-#&gt;  4 Afghanistan AF    AFG    1980 sp        m      3544     NA
-#&gt;  5 Afghanistan AF    AFG    1980 sp        m      4554     NA
-#&gt;  6 Afghanistan AF    AFG    1980 sp        m      5564     NA
-#&gt;  7 Afghanistan AF    AFG    1980 sp        m      65       NA
-#&gt;  8 Afghanistan AF    AFG    1980 sp        f      014      NA
-#&gt;  9 Afghanistan AF    AFG    1980 sp        f      1524     NA
-#&gt; 10 Afghanistan AF    AFG    1980 sp        f      2534     NA
-#&gt; # ... with 405,430 more rows
-</code></pre>
-
-<p>To accomplish the type conversion using tidyr we need to do a
-post-processing step, which requires additional repetition of the
-column names we want to convert:</p>
-
-<pre><code class="r">(years.pattern.str &lt;- nc::var_args_list(years.pattern)$pattern)
-#&gt; [1] &quot;(?:(?:new_?(.*)_(.))((0|[0-9]{2})([0-9]{0,2})))&quot;
-(tidyr.nona &lt;- tidyr::pivot_longer(
-  who,
-  grep(years.pattern.str, names(who)),
-  names_to=c(&quot;diagnosis&quot;, &quot;gender&quot;, &quot;ages&quot;, &quot;ymin&quot;, &quot;ymax&quot;),
-  values_drop_na=TRUE,
-  names_pattern=years.pattern.str))
-#&gt; # A tibble: 76,046 x 10
-#&gt;    country     iso2  iso3   year diagnosis gender ages  ymin  ymax  value
-#&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
-#&gt;  1 Afghanistan AF    AFG    1997 sp        m      014   0     &quot;14&quot;      0
-#&gt;  2 Afghanistan AF    AFG    1997 sp        m      1524  15    &quot;24&quot;     10
-#&gt;  3 Afghanistan AF    AFG    1997 sp        m      2534  25    &quot;34&quot;      6
-#&gt;  4 Afghanistan AF    AFG    1997 sp        m      3544  35    &quot;44&quot;      3
-#&gt;  5 Afghanistan AF    AFG    1997 sp        m      4554  45    &quot;54&quot;      5
-#&gt;  6 Afghanistan AF    AFG    1997 sp        m      5564  55    &quot;64&quot;      2
-#&gt;  7 Afghanistan AF    AFG    1997 sp        m      65    65    &quot;&quot;        0
-#&gt;  8 Afghanistan AF    AFG    1997 sp        f      014   0     &quot;14&quot;      5
-#&gt;  9 Afghanistan AF    AFG    1997 sp        f      1524  15    &quot;24&quot;     38
-#&gt; 10 Afghanistan AF    AFG    1997 sp        f      2534  25    &quot;34&quot;     36
-#&gt; # ... with 76,036 more rows
-tidyr.typed &lt;- transform(
-  tidyr.nona,
-  min.years=as.numeric(ymin),
-  max.years=ifelse(is.na(ymax), Inf, as.numeric(ymax)))
-str(tidyr.typed)
-#&gt; &#39;data.frame&#39;:    76046 obs. of  12 variables:
-#&gt;  $ country  : chr  &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; ...
-#&gt;  $ iso2     : chr  &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; ...
-#&gt;  $ iso3     : chr  &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; ...
-#&gt;  $ year     : int  1997 1997 1997 1997 1997 1997 1997 1997 1997 1997 ...
-#&gt;  $ diagnosis: chr  &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; ...
-#&gt;  $ gender   : chr  &quot;m&quot; &quot;m&quot; &quot;m&quot; &quot;m&quot; ...
-#&gt;  $ ages     : chr  &quot;014&quot; &quot;1524&quot; &quot;2534&quot; &quot;3544&quot; ...
-#&gt;  $ ymin     : chr  &quot;0&quot; &quot;15&quot; &quot;25&quot; &quot;35&quot; ...
-#&gt;  $ ymax     : chr  &quot;14&quot; &quot;24&quot; &quot;34&quot; &quot;44&quot; ...
-#&gt;  $ value    : int  0 10 6 3 5 2 0 5 38 36 ...
-#&gt;  $ min.years: num  0 15 25 35 45 55 65 0 15 25 ...
-#&gt;  $ max.years: num  14 24 34 44 54 64 NA 14 24 34 ...
-</code></pre>
-
-<p>In conclusion <code>nc::capture_melt_single</code> provides an alternative which
-(1) makes it easier to define complex patterns (2) supports type
-conversion without a post-processing step, and (3) reduces repetition
-in user code.</p>
+<p>In conclusion <code>nc::capture_melt_single</code> does wide-to-tall data
+reshaping which (1) makes it easy to define complex patterns (2)
+supports type conversion without a post-processing step, and (3)
+reduces repetition in user code.</p>
 
 <h2>Melting columns of different types into multiple result columns</h2>
 
@@ -732,86 +645,6 @@ identical(nc.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
 <p>To conclude this section, we have seen that a simple non-repetitive
 regex syntax can be used with <code>nc::capture_melt_multiple</code> to
 melt wide data into several columns of different types.</p>
-
-<h2>Comparison with tidyr syntax</h2>
-
-<p>The syntax below can be used to get the tall data table of children:</p>
-
-<pre><code class="r">tidyr::pivot_longer(
-  family.dt,
-  cols=dob_child1:gender_child3,
-  names_pattern=&quot;(.*)_child([1-3])&quot;,
-  names_to=c(&quot;.value&quot;, &quot;child.str&quot;),
-  values_drop_na=TRUE)
-#&gt; # A tibble: 11 x 5
-#&gt;    family_id age_mother child.str dob        gender
-#&gt;        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;
-#&gt;  1         1         30 1         1998-11-26      1
-#&gt;  2         1         30 2         2000-01-29      2
-#&gt;  3         2         27 1         1996-06-22      2
-#&gt;  4         3         26 1         2002-07-11      2
-#&gt;  5         3         26 2         2004-04-05      2
-#&gt;  6         3         26 3         2007-09-02      1
-#&gt;  7         4         32 1         2004-10-10      1
-#&gt;  8         4         32 2         2009-08-27      1
-#&gt;  9         4         32 3         2012-07-21      1
-#&gt; 10         5         29 1         2000-12-05      2
-#&gt; 11         5         29 2         2005-02-28      1
-</code></pre>
-
-<p>However the code is somewhat repetitive, as the columns to melt must
-be specified in two arguments: <code>cols</code> and <code>names_pattern</code>. A
-workaround is to use a pre-defined pattern for both arguments:</p>
-
-<pre><code class="r">child.pat.str &lt;- &quot;(.*)_child([1-3])&quot;
-tidyr.children &lt;- tidyr::pivot_longer(
-  family.dt,
-  cols=grep(child.pat.str, names(family.dt)),
-  names_pattern=child.pat.str,
-  names_to=c(&quot;.value&quot;, &quot;child.str&quot;),
-  values_drop_na=TRUE)
-(tidyr.converted &lt;- transform(
-  tidyr.children,
-  child=as.integer(child.str)))
-#&gt;    family_id age_mother child.str        dob gender child
-#&gt; 1          1         30         1 1998-11-26      1     1
-#&gt; 2          1         30         2 2000-01-29      2     2
-#&gt; 3          2         27         1 1996-06-22      2     1
-#&gt; 4          3         26         1 2002-07-11      2     1
-#&gt; 5          3         26         2 2004-04-05      2     2
-#&gt; 6          3         26         3 2007-09-02      1     3
-#&gt; 7          4         32         1 2004-10-10      1     1
-#&gt; 8          4         32         2 2009-08-27      1     2
-#&gt; 9          4         32         3 2012-07-21      1     3
-#&gt; 10         5         29         1 2000-12-05      2     1
-#&gt; 11         5         29         2 2005-02-28      1     2
-str(tidyr.converted)
-#&gt; &#39;data.frame&#39;:    11 obs. of  6 variables:
-#&gt;  $ family_id : int  1 1 2 3 3 3 4 4 4 5 ...
-#&gt;  $ age_mother: int  30 30 27 26 26 26 32 32 32 29 ...
-#&gt;  $ child.str : chr  &quot;1&quot; &quot;2&quot; &quot;1&quot; &quot;1&quot; ...
-#&gt;  $ dob       : chr  &quot;1998-11-26&quot; &quot;2000-01-29&quot; &quot;1996-06-22&quot; &quot;2002-07-11&quot; ...
-#&gt;  $ gender    : int  1 2 2 2 2 1 1 1 1 2 ...
-#&gt;  $ child     : int  1 2 1 1 2 3 1 2 3 1 ...
-</code></pre>
-
-<p>However there is still some repetition: <code>child</code> appears in both the
-pattern string and the <code>names_to</code> argument. That repetition is avoided
-if <code>nc::capture_melt_multiple</code> is used with <code>nc::field</code>.</p>
-
-<p>Another difference is that <code>nc</code> allows specification of type
-conversion functions in the pattern, which results in an integer
-<code>child</code> column. In contrast with <code>tidyr</code> output columns such as
-<code>child.str</code> which are created using a regex capture group are always
-character, so type conversions must be specified as a post-processing
-step.</p>
-
-<p>To conclude this section, we have seen that <code>tidyr::pivot_longer</code> uses
-a different syntax to perform a similar computation to
-<code>nc::capture_melt_multiple</code>. Two differences are that <code>nc</code>
-syntax is less repetitive, and allows specifying type conversion
-functions in the pattern, which avoids the need for a post-processing
-step.</p>
 
 </body>
 

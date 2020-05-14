@@ -5,56 +5,25 @@ knitr::opts_chunk$set(
 )
 
 ## -----------------------------------------------------------------------------
-compare <- function(..., exclude="variable"){
-  mc <- match.call()
-  default.names <- paste(lapply(mc[-1], "[[", 1))
-  L <- list(...)
-  to.rep <- if(is.null(names(L)))rep(TRUE, length(L)) else names(L)==""
-  names(L)[to.rep] <- default.names[to.rep]
-  sorted.list <- list()
-  all.name.vec <- names(L[[1]])
-  name.vec <- all.name.vec[!all.name.vec %in% exclude]
-  for(fun.name in names(L[-1])){
-    result.dt <- data.table(L[[fun.name]])
-    if(0 < nrow(result.dt)){
-      if(!all(name.vec %in% names(result.dt))){
-        print(result.dt)
-        stop(fun.name, " result needs names: ", paste(name.vec, collapse=", "))
-      }
-      sorted <- result.dt[, name.vec, with=FALSE]
-      setkeyv(sorted, name.vec)
-      sorted.list[[fun.name]] <- sorted
-    }
-  }
-  ref.dt <- sorted.list[[1]]
-  others <- sorted.list[-1]
-  for(fun.name in names(others)){
-    other.dt <- others[[fun.name]]
-    all.eq <- all.equal(other.dt, ref.dt)
-    if(!isTRUE(all.eq)){
-      cat(fun.name, "\n", all.eq, "\n\n", sep="")
-    }
-  }
-  L
-}
 
-## -----------------------------------------------------------------------------
 library(data.table)
 data.table(iris)
 
+
 ## -----------------------------------------------------------------------------
-iris.parts <- compare(
-  nc::capture_melt_multiple(
+
+iris.parts <- list(
+  nc=nc::capture_melt_multiple(
     iris,
     column=".*?",
     "[.]",
     dim=".*"),
-  tidyr::pivot_longer(
+  tidyr=if(requireNamespace("tidyr"))tidyr::pivot_longer(
     iris, 
     cols=1:4, 
     names_to=c(".value", "dim"),
     names_sep="[.]"),
-  stats::reshape(
+  stats=stats::reshape(
     iris,
     direction="long",
     timevar="dim",
@@ -78,26 +47,31 @@ iris.parts <- compare(
     columnsToCopy="Species"))
 iris.parts$nc
 
-## -----------------------------------------------------------------------------
-library(ggplot2)
-ggplot()+
-  theme_bw()+
-  theme(panel.spacing=grid::unit(0, "lines"))+
-  facet_grid(dim ~ Species)+
-  coord_equal()+
-  geom_abline(slope=1, intercept=0, color="grey")+
-  geom_point(aes(
-    Petal, Sepal),
-    data=iris.parts$nc)
 
 ## -----------------------------------------------------------------------------
-iris.dims <- compare(
-  nc::capture_melt_multiple(
+
+if(require(ggplot2)){
+  ggplot()+
+    theme_bw()+
+    theme(panel.spacing=grid::unit(0, "lines"))+
+    facet_grid(dim ~ Species)+
+    coord_equal()+
+    geom_abline(slope=1, intercept=0, color="grey")+
+    geom_point(aes(
+      Petal, Sepal),
+      data=iris.parts$nc)
+}
+
+
+## -----------------------------------------------------------------------------
+
+iris.dims <- list(
+  nc=nc::capture_melt_multiple(
     iris,
     part=".*?",
     "[.]",
     column=".*"),
-  stats::reshape(
+  stats=stats::reshape(
     structure(iris, names=sub("(.*?)[.](.*)", "\\2.\\1", names(iris))),
     direction="long",
     timevar="part",
@@ -105,25 +79,33 @@ iris.dims <- compare(
     sep="."))
 iris.dims$nc
 
-## -----------------------------------------------------------------------------
-ggplot()+
-  theme_bw()+
-  theme(panel.spacing=grid::unit(0, "lines"))+
-  facet_grid(part ~ Species)+
-  coord_equal()+
-  geom_abline(slope=1, intercept=0, color="grey")+
-  geom_point(aes(
-    Length, Width),
-    data=iris.dims$nc)
 
 ## -----------------------------------------------------------------------------
+
+if(require(ggplot2)){
+  ggplot()+
+    theme_bw()+
+    theme(panel.spacing=grid::unit(0, "lines"))+
+    facet_grid(part ~ Species)+
+    coord_equal()+
+    geom_abline(slope=1, intercept=0, color="grey")+
+    geom_point(aes(
+      Length, Width),
+      data=iris.dims$nc)
+}
+
+
+## -----------------------------------------------------------------------------
+
 TC <- data.table::data.table(
   age.treatment=c(1, 5),
   sex.control=c("M", "M"),
   sex.treatment=c("F", "F"),
   age.control=c(10, 50))
 
+
 ## -----------------------------------------------------------------------------
+
 input.list <- list(
   "nc"=nc::capture_melt_multiple(
     TC,
@@ -144,7 +126,7 @@ input.list <- list(
     TC,
     varying=1:4,
     direction="long"),
-  "tidyr"=tidyr::pivot_longer(
+  "tidyr"=if(requireNamespace("tidyr"))tidyr::pivot_longer(
     TC, 1:4,
     names_to=c(".value", "group"),
     names_sep="[.]"))
@@ -158,30 +140,40 @@ for(pkg in names(input.list)){
 output.list
 sapply(output.list, function(DT)identical(DT$sex, c("F", "F", "M", "M")))
 
-## -----------------------------------------------------------------------------
-data(who, package="tidyr")
-names(who)
 
 ## -----------------------------------------------------------------------------
-compare(
-  nc::capture_melt_single(
+
+if(requireNamespace("tidyr")){
+  data(who, package="tidyr")
+}else{
+  who <- data.frame(id=1, new_sp_m5564=2, newrel_f65=3)
+}
+names(who)
+
+
+## -----------------------------------------------------------------------------
+
+who.chr.list <- list(
+  nc=nc::capture_melt_single(
     who,
     "new_?",
     diagnosis=".*",
     "_",
     gender=".",
     ages=".*"),
-  tidyr::pivot_longer(
+  tidyr=if(requireNamespace("tidyr"))tidyr::pivot_longer(
     who,
     new_sp_m014:newrel_f65,
     names_to=c("diagnosis", "gender", "ages"),
     names_pattern="new_?(.*)_(.)(.*)"))
 
+
 ## -----------------------------------------------------------------------------
-library(dplyr)
+
 who.pattern <- "new_?(.*)_(.)((0|[0-9]{2})([0-9]{0,2}))"
-who.typed <- compare(
-  nc::capture_melt_single(
+as.numeric.Inf <- function(y)ifelse(y=="", Inf, as.numeric(y))
+who.typed.list <- list(
+  nc=nc::capture_melt_single(
     who,
     "new_?",
     diagnosis=".*",
@@ -189,44 +181,53 @@ who.typed <- compare(
     gender=".",
     ages=list(
       ymin.num="0|[0-9]{2}", as.numeric,
-      ymax.num="[0-9]{0,2}", function(y)ifelse(y=="", Inf, as.numeric(y))),
+      ymax.num="[0-9]{0,2}", as.numeric.Inf),
     value.name="count",
     na.rm=TRUE),
-  tidyr::pivot_longer(
+  tidyr=if(requireNamespace("tidyr"))try(tidyr::pivot_longer(
     who,
     cols=grep(who.pattern, names(who)),
-    names_ptypes=list(ymin.num=numeric()),
-    names_to=c("diagnosis", "gender", "ages", "ymin.num", "ymax.chr"),
+    names_transform=list(
+      ymin.num=as.numeric,
+      ymax.num=as.numeric.Inf),
+    names_to=c("diagnosis", "gender", "ages", "ymin.num", "ymax.num"),
     names_pattern=who.pattern,
     values_drop_na=TRUE,
-    values_to="count"
-   ) %>% dplyr::mutate(
-    ymax.num=ifelse(ymax.chr=="", Inf, as.numeric(ymax.chr))))
-str(who.typed)  
+    values_to="count")))
+str(who.typed.list)
+
 
 ## -----------------------------------------------------------------------------
-gather.result <- tidyr::gather(
-  who,
-  "variable",
-  "count",
-  grep(who.pattern, names(who)),
-  na.rm=TRUE)
-tidyr::extract(
-  gather.result,
-  "variable",
-  c("diagnosis", "gender", "ages", "ymin.int", "ymax.int"),
-  who.pattern,
-  convert=TRUE
-) %>% dplyr::mutate(
-  ymin.num=as.numeric(ymin.int),
-  ymax.num=ifelse(is.na(ymax.int), Inf, as.numeric(ymax.int)))
+
+if(requireNamespace("tidyr")){
+  gather.result <- tidyr::gather(
+    who,
+    "variable",
+    "count",
+    grep(who.pattern, names(who)),
+    na.rm=TRUE)
+  extract.result <- tidyr::extract(
+    gather.result,
+    "variable",
+    c("diagnosis", "gender", "ages", "ymin.int", "ymax.int"),
+    who.pattern,
+    convert=TRUE)
+  base::transform(
+    extract.result,
+    ymin.num=as.numeric(ymin.int),
+    ymax.num=ifelse(is.na(ymax.int), Inf, as.numeric(ymax.int)))
+}
+
 
 ## -----------------------------------------------------------------------------
-reshape2.result <- reshape2:::melt.data.frame(
-  who,
-  measure.vars=grep(who.pattern, names(who)),
-  na.rm=TRUE,
-  value.name="count")
+
+reshape2.result <- if(requireNamespace("reshape2")){
+  reshape2:::melt.data.frame(
+    who,
+    measure.vars=grep(who.pattern, names(who)),
+    na.rm=TRUE,
+    value.name="count")
+}
 
 ## -----------------------------------------------------------------------------
 dt.result <- data.table::melt.data.table(
@@ -374,10 +375,12 @@ reshape(
   timevar="number")
 
 ## tidyr does, but errors for combining ordered and un-ordered factors.
-tidyr::pivot_longer(
-  DT, grep("[cf]", names(DT), invert=TRUE),
-  names_pattern="(.)_(.)",
-  names_to=c(".value", "number"))
+if(requireNamespace("tidyr")){
+  tidyr::pivot_longer(
+    DT, grep("[cf]", names(DT), invert=TRUE),
+    names_pattern="(.)_(.)",
+    names_to=c(".value", "number"))
+}
 
 
 ## -----------------------------------------------------------------------------
@@ -404,7 +407,7 @@ family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child
   na.rm=TRUE))
 
 ## reshape works too.
-reshape(
+stats::reshape(
   family.dt,
   varying=grep("child", names(family.dt)),
   direction="long",
@@ -430,11 +433,12 @@ for(col.i in 1:ncol(imat)){
 
 
 ## -----------------------------------------------------------------------------
+
 pen.peaks.wide <- data.table::data.table(
   data.set=c("foo", "bar"),
   "10.1"=c(5L, 10L),
   "0.3"=c(26L, 39L))
-pen.peaks.gather <- tidyr::gather(
+pen.peaks.gather <- if(requireNamespace("tidyr"))tidyr::gather(
   pen.peaks.wide,
   "penalty",
   "peaks",
@@ -448,12 +452,12 @@ pen.peaks.nc <- nc::capture_melt_single(
   value.name="peaks")
 str(pen.peaks.nc)
 
-pen.peaks.pivot <- tidyr::pivot_longer(
+pen.peaks.pivot <- if(requireNamespace("tidyr"))try(tidyr::pivot_longer(
   pen.peaks.wide,
   -1,
   names_to="penalty",
-  names_ptypes=list(penalty=numeric()),
-  values_to="peaks")
+  names_transform=list(penalty=as.numeric),
+  values_to="peaks"))
 str(pen.peaks.pivot)
 
 varying <- 2:3

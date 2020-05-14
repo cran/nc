@@ -308,16 +308,16 @@ specify the pattern:</p>
 #&gt; $fun.list$chrom
 #&gt; function (x) 
 #&gt; x
-#&gt; &lt;bytecode: 0x00000000133256d8&gt;
+#&gt; &lt;bytecode: 0x55e7a8700798&gt;
 #&gt; &lt;environment: namespace:base&gt;
 #&gt; 
 #&gt; $fun.list$chromStart
 #&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))
-#&gt; &lt;bytecode: 0x00000000150d78a8&gt;
+#&gt; &lt;bytecode: 0x55e7a8aed1f0&gt;
 #&gt; 
 #&gt; $fun.list$chromEnd
 #&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))
-#&gt; &lt;bytecode: 0x00000000150d78a8&gt;
+#&gt; &lt;bytecode: 0x55e7a8aed1f0&gt;
 #&gt; 
 #&gt; 
 #&gt; $pattern
@@ -362,12 +362,12 @@ and RE2. Each engine has different features, which are discussed in
 u.pattern &lt;- list(emoji=&quot;\\p{EMOJI_Presentation}&quot;)
 old.opt &lt;- options(nc.engine=&quot;ICU&quot;)
 nc::capture_first_vec(u.subject, u.pattern)
-#&gt;           emoji
-#&gt; 1: &lt;U+0001F60E&gt;
+#&gt;    emoji
+#&gt; 1:     😎
 nc::capture_first_vec(u.subject, u.pattern, engine=&quot;PCRE&quot;) 
 #&gt; Warning in regexpr(L$pattern, subject.vec, perl = TRUE): PCRE pattern compilation error
 #&gt;  &#39;unknown property name after \P or \p&#39;
-#&gt;  at &#39;}))&#39;
+#&gt;  at &#39;))&#39;
 #&gt; Error in value[[3L]](cond): (?:(\p{EMOJI_Presentation}))
 #&gt; when matching pattern above with PCRE engine, an error occured: invalid regular expression &#39;(?:(\p{EMOJI_Presentation}))&#39;
 nc::capture_first_vec(u.subject, u.pattern, engine=&quot;RE2&quot;)

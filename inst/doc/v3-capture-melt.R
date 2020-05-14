@@ -28,20 +28,29 @@ nc::capture_melt_multiple(
   dim=".*")
 
 ## ---- fig.width=10------------------------------------------------------------
-library(ggplot2)
-ggplot()+
-  theme_bw()+
-  theme(panel.spacing=grid::unit(0, "lines"))+
-  facet_grid(dim ~ Species)+
-  coord_equal()+
-  geom_abline(slope=1, intercept=0, color="grey")+
-  geom_point(aes(
-    Petal, Sepal),
-    data=iris.part.cols)
+
+if(require(ggplot2)){
+  ggplot()+
+    theme_bw()+
+    theme(panel.spacing=grid::unit(0, "lines"))+
+    facet_grid(dim ~ Species)+
+    coord_equal()+
+    geom_abline(slope=1, intercept=0, color="grey")+
+    geom_point(aes(
+      Petal, Sepal),
+      data=iris.part.cols)
+}
+
 
 ## -----------------------------------------------------------------------------
-data(who, package="tidyr")
+
+if(requireNamespace("tidyr")){
+  data(who, package="tidyr")
+}else{
+  who <- data.frame(id=1, new_sp_m5564=2, newrel_f65=3)
+}
 names(who)
+
 
 ## -----------------------------------------------------------------------------
 new.diag.gender <- list(
@@ -59,33 +68,6 @@ years.pattern <- list(new.diag.gender, ages=list(
   who, years.pattern,
   value.name="count"))
 str(who.typed)
-
-## -----------------------------------------------------------------------------
-tidyr::pivot_longer(
-  who, new_sp_m014:newrel_f65,
-  names_to=c("diagnosis", "gender", "ages"),
-  names_pattern="new_?(.*)_(.)(.*)")
-
-## -----------------------------------------------------------------------------
-names.pattern <- "new_?(.*)_(.)(.*)"
-tidyr::pivot_longer(
-  who, grep(names.pattern, names(who)),
-  names_to=c("diagnosis", "gender", "ages"),
-  names_pattern=names.pattern)
-
-## -----------------------------------------------------------------------------
-(years.pattern.str <- nc::var_args_list(years.pattern)$pattern)
-(tidyr.nona <- tidyr::pivot_longer(
-  who,
-  grep(years.pattern.str, names(who)),
-  names_to=c("diagnosis", "gender", "ages", "ymin", "ymax"),
-  values_drop_na=TRUE,
-  names_pattern=years.pattern.str))
-tidyr.typed <- transform(
-  tidyr.nona,
-  min.years=as.numeric(ymin),
-  max.years=ifelse(is.na(ymax), Inf, as.numeric(ymax)))
-str(tidyr.typed)
 
 ## -----------------------------------------------------------------------------
 family.dt <- fread(text="
@@ -133,25 +115,4 @@ identical(iris.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
   "[.]",
   column=".*"))
 identical(nc.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
-
-## -----------------------------------------------------------------------------
-tidyr::pivot_longer(
-  family.dt,
-  cols=dob_child1:gender_child3,
-  names_pattern="(.*)_child([1-3])",
-  names_to=c(".value", "child.str"),
-  values_drop_na=TRUE)
-
-## -----------------------------------------------------------------------------
-child.pat.str <- "(.*)_child([1-3])"
-tidyr.children <- tidyr::pivot_longer(
-  family.dt,
-  cols=grep(child.pat.str, names(family.dt)),
-  names_pattern=child.pat.str,
-  names_to=c(".value", "child.str"),
-  values_drop_na=TRUE)
-(tidyr.converted <- transform(
-  tidyr.children,
-  child=as.integer(child.str)))
-str(tidyr.converted)
 
