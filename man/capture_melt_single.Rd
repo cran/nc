@@ -1,36 +1,40 @@
 \name{capture_melt_single}
 \alias{capture_melt_single}
 \title{Capture and melt into a single column}
-\description{Attempt to match a regex to \code{subject.df} column names,
-then melt the matching columns to a single
-result column in a tall data table,
-and add output columns for each \code{\link{group}} defined in the regex.
-It is for the common case of melting
-several columns of the same type in a "wide" input data table which has
-several distinct pieces of information encoded in each column
-name. For melting into several result columns of different types, see
-\code{\link{capture_melt_multiple}}.}
-\usage{capture_melt_single(subject.df, 
-    ..., value.name = "value", 
+\description{Match a regex to column names of a wide data frame (many
+columns/few rows), then melt/reshape the matching columns into a
+single result column in a taller/longer data table (fewer columns/more
+rows). It is for the common case of melting several columns of
+the same type in a "wide" input data table which has several
+distinct pieces of information encoded in each column name. For
+melting into several result columns of possibly different types,
+see \code{\link{capture_melt_multiple}}.}
+\usage{capture_melt_single(..., 
+    value.name = "value", 
     na.rm = TRUE, verbose = getOption("datatable.verbose"))}
 \arguments{
-  \item{subject.df}{The data.frame with column name subjects.}
-  \item{\dots}{Pattern/engine passed to \code{\link{capture_first_vec}} along with
-nomatch.error=FALSE, for matching input column names.}
-  \item{value.name}{Name of the column in output which has values taken from melted
-column values of input (passed to \code{\link[data.table]{melt.data.table}}).}
+  \item{\dots}{First argument must be a data frame to melt/reshape; column names
+of this data frame will be used as the subjects for regex
+matching. Other arguments (regex/conversion/engine) are passed to
+\code{\link{capture_first_vec}} along with nomatch.error=FALSE.}
+  \item{value.name}{Name of the column in output which has values taken from
+melted/reshaped column values of input (passed to
+\code{\link[data.table]{melt.data.table}}).}
   \item{na.rm}{remove missing values from melted data? (passed to
 \code{\link[data.table]{melt.data.table}})}
   \item{verbose}{Print \code{verbose} output messages? (passed to
 \code{\link[data.table]{melt.data.table}})}
 }
-\details{\code{\link[data.table]{melt.data.table}} is called to perform the
-melt operation.
+\details{As in \code{\link[data.table]{melt.data.table}}, the order of the
+output columns is: first the columns copied from input (which did
+not match the specified pattern), then columns captured from
+variable names, and finally the value column.
 
-as in \code{\link[data.table]{melt.data.table}}, the order of the
-output columns is id.vars (columns copied from input), columns
-captured from variable names, value column.}
-\value{Data table of melted/tall data, with a new column for each named
+\code{\link[data.table]{melt.data.table}} is called to perform the
+melt operation, with measure.vars = the column names
+that matched the specified regex, and id.vars = the other column
+names (which did not match).}
+\value{Data table of reshaped/melted/tall/long data, with a new column for each named
 argument in the pattern, and additionally variable/value columns.}
 
 \author{Toby Dylan Hocking}
@@ -77,7 +81,7 @@ if(requireNamespace("tidyr")){
   ##2.2 also extract ages and convert to numeric output columns.
   who.tall.num <- nc::capture_melt_single(
     who,
-    new.diag.gender,#previously pattern for matching diagnosis and gender.
+    new.diag.gender,#previous pattern for matching diagnosis and gender.
     ages=list(#new pattern for matching age range.
       min.years="0|[0-9]{2}", as.numeric,#in-line type conversion functions.
       max.years="[0-9]{0,2}", function(x)ifelse(x=="", Inf, as.numeric(x))),

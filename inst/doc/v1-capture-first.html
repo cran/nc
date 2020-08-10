@@ -308,16 +308,16 @@ specify the pattern:</p>
 #&gt; $fun.list$chrom
 #&gt; function (x) 
 #&gt; x
-#&gt; &lt;bytecode: 0x55e7a8700798&gt;
+#&gt; &lt;bytecode: 0x5654edc68168&gt;
 #&gt; &lt;environment: namespace:base&gt;
 #&gt; 
 #&gt; $fun.list$chromStart
 #&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))
-#&gt; &lt;bytecode: 0x55e7a8aed1f0&gt;
+#&gt; &lt;bytecode: 0x5654ede27100&gt;
 #&gt; 
 #&gt; $fun.list$chromEnd
 #&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))
-#&gt; &lt;bytecode: 0x55e7a8aed1f0&gt;
+#&gt; &lt;bytecode: 0x5654ede27100&gt;
 #&gt; 
 #&gt; 
 #&gt; $pattern
@@ -335,7 +335,7 @@ conversion functions to use with the capture groups.</p>
 <pre><code class="r">bad.vec &lt;- c(bad=&quot;does not match&quot;, pos.vec)
 nc::capture_first_vec(bad.vec, range.pattern)
 #&gt; Error in stop_for_na(make.na): subject 1 did not match regex below; to output missing rows use nomatch.error=FALSE
-#&gt; (?:(chr.*?):([0-9,]+)(?:-([0-9,]+))?)
+#&gt; (?:(?:(chr.*?):([0-9,]+)(?:-([0-9,]+))?))
 </code></pre>
 
 <p>Sometimes you want to instead report a row of NA when a subject does
@@ -365,13 +365,13 @@ nc::capture_first_vec(u.subject, u.pattern)
 #&gt;    emoji
 #&gt; 1:     😎
 nc::capture_first_vec(u.subject, u.pattern, engine=&quot;PCRE&quot;) 
-#&gt; Warning in regexpr(L$pattern, subject.vec, perl = TRUE): PCRE pattern compilation error
+#&gt; Warning in regexpr(L[[&quot;pattern&quot;]], subject.vec, perl = TRUE): PCRE pattern compilation error
 #&gt;  &#39;unknown property name after \P or \p&#39;
-#&gt;  at &#39;))&#39;
-#&gt; Error in value[[3L]](cond): (?:(\p{EMOJI_Presentation}))
-#&gt; when matching pattern above with PCRE engine, an error occured: invalid regular expression &#39;(?:(\p{EMOJI_Presentation}))&#39;
+#&gt;  at &#39;)))&#39;
+#&gt; Error in value[[3L]](cond): (?:(?:(\p{EMOJI_Presentation})))
+#&gt; when matching pattern above with PCRE engine, an error occured: invalid regular expression &#39;(?:(?:(\p{EMOJI_Presentation})))&#39;
 nc::capture_first_vec(u.subject, u.pattern, engine=&quot;RE2&quot;)
-#&gt; Error in value[[3L]](cond): (?:(\p{EMOJI_Presentation}))
+#&gt; Error in value[[3L]](cond): (?:(?:(\p{EMOJI_Presentation})))
 #&gt; when matching pattern above with RE2 engine, an error occured: bad character class range: \p{EMOJI_Presentation}
 options(old.opt)
 </code></pre>

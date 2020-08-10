@@ -212,10 +212,11 @@ if(requireNamespace("tidyr")){
     c("diagnosis", "gender", "ages", "ymin.int", "ymax.int"),
     who.pattern,
     convert=TRUE)
-  base::transform(
+  transform.result <- base::transform(
     extract.result,
     ymin.num=as.numeric(ymin.int),
     ymax.num=ifelse(is.na(ymax.int), Inf, as.numeric(ymax.int)))
+  str(transform.result)
 }
 
 
@@ -229,14 +230,18 @@ reshape2.result <- if(requireNamespace("reshape2")){
     value.name="count")
 }
 
+
 ## -----------------------------------------------------------------------------
+
 dt.result <- data.table::melt.data.table(
   data.table(who),
   measure.vars=patterns(who.pattern),
   na.rm=TRUE,
   value.name="count")
 
+
 ## -----------------------------------------------------------------------------
+
 who.df <- data.frame(who)
 is.varying <- grepl(who.pattern, names(who))
 names(who.df)[is.varying] <- paste0("count.", names(who)[is.varying])
@@ -246,7 +251,9 @@ stats.result <- stats::reshape(
   timevar="variable",
   varying=is.varying)
 
+
 ## -----------------------------------------------------------------------------
+
 if(requireNamespace("cdata")){
   cdata.result <- cdata::rowrecs_to_blocks(
     who, 
@@ -257,7 +264,9 @@ if(requireNamespace("cdata")){
     columnsToCopy=grep(who.pattern, names(who), value=TRUE, invert=TRUE))
 }
 
+
 ## -----------------------------------------------------------------------------
+
 ## Example 1: melting a wider iris data back to original.
 library(data.table)
 iris.dt <- data.table(
@@ -324,8 +333,8 @@ if(require("ggplot2")){
 }
 
 
-
 ## -----------------------------------------------------------------------------
+
 ## Example 2. Lots of column types, from example(melt.data.table).
 DT <- data.table(
   i_1 = c(1:5, NA),
@@ -384,6 +393,7 @@ if(requireNamespace("tidyr")){
 
 
 ## -----------------------------------------------------------------------------
+
 ## Example 3, three children, one family per row, from data.table
 ## vignette.
 family.dt <- fread(text="
@@ -416,6 +426,7 @@ stats::reshape(
 
 
 ## -----------------------------------------------------------------------------
+
 ## Comparison with base R. 1. mfrow means parts on rows, mfcol means
 ## parts on columns. 2. same number of lines of code. 3. nc/ggplot2
 ## code has more names and fewer numbers.
