@@ -4,21 +4,28 @@ library(data.table)
 context("melt")
 source(system.file("test_engines.R", package="nc", mustWork=TRUE), local=TRUE)
 
-set.seed(45)
-DT <- data.table(
-  i_1 = c(1:5, NA),
-  i_2 = c(NA,6,7,8,9,10),
-  f_1 = factor(sample(c(letters[1:3], NA), 6, TRUE)),
-  f_2 = factor(c("z", "a", "x", "c", "x", "x"), ordered=TRUE),
-  c_1 = sample(c(letters[1:3], NA), 6, TRUE),
-  d_1 = as.Date(c(1:3,NA,4:5), origin="2013-09-01"),
-  d_2 = as.Date(6:1, origin="2012-01-01"))
-
 iris.dt <- data.table(observation=1:nrow(iris), iris)
 test_engines("error for regex that matches no column names", {
   expect_error({
     capture_melt_single(iris.dt, part="foo")
   }, "no column names match regex")
+})
+
+test_engines("error for fun always returning NA", {
+  expect_error(suppressWarnings({
+    capture_melt_single(iris.dt, part=".*", as.numeric)
+  }),
+  "need to change type conversion function(s), which should return at least one non-NA, but are always returning NA, even though regex matched 6 column(s): observation,Sepal.Length,Sepal.Width,Petal.Length,Petal.Width,Species",
+  fixed=TRUE)
+})
+
+test_engines("error for fun always returning NA abbrev cols", {
+  subject <- data.frame(t(1:99))
+  expect_error(suppressWarnings({
+    capture_melt_single(subject, part=".*", as.numeric)
+  }),
+  "need to change type conversion function(s), which should return at least one non-NA, but are always returning NA, even though regex matched 99 column(s): X1,X2,X3,X4,X5,...,X95,X96,X97,X98,X99",
+  fixed=TRUE)
 })
 
 test_engines("possessive (.*+) error(RE2) or OK(others)", {
@@ -75,7 +82,7 @@ test_engines("melting df with same col names is an error", {
 test_engines("groups with the same name is an error", {
   expect_error({
     capture_melt_single(DV, foo="p", foo="1")
-  }, "capture group names must be unique, problem: foo")
+  }, "duplicate capture group names are only allowed in alternatives, problem: foo")
 })
 
 ## what if a capture group has the same name as an input column?
@@ -110,4 +117,11 @@ test_engines("melting lots of columns is OK", {
   out <- capture_melt_single(one.row, "X", col="[0-9]+", as.integer)
   expect_identical(out$col, i.vec)
   expect_identical(out$value, i.vec)
+})
+
+DT.wide <- data.table(id=0, num_ref=1, name_ref="foo", num=2, name="bar")
+test_engines("converting NA to non-NA is an error", {
+  expect_error({
+    nc::capture_melt_multiple(DT.wide, column="name|num", type=".*", function(x)fcase(x=="", "other", default="reference"))
+  }, "a non-match(NA) was converted to a match(non-NA) by the conversion function in group 2(type); please fix conversion function", fixed=TRUE)
 })

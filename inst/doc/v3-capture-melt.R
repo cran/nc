@@ -5,27 +5,33 @@ knitr::opts_chunk$set(
 )
 
 ## -----------------------------------------------------------------------------
-library(data.table)
-(iris.dt <- data.table(i=1:nrow(iris), iris[,1:4], Species=paste(iris$Species)))
+head(iris)
 
 ## -----------------------------------------------------------------------------
 (iris.tall <- nc::capture_melt_single(
-  iris.dt,
+  iris,
   part=".*",
   "[.]",
-  dim=".*"))
+  dim=".*",
+  value.name="cm"))
+
+## ---- fig.width=10------------------------------------------------------------
+
+if(require(ggplot2)){
+  ggplot()+
+    theme_bw()+
+    theme(panel.spacing=grid::unit(0, "lines"))+
+    facet_grid(part ~ dim)+
+    geom_bar(aes(cm, fill=Species), data=iris.tall)
+}
+
 
 ## -----------------------------------------------------------------------------
-(iris.part.cols <- dcast(
-  iris.tall,
-  i + Species + dim ~ part))
-
-## -----------------------------------------------------------------------------
-nc::capture_melt_multiple(
-  iris.dt,
+(iris.part.cols <- nc::capture_melt_multiple(
+  iris,
   column=".*",
   "[.]",
-  dim=".*")
+  dim=".*"))
 
 ## ---- fig.width=10------------------------------------------------------------
 
@@ -70,49 +76,74 @@ years.pattern <- list(new.diag.gender, ages=list(
 str(who.typed)
 
 ## -----------------------------------------------------------------------------
-family.dt <- fread(text="
-family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
-1         30 1998-11-26 2000-01-29         NA             1             2            NA
-2         27 1996-06-22         NA         NA             2            NA            NA
-3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1
-4         32 2004-10-10 2009-08-27 2012-07-21             1             1             1
-5         29 2000-12-05 2005-02-28         NA             2             1            NA")
+ert.gz <- system.file(
+  "extdata", "ert_eff_ic_m.tsv.gz", package="nc", mustWork=TRUE)
+ert.all <- data.table::fread(ert.gz, na.strings=":")
+ert.all[1:5, 1:5]
 
 ## -----------------------------------------------------------------------------
-melt(family.dt, measure.vars=patterns(
-  dob="^dob", gender="^gender"
-))
+ert.first <- ert.all[, 1]
+csv.lines <- c(sub("\\\\.*", "", names(ert.first)), ert.first[[1]])
+ert.first.dt <- data.table::fread(text=paste(csv.lines, collapse="\n"))
+ert.wide <- data.table::data.table(ert.first.dt, ert.all[,-1])
+ert.wide[1:5, 1:5]
 
 ## -----------------------------------------------------------------------------
-(children.dt <- nc::capture_melt_multiple(
-  family.dt,
+(ert.tall <- nc::capture_melt_single(
+  ert.wide,
+  year="[0-9]{4}", as.integer,
+  "M",
+  month="[0-9]{2}", as.integer))
+
+## -----------------------------------------------------------------------------
+
+ert.tall[, month.IDate := data.table::as.IDate(
+  sprintf("%d-%d-15", year, month))]
+if(require("ggplot2")){
+  ggplot()+
+    geom_hline(aes(
+      yintercept=value),
+      color="grey",
+      data=data.frame(value=100))+
+    geom_line(aes(
+      month.IDate, value, color=geo),
+      data=ert.tall[geo %in% c("CA", "US", "JP", "FR")])+
+    facet_grid(exch_rt ~ .)+
+    theme_bw()+
+    theme(panel.spacing=grid::unit(0, "lines"))
+}
+
+
+## -----------------------------------------------------------------------------
+nc::capture_melt_single(ert.wide, month.POSIXct="[0-9].*", function(x){
+  as.POSIXct(strptime(paste0(x,"15"), "%YM%m%d"))
+})
+
+## -----------------------------------------------------------------------------
+iris.missing <- iris[, names(iris) != "Sepal.Length"]
+head(iris.missing)
+
+## -----------------------------------------------------------------------------
+nc::capture_melt_multiple(iris.missing, iris.pattern, fill=TRUE)
+
+## -----------------------------------------------------------------------------
+peaks.csv <- system.file(
+  "extdata", "RD12-0002_PP16HS_5sec_GM_F_1P.csv.gz",
+  package="nc", mustWork=TRUE)
+peaks.wide <- data.table::fread(peaks.csv)
+print(data.table::data.table(
+  names=names(peaks.wide),
+  class=sapply(peaks.wide, class)),
+  topn=10)
+
+## ---------------------------------------------------------------------------------------
+peaks.tall <- nc::capture_melt_multiple(
+  peaks.wide,
   column=".*",
-  "_",
-  nc::field("child", "", "[1-3]", as.integer),
-  na.rm=TRUE))
-str(children.dt)
-
-## -----------------------------------------------------------------------------
-set.seed(1)
-iris.rand <- iris.dt[sample(.N)]
-iris.wide <- cbind(treatment=iris.rand[1:75], control=iris.rand[76:150])
-print(iris.wide, topn=2, nrows=10)
-
-## -----------------------------------------------------------------------------
-iris.melted <- melt(iris.wide, measure.vars = patterns(
-  i="i$",
-  Sepal.Length="Sepal.Length$",
-  Sepal.Width="Sepal.Width$",
-  Petal.Length="Petal.Length$",
-  Petal.Width="Petal.Width$",
-  Species="Species$"))
-identical(iris.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
-
-## -----------------------------------------------------------------------------
-(nc.melted <- nc::capture_melt_multiple(
-  iris.wide,
-  group=".*?",
-  "[.]",
-  column=".*"))
-identical(nc.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
+  " ",
+  peak="[0-9]+", as.integer,
+  na.rm=TRUE)
+options(width=90)
+print(peaks.tall)
+str(peaks.tall)
 

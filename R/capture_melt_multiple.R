@@ -16,8 +16,11 @@ capture_melt_multiple <- structure(function # Capture and melt into multiple col
 ### this group becomes a column name for the reshaped data in the
 ### output. There must also be at least one other group, and the
 ### output will contain a column for each other group -- see
-### examples. Specifying the regex and output column names using this
-### syntax can be less repetitive than using data.table::patterns.
+### examples.
+  fill=FALSE,
+### If TRUE, fill missing input reshape columns with runs of rows with
+### missing values in the output reshape columns. Otherwise stop with
+### an error (default).
   na.rm=FALSE,
 ### Remove missing values from melted data? (passed to
 ### data.table::melt.data.table)
@@ -25,121 +28,55 @@ capture_melt_multiple <- structure(function # Capture and melt into multiple col
 ### Print verbose output messages? (passed to
 ### data.table::melt.data.table)
 ){
-  column <- . <- count <- NULL
-  ## Above to avoid CRAN NOTE.
-  L <- capture_df_names(...)
-  subject.df <- L[["subject"]]
-  match.dt <- L[["match.dt"]]
-  no.match <- L[["no.match"]]
-  if(is.null(match.dt[["column"]])){
-    stop("pattern must define group named column")
-  }
-  if(!is.character(match.dt[["column"]])){
-    stop(
-      "column group must be character, ",
-      "but conversion function returned ",
-      class(match.dt[["column"]])[[1]])
-  }
-  not.col <- names(match.dt)[names(match.dt) != "column"]
-  if(length(not.col)==0){
-    stop("need at least one group other than column")
-  }
-  by.list <- list(
-    group=not.col,
-    column="column")
-  by.result <- list()
-  paste.collapse <- function(x.vec)paste(x.vec, collapse=",")
-  for(by.name in names(by.list)){
-    by.vec <- by.list[[by.name]]
-    by.counts <- match.dt[!is.na(column), .(
-      count=.N
-    ), keyby=by.vec]#need keyby so variable.name order consistent later.
-    by.problems <- by.counts[count != max(count)]
-    if(nrow(by.problems)){
-      count.vec <- sprintf(
-        "%s=%d",
-        apply(by.counts[, by.vec, with=FALSE], 1, paste.collapse),
-        by.counts[["count"]])
-      stop(
-        "need ",
-        paste.collapse(by.vec),
-        "=same count for each value, but have: ",
-        paste(count.vec, collapse=" "),
-        "; please change pattern or edit input column names")
+  L <- melt_list(measure_multiple, list(...), fill=fill)
+  if("measure" %in% ls(asNamespace("data.table"))){
+    melt(
+      L[["data"]],
+      measure.vars=L[["measure.vars"]],
+      na.rm=na.rm,
+      value.factor=FALSE,
+      verbose=verbose)
+  }else{#TO DELETE AFTER NEW data.table on CRAN.
+    variable_table <- attr(L[["measure.vars"]],"variable_table")
+    is.match <- seq_along(L[["data"]]) %in% unlist(L[["measure.vars"]])
+    id.vars <- names(L[["data"]])[!is.match]
+    out.names <- c(id.vars, names(variable_table), names(L[["measure.vars"]]))
+    variable.name <- paste(out.names, collapse="")
+    names.dt <- data.table(variable_table)
+    set(names.dt, j=variable.name, value=paste(1:nrow(names.dt)))
+    measure.vars <- list()
+    missing.vec.list <- list()
+    for(measure.name in names(L[["measure.vars"]])){
+      measure.cols <- L[["measure.vars"]][[measure.name]]
+      some.int <- na.omit(measure.cols)[1]
+      if(any(is.na(measure.cols))){
+        miss.dt <- data.table()
+        missing.vec.list[[measure.name]] <- which(is.na(measure.cols))
+      }
+      measure.cols[is.na(measure.cols)] <- some.int
+      measure.vars[[measure.name]] <- measure.cols
     }
-    by.result[[by.name]] <- by.counts
-  }
-  by.column <- by.result[["column"]]
-  if(nrow(by.column)==1){
-    stop(
-      "need multiple output columns, ",
-      "but only one value (",
-      by.column[["column"]],
-      ") captured in column group; ",
-      "either provide a different regex ",
-      "that captures more than one value in column group, ",
-      "or use capture_melt_single ",
-      "if you really want only one output column")
-  }
-  i.name <- paste(names(match.dt), collapse="")
-  i.dt <- data.table(match.dt)
-  set(i.dt, j=i.name, value=1:nrow(i.dt))
-  ##need to sort by not.col for irregular col ord.
-  setkeyv(i.dt, c("column", not.col))
-  measure.dt <- i.dt[!is.na(column), list(
-    indices=list(.SD[[i.name]])
-  ), by=column]
-  id.vars <- names(subject.df)[no.match]
-  stop_for_capture_same_as_id(not.col, id.vars)
-  value.name <- measure.dt[["column"]]
-  out.names <- c(id.vars, not.col, value.name)
-  variable.name <- paste(out.names, collapse="")
-  check.list <- list(
-    "input column names which do not match the pattern"=id.vars,
-    "other regex group names"=not.col)
-  for(check.name in names(check.list)){
-    check.values <- check.list[[check.name]]
-    bad.values <- value.name[value.name %in% check.values]
-    if(length(bad.values)){
-      stop(
-        "unable to create unique output column names; ",
-        "some values (",
-        paste(bad.values, collapse=", "),
-        ") captured by the regex group named column ",
-        "are the same as ",
-        check.name,
-        "; please change either the pattern or the ",
-        check.name,
-        " so that output column names will be unique")
+    melted <- melt(
+      data.table(L[["data"]]),
+      measure.vars=measure.vars,
+      variable.name=variable.name,
+      na.rm=FALSE,
+      variable.factor=FALSE,#character for join.
+      value.factor=FALSE,
+      verbose=verbose)
+    for(rep.name in names(missing.vec.list)){
+      missing.vec <- missing.vec.list[[rep.name]]
+      is.missing <- melted[[variable.name]] %in% missing.vec
+      set(melted, i=which(is.missing), j=rep.name, value=NA)
     }
+    if(na.rm)melted <- melted[
+      !apply(is.na(melted[, names(L[["measure.vars"]]), with=FALSE]), 1, any)
+    ]
+    names.dt[melted, out.names, with=FALSE, on=variable.name]
   }
-  melted <- melt(
-    data.table(subject.df),
-    id.vars=which(is.na(match.dt[["column"]])),
-    measure.vars=measure.dt[["indices"]],
-    ##seealso<< Internally we call data.table::melt.data.table with
-    ##value.name=a character vector of unique values
-    ##of the column capture group, and
-    ##measure.vars=a list of corresponding column indices.
-    variable.name=variable.name,
-    value.name=value.name,
-    na.rm=na.rm,
-    variable.factor=FALSE,#character for join.
-    value.factor=FALSE,
-    verbose=verbose)
-  ## Join on variable but remove it since we require the user to
-  ## provide at least one other group which should be more
-  ## informative/interpretable, which makes variable useless.
-  by.group <- by.result[["group"]]
-  set(by.group, j=variable.name, value=paste(1:nrow(by.group)))
-  ## Order of join important below, when "count" is one of the
-  ## out.names, so that the data column is selected, rather than the
-  ## variable created for error checking when creating by.counts
-  ## above.
-  melted[by.group, out.names, with=FALSE, on=variable.name]
-### Data table of reshaped/melted/tall/long data, with a new column for each unique
-### value of the capture group named "column", and a new column for
-### each other capture group.
+### Data table of reshaped/melted/tall/long data, with a new column
+### for each unique value of the capture group named "column", and a
+### new column for each other capture group.
 }, ex=function(){
 
   ## Example 1: melt iris columns to compare Sepal and Petal dims, as
@@ -179,6 +116,7 @@ capture_melt_multiple <- structure(function # Capture and melt into multiple col
     f_1 = factor(sample(c(letters[1:3], NA), 6, TRUE)),
     f_2 = factor(c("z", "a", "x", "c", "x", "x"), ordered=TRUE),
     c_1 = sample(c(letters[1:3], NA), 6, TRUE),
+    l_2 = list(NULL, NA, c(NA,NA), logical(), 1:2, TRUE),
     d_1 = as.Date(c(1:3,NA,4:5), origin="2013-09-01"),
     d_2 = as.Date(6:1, origin="2012-01-01"))
   ## nc syntax melts to three output columns of different types using
@@ -186,9 +124,18 @@ capture_melt_multiple <- structure(function # Capture and melt into multiple col
   ## information).
   nc::capture_melt_multiple(
     DT,
-    column="[^c]",
+    column="[dfi]",
     "_",
-    number="[12]")
+    number="[12]", as.integer)
+
+  ## fill=TRUE means to output NA in positions that correspond to
+  ## missing input columns (in this case, there is no l_1 nor c_2).
+  nc::capture_melt_multiple(
+    DT,
+    column=".*",
+    "_",
+    number="[12]", as.integer,
+    fill=TRUE)
 
   ## Example 4, three children, one family per row, from data.table
   ## vignette.
@@ -205,9 +152,41 @@ family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child
     family.dt,
     column=".+",
     "_",
-    nc::field("child", "", "[1-3]"),
+    nc::field("child", "", "[1-3]", as.integer), 
     na.rm=TRUE))
 
-})
+  ## Example 5: wide data CSV with 100 possible peaks per row, each
+  ## peak has three attributes (Allele, Height, Size) from
+  ## https://lftdi.camden.rutgers.edu/repository/PROVEDIt_1-5-Person%20CSVs%20Filtered.zip
+  PROVEDIt.csv <- system.file(
+    "extdata", "RD12-0002_PP16HS_5sec_GM_F_1P.csv.gz",
+    package="nc", mustWork=TRUE)
+  PROVEDIt.wide <- data.table::fread(PROVEDIt.csv)
+  names(PROVEDIt.wide)
+  PROVEDIt.tall <- nc::capture_melt_multiple(
+    PROVEDIt.wide,
+    column=".*",
+    " ",
+    peak="[0-9]+", as.integer,
+    na.rm=TRUE)
+  head(PROVEDIt.tall)
 
+  ## plot number of peaks per row.
+  peaks.per.sample.marker <- PROVEDIt.tall[, .(
+    peaks=.N
+  ), by=.(`Sample File`, Marker)][order(peaks)]
+  if(require(ggplot2)){
+    ggplot()+
+      geom_histogram(aes(
+        peaks),
+        data=peaks.per.sample.marker,
+        binwidth=1)
+  }
+
+  ## which row has the most peaks?
+  (most <- PROVEDIt.tall[which.max(peak), .(`Sample File`, Marker, Dye)])
+  PROVEDIt.tall[most, on=names(most)]
+  PROVEDIt.wide[most, on=names(most)]
+
+})
 

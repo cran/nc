@@ -1,651 +1,572 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="date" content="2023-05-01" />
 
 <title>Capture melt</title>
 
-<script type="text/javascript">
-window.onload = function() {
-  var imgs = document.getElementsByTagName('img'), i, img;
-  for (i = 0; i < imgs.length; i++) {
-    img = imgs[i];
-    // center an image if it is the only element of its parent
-    if (img.parentElement.childElementCount === 1)
-      img.parentElement.style.textAlign = 'center';
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
-};
-</script>
-
-<!-- Styles for R syntax highlighter -->
-<style type="text/css">
-   pre .operator,
-   pre .paren {
-     color: rgb(104, 118, 135)
-   }
-
-   pre .literal {
-     color: #990073
-   }
-
-   pre .number {
-     color: #099;
-   }
-
-   pre .comment {
-     color: #998;
-     font-style: italic
-   }
-
-   pre .keyword {
-     color: #900;
-     font-weight: bold
-   }
-
-   pre .identifier {
-     color: rgb(0, 0, 0);
-   }
-
-   pre .string {
-     color: #d14;
-   }
+  .sourceCode {
+    overflow: visible;
+  }
 </style>
-
-<!-- R syntax highlighter -->
-<script type="text/javascript">
-var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
-hljs.initHighlightingOnLoad();
-</script>
-
-
-
-<style type="text/css">
-body, td {
-   font-family: sans-serif;
-   background-color: white;
-   font-size: 13px;
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-
-body {
-  max-width: 800px;
-  margin: auto;
-  padding: 1em;
-  line-height: 20px;
-}
-
-tt, code, pre {
-   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
-}
-
-h1 {
-   font-size:2.2em;
-}
-
-h2 {
-   font-size:1.8em;
-}
-
-h3 {
-   font-size:1.4em;
-}
-
-h4 {
-   font-size:1.0em;
-}
-
-h5 {
-   font-size:0.9em;
-}
-
-h6 {
-   font-size:0.8em;
-}
-
-a:visited {
-   color: rgb(50%, 0%, 50%);
-}
-
-pre, img {
-  max-width: 100%;
-}
-pre {
-  overflow-x: auto;
-}
-pre code {
-   display: block; padding: 0.5em;
-}
-
-code {
-  font-size: 92%;
-  border: 1px solid #ccc;
-}
-
-code[class] {
-  background-color: #F8F8F8;
-}
-
-table, td, th {
-  border: none;
-}
-
-blockquote {
-   color:#666666;
-   margin:0;
-   padding-left: 1em;
-   border-left: 0.5em #EEE solid;
-}
-
-hr {
-   height: 0px;
-   border-bottom: none;
-   border-top-width: thin;
-   border-top-style: dotted;
-   border-top-color: #999999;
-}
-
 @media print {
-   * {
-      background: transparent !important;
-      color: black !important;
-      filter:none !important;
-      -ms-filter: none !important;
-   }
-
-   body {
-      font-size:12pt;
-      max-width:100%;
-   }
-
-   a, a:visited {
-      text-decoration: underline;
-   }
-
-   hr {
-      visibility: hidden;
-      page-break-before: always;
-   }
-
-   pre, blockquote {
-      padding-right: 1em;
-      page-break-inside: avoid;
-   }
-
-   tr, img {
-      page-break-inside: avoid;
-   }
-
-   img {
-      max-width: 100% !important;
-   }
-
-   @page :left {
-      margin: 15mm 20mm 15mm 10mm;
-   }
-
-   @page :right {
-      margin: 15mm 10mm 15mm 20mm;
-   }
-
-   p, h2, h3 {
-      orphans: 3; widows: 3;
-   }
-
-   h2, h3 {
-      page-break-after: avoid;
-   }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+
 
 
 
 </head>
 
 <body>
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{vignette 3: capture melt}
--->
 
+
+
+
+<h1 class="title toc-ignore">Capture melt</h1>
+<h4 class="date">2023-05-01</h4>
+
+
+
+<div id="capture-melt" class="section level1">
 <h1>Capture melt</h1>
-
-<p>This vignette explains how to use functions for &ldquo;melting&rdquo; wide
-data tables, i.e. converting to tall/long data tables:</p>
-
+<p>This vignette explains how to use functions for “melting” wide data tables, i.e. converting to tall/long data tables. To clarify the discussion we introduce the following three terms:</p>
 <ul>
-<li><code>nc::capture_melt_single</code> is useful when you have a wide data table
-with lots of columns, all of the same type, that you would like to
-melt into a single result/output column.</li>
-<li><code>nc::capture_melt_multiple</code> is useful when you have a wide
-data table with columns of different types that you would like to
-melt into multiple result/output columns.</li>
+<li>Reshape columns contain the data which are present in equal amounts in the input and output, but in fewer columns in the output. These are <code>measure.vars</code> in reshape2/data.table.</li>
+<li>Copy columns contain data which are copied from a single row of the input into several rows of the output. These are <code>id.vars</code> in reshape2/data.table.</li>
+<li>Capture columns are only present in the output, and contain data extracted from the names of the input reshape columns, using a capturing regular expression.</li>
 </ul>
-
-<p>Both are useful mainly in the case when you want to use a regular
-expression to specify both (1) the set of input columns to reshape and
-(2) some information to extract from those column names. To clarify
-the discussion we introduce the following three terms:</p>
-
+<p>The <code>nc</code> functions use <code>data.table::melt</code> internally:</p>
 <ul>
-<li>Reshape columns contain the data which are present in equal amounts
-in the input and output, but in fewer columns in the output.
-These are <code>measure.vars</code> in reshape2/data.table.</li>
-<li>Copy columns contain data which are copied from a single row of the
-input into several rows of the output. These are <code>id.vars</code>
-in reshape2/data.table.</li>
-<li>Capture columns are only present in the output, and contain data
-extracted from the names of the input reshape columns,
-using a capturing regular expression.
-As far as I know, <code>tidyr::pivot_longer</code> is the only other
-data reshaping function which directly supports
-capture columns.</li>
+<li><code>nc::capture_melt_single</code> is useful when you have a wide data table with lots of columns, all of the same type, that you would like to melt/reshape into a single result/output column. This uses <code>melt</code> with a character vector for <code>measure.vars</code>.</li>
+<li><code>nc::capture_melt_multiple</code> is useful when you have a wide data table with columns of possibly different types that you would like to melt/reshape into multiple result/output columns. This uses <code>melt</code> with a list for <code>measure.vars</code>.</li>
 </ul>
-
-<h2>Capture data.frame column names and melt matching columns</h2>
-
-<p>Sometimes you want to melt a &ldquo;wide&rdquo; data table which has several
-distinct pieces of information encoded in each column name. One
-example is the familiar iris data, which have flower part and
-measurement dimension encoded in each of four column names:</p>
-
-<pre><code class="r">library(data.table)
-(iris.dt &lt;- data.table(i=1:nrow(iris), iris[,1:4], Species=paste(iris$Species)))
-#&gt;        i Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-#&gt;   1:   1          5.1         3.5          1.4         0.2    setosa
-#&gt;   2:   2          4.9         3.0          1.4         0.2    setosa
-#&gt;   3:   3          4.7         3.2          1.3         0.2    setosa
-#&gt;   4:   4          4.6         3.1          1.5         0.2    setosa
-#&gt;   5:   5          5.0         3.6          1.4         0.2    setosa
-#&gt;  ---                                                                
-#&gt; 146: 146          6.7         3.0          5.2         2.3 virginica
-#&gt; 147: 147          6.3         2.5          5.0         1.9 virginica
-#&gt; 148: 148          6.5         3.0          5.2         2.0 virginica
-#&gt; 149: 149          6.2         3.4          5.4         2.3 virginica
-#&gt; 150: 150          5.9         3.0          5.1         1.8 virginica
-</code></pre>
-
-<p>Those four reshape column names can be specified via a regex in
-<code>nc::capture_melt_single</code>. The first argument is the input data table
-to reshape, and the subsequent arguments are interpreted as a pattern
-which is passed to <code>nc::capture_first_vec</code>. Any input column names
-which match the specified regex will be passed as <code>measure.vars</code> to
-<code>melt</code>:</p>
-
-<pre><code class="r">(iris.tall &lt;- nc::capture_melt_single(
-  iris.dt,
-  part=&quot;.*&quot;,
-  &quot;[.]&quot;,
-  dim=&quot;.*&quot;))
-#&gt;        i   Species  part    dim value
-#&gt;   1:   1    setosa Sepal Length   5.1
-#&gt;   2:   2    setosa Sepal Length   4.9
-#&gt;   3:   3    setosa Sepal Length   4.7
-#&gt;   4:   4    setosa Sepal Length   4.6
-#&gt;   5:   5    setosa Sepal Length   5.0
-#&gt;  ---                                 
-#&gt; 596: 146 virginica Petal  Width   2.3
-#&gt; 597: 147 virginica Petal  Width   1.9
-#&gt; 598: 148 virginica Petal  Width   2.0
-#&gt; 599: 149 virginica Petal  Width   2.3
-#&gt; 600: 150 virginica Petal  Width   1.8
-</code></pre>
-
-<p>The output comes from joining the result of <code>nc::capture_first_vec</code> to
-the result of <code>melt</code>. Note the output has two copy columns (i,
-Species), one reshape column (value), and two capture columns (part,
-dim).</p>
-
-<p>After the data have
-been converted to the tall/long table above, we can do a <code>dcast</code> to get a
-wider data table:</p>
-
-<pre><code class="r">(iris.part.cols &lt;- dcast(
-  iris.tall,
-  i + Species + dim ~ part))
-#&gt;        i   Species    dim Petal Sepal
-#&gt;   1:   1    setosa Length   1.4   5.1
-#&gt;   2:   1    setosa  Width   0.2   3.5
-#&gt;   3:   2    setosa Length   1.4   4.9
-#&gt;   4:   2    setosa  Width   0.2   3.0
-#&gt;   5:   3    setosa Length   1.3   4.7
-#&gt;  ---                                 
-#&gt; 296: 148 virginica  Width   2.0   3.0
-#&gt; 297: 149 virginica Length   5.4   6.2
-#&gt; 298: 149 virginica  Width   2.3   3.4
-#&gt; 299: 150 virginica Length   5.1   5.9
-#&gt; 300: 150 virginica  Width   1.8   3.0
-</code></pre>
-
-<p>Rather than use <code>capture_melt_single</code> and then <code>dcast</code>, we could
-instead use <code>capture_melt_multiple</code> to get the same result:</p>
-
-<pre><code class="r">nc::capture_melt_multiple(
-  iris.dt,
-  column=&quot;.*&quot;,
-  &quot;[.]&quot;,
-  dim=&quot;.*&quot;)
-#&gt;        i   Species    dim Petal Sepal
-#&gt;   1:   1    setosa Length   1.4   5.1
-#&gt;   2:   2    setosa Length   1.4   4.9
-#&gt;   3:   3    setosa Length   1.3   4.7
-#&gt;   4:   4    setosa Length   1.5   4.6
-#&gt;   5:   5    setosa Length   1.4   5.0
-#&gt;  ---                                 
-#&gt; 296: 146 virginica  Width   2.3   3.0
-#&gt; 297: 147 virginica  Width   1.9   2.5
-#&gt; 298: 148 virginica  Width   2.0   3.0
-#&gt; 299: 149 virginica  Width   2.3   3.4
-#&gt; 300: 150 virginica  Width   1.8   3.0
-</code></pre>
-
-<p>Note that the reshaped table above contains two copy columns (i,
-Species), two reshape columns (Sepal, Petal), and one capture columns
-(dim).  These can help us visualize whether or not sepals are bigger
-than petals:</p>
-
-<pre><code class="r">
-if(require(ggplot2)){
-  ggplot()+
-    theme_bw()+
-    theme(panel.spacing=grid::unit(0, &quot;lines&quot;))+
-    facet_grid(dim ~ Species)+
-    coord_equal()+
-    geom_abline(slope=1, intercept=0, color=&quot;grey&quot;)+
-    geom_point(aes(
-      Petal, Sepal),
-      data=iris.part.cols)
-}
-#&gt; Loading required package: ggplot2
-</code></pre>
-
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-5"/></p>
-
-<p>It is clear from the plot above that sepals are indeed both longer and
-wider than petals, on each measured plant.</p>
-
-<p>Another data set where it is useful to do column name pattern matching
-followed by melting is the World Health Organization data:</p>
-
-<pre><code class="r">
-if(requireNamespace(&quot;tidyr&quot;)){
-  data(who, package=&quot;tidyr&quot;)
-}else{
-  who &lt;- data.frame(id=1, new_sp_m5564=2, newrel_f65=3)
-}
-#&gt; Loading required namespace: tidyr
-names(who)
-#&gt;  [1] &quot;country&quot;      &quot;iso2&quot;         &quot;iso3&quot;         &quot;year&quot;         &quot;new_sp_m014&quot; 
-#&gt;  [6] &quot;new_sp_m1524&quot; &quot;new_sp_m2534&quot; &quot;new_sp_m3544&quot; &quot;new_sp_m4554&quot; &quot;new_sp_m5564&quot;
-#&gt; [11] &quot;new_sp_m65&quot;   &quot;new_sp_f014&quot;  &quot;new_sp_f1524&quot; &quot;new_sp_f2534&quot; &quot;new_sp_f3544&quot;
-#&gt; [16] &quot;new_sp_f4554&quot; &quot;new_sp_f5564&quot; &quot;new_sp_f65&quot;   &quot;new_sn_m014&quot;  &quot;new_sn_m1524&quot;
-#&gt; [21] &quot;new_sn_m2534&quot; &quot;new_sn_m3544&quot; &quot;new_sn_m4554&quot; &quot;new_sn_m5564&quot; &quot;new_sn_m65&quot;  
-#&gt; [26] &quot;new_sn_f014&quot;  &quot;new_sn_f1524&quot; &quot;new_sn_f2534&quot; &quot;new_sn_f3544&quot; &quot;new_sn_f4554&quot;
-#&gt; [31] &quot;new_sn_f5564&quot; &quot;new_sn_f65&quot;   &quot;new_ep_m014&quot;  &quot;new_ep_m1524&quot; &quot;new_ep_m2534&quot;
-#&gt; [36] &quot;new_ep_m3544&quot; &quot;new_ep_m4554&quot; &quot;new_ep_m5564&quot; &quot;new_ep_m65&quot;   &quot;new_ep_f014&quot; 
-#&gt; [41] &quot;new_ep_f1524&quot; &quot;new_ep_f2534&quot; &quot;new_ep_f3544&quot; &quot;new_ep_f4554&quot; &quot;new_ep_f5564&quot;
-#&gt; [46] &quot;new_ep_f65&quot;   &quot;newrel_m014&quot;  &quot;newrel_m1524&quot; &quot;newrel_m2534&quot; &quot;newrel_m3544&quot;
-#&gt; [51] &quot;newrel_m4554&quot; &quot;newrel_m5564&quot; &quot;newrel_m65&quot;   &quot;newrel_f014&quot;  &quot;newrel_f1524&quot;
-#&gt; [56] &quot;newrel_f2534&quot; &quot;newrel_f3544&quot; &quot;newrel_f4554&quot; &quot;newrel_f5564&quot; &quot;newrel_f65&quot;
-</code></pre>
-
-<p>Each column which starts with <code>new</code> has three distinct pieces of
-information encoded in its name: diagnosis type (e.g. sp or rel),
-gender (m or f), and age range (e.g. 5564 or 1524). We would like to
-use a regex to match these column names, then using the matching
-columns as measure.vars in a melt, then join the two results. </p>
-
-<pre><code class="r">new.diag.gender &lt;- list(
-  &quot;new_?&quot;,
-  diagnosis=&quot;.*&quot;,
-  &quot;_&quot;,
-  gender=&quot;.&quot;)
-nc::capture_melt_single(who, new.diag.gender, ages=&quot;.*&quot;)
-#&gt;                          country iso2 iso3 year diagnosis gender ages value
-#&gt;     1:               Afghanistan   AF  AFG 1997        sp      m  014     0
-#&gt;     2:               Afghanistan   AF  AFG 1998        sp      m  014    30
-#&gt;     3:               Afghanistan   AF  AFG 1999        sp      m  014     8
-#&gt;     4:               Afghanistan   AF  AFG 2000        sp      m  014    52
-#&gt;     5:               Afghanistan   AF  AFG 2001        sp      m  014   129
-#&gt;    ---                                                                     
-#&gt; 76042:                  Viet Nam   VN  VNM 2013       rel      f   65  3110
-#&gt; 76043: Wallis and Futuna Islands   WF  WLF 2013       rel      f   65     2
-#&gt; 76044:                     Yemen   YE  YEM 2013       rel      f   65   360
-#&gt; 76045:                    Zambia   ZM  ZMB 2013       rel      f   65   669
-#&gt; 76046:                  Zimbabwe   ZW  ZWE 2013       rel      f   65   725
-</code></pre>
-
-<p>Note the output includes the new reshape column called <code>value</code> by
-default, as in <code>melt</code>. The input reshape column
-names which matched the specified pattern, and there is a new column
-for each group in that pattern. The following example shows how to
-rename the <code>value</code> column and use numeric type conversion functions:</p>
-
-<pre><code class="r">years.pattern &lt;- list(new.diag.gender, ages=list(
-  min.years=&quot;0|[0-9]{2}&quot;, as.numeric,
-  max.years=&quot;[0-9]{0,2}&quot;, function(x)ifelse(x==&quot;&quot;, Inf, as.numeric(x))))
-(who.typed &lt;- nc::capture_melt_single(
-  who, years.pattern,
-  value.name=&quot;count&quot;))
-#&gt;                          country iso2 iso3 year diagnosis gender ages min.years
-#&gt;     1:               Afghanistan   AF  AFG 1997        sp      m  014         0
-#&gt;     2:               Afghanistan   AF  AFG 1998        sp      m  014         0
-#&gt;     3:               Afghanistan   AF  AFG 1999        sp      m  014         0
-#&gt;     4:               Afghanistan   AF  AFG 2000        sp      m  014         0
-#&gt;     5:               Afghanistan   AF  AFG 2001        sp      m  014         0
-#&gt;    ---                                                                         
-#&gt; 76042:                  Viet Nam   VN  VNM 2013       rel      f   65        65
-#&gt; 76043: Wallis and Futuna Islands   WF  WLF 2013       rel      f   65        65
-#&gt; 76044:                     Yemen   YE  YEM 2013       rel      f   65        65
-#&gt; 76045:                    Zambia   ZM  ZMB 2013       rel      f   65        65
-#&gt; 76046:                  Zimbabwe   ZW  ZWE 2013       rel      f   65        65
-#&gt;        max.years count
-#&gt;     1:        14     0
-#&gt;     2:        14    30
-#&gt;     3:        14     8
-#&gt;     4:        14    52
-#&gt;     5:        14   129
-#&gt;    ---                
-#&gt; 76042:       Inf  3110
-#&gt; 76043:       Inf     2
-#&gt; 76044:       Inf   360
-#&gt; 76045:       Inf   669
-#&gt; 76046:       Inf   725
-str(who.typed)
-#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   76046 obs. of  10 variables:
-#&gt;  $ country  : chr  &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; ...
-#&gt;  $ iso2     : chr  &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; ...
-#&gt;  $ iso3     : chr  &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; ...
-#&gt;  $ year     : int  1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 ...
-#&gt;  $ diagnosis: chr  &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; ...
-#&gt;  $ gender   : chr  &quot;m&quot; &quot;m&quot; &quot;m&quot; &quot;m&quot; ...
-#&gt;  $ ages     : chr  &quot;014&quot; &quot;014&quot; &quot;014&quot; &quot;014&quot; ...
-#&gt;  $ min.years: num  0 0 0 0 0 0 0 0 0 0 ...
-#&gt;  $ max.years: num  14 14 14 14 14 14 14 14 14 14 ...
-#&gt;  $ count    : int  0 30 8 52 129 90 127 139 151 193 ...
-#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;
-</code></pre>
-
-<p>The result above shows that </p>
-
+<p>Both are useful when you want to use a regular expression to specify both (1) the set of input columns to reshape and (2) some information to extract from those column names.</p>
+<div id="reshaping-several-input-columns-into-a-single-output-column" class="section level2">
+<h2>Reshaping several input columns into a single output column</h2>
+<p>Sometimes you want to melt a “wide” data table which has several distinct pieces of information encoded in each column name. One example is the familiar iris data, which have flower part and measurement dimension encoded in each of four column names:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          5.1         3.5          1.4         0.2  setosa</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2          4.9         3.0          1.4         0.2  setosa</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3          4.7         3.2          1.3         0.2  setosa</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4          4.6         3.1          1.5         0.2  setosa</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5          5.0         3.6          1.4         0.2  setosa</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6          5.4         3.9          1.7         0.4  setosa</span></span></code></pre></div>
+<p>Those four reshape column names can be specified via a regex in <code>nc::capture_melt_single</code>. The first argument is the input data table to reshape, and the subsequent arguments are interpreted as a pattern which is passed to <code>nc::capture_first_vec</code>. Any input column names which match the specified regex will be passed as <code>measure.vars</code> to <code>melt</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(iris.tall <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  iris,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">part=</span><span class="st">&quot;.*&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim=</span><span class="st">&quot;.*&quot;</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value.name=</span><span class="st">&quot;cm&quot;</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species   part    dim    cm</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;fctr&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa  Sepal Length   5.1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa  Sepal Length   4.9</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa  Sepal Length   4.7</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa  Sepal Length   4.6</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa  Sepal Length   5.0</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 596: virginica  Petal  Width   2.3</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 597: virginica  Petal  Width   1.9</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 598: virginica  Petal  Width   2.0</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 599: virginica  Petal  Width   2.3</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 600: virginica  Petal  Width   1.8</span></span></code></pre></div>
+<p>Note the output above has one copy column (Species), two capture columns (part, dim), and one reshape column (cm). Internally the function joins the result of <code>nc::capture_first_vec</code> (on column names) to the result of <code>melt</code> (on the data).</p>
+<p>The reshaped data can be plotted with different parts on rows and different dimensions on columns:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(ggplot2)){</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing=</span>grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>))<span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(part <span class="sc">~</span> dim)<span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(cm, <span class="at">fill=</span>Species), <span class="at">data=</span>iris.tall)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="reshaping-several-input-columns-into-multiple-output-columns" class="section level2">
+<h2>Reshaping several input columns into multiple output columns</h2>
+<p>We could instead use <code>capture_melt_multiple</code> to get multiple output columns. Like <code>capture_melt_single</code>, the first argument of <code>capture_melt_multiple</code> is the subject data table and the following arguments form a pattern which is matched to the input data column names. However the pattern must have at least two groups:</p>
 <ul>
-<li>non-character captured output columns can be obtained by specifying
-type conversion functions in the pattern.</li>
-<li><code>value.name</code> is used as the column name for the reshaped data in the
-output (as in <code>melt.data.table</code>).</li>
+<li>One group must be named <code>column</code>. This group is used to capture the part of the input column names which will be used for the output column names. The output will contain one column for each unique value captured in this group.</li>
+<li>One or more other groups (with any names) specify an identifier for each observation.</li>
 </ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(iris.part.cols <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  iris,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;.*&quot;</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim=</span><span class="st">&quot;.*&quot;</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species    dim Petal Sepal</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;fctr&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Length   1.4   5.1</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Length   1.4   4.9</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Length   1.3   4.7</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Length   1.5   4.6</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Length   1.4   5.0</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Width   2.3   3.0</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Width   1.9   2.5</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Width   2.0   3.0</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Width   2.3   3.4</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Width   1.8   3.0</span></span></code></pre></div>
+<p>Note that the reshaped table above contains one copy column (Species), one capture column (dim), and two reshape columns (Petal, Sepal). We can plot these data to see whether or not sepals are bigger than petals:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(ggplot2)){</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing=</span>grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>))<span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(dim <span class="sc">~</span> Species)<span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_equal</span>()<span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>)<span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      Petal, Sepal),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">data=</span>iris.part.cols)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>It is clear from the plot above that sepals are indeed both longer and wider than petals, on each measured plant.</p>
+</div>
+<div id="melting-who-data-with-a-more-complex-pattern" class="section level2">
+<h2>Melting WHO data with a more complex pattern</h2>
+<p>Another data set where it is useful to do column name pattern matching followed by melting is the World Health Organization data:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">requireNamespace</span>(<span class="st">&quot;tidyr&quot;</span>)){</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data</span>(who, <span class="at">package=</span><span class="st">&quot;tidyr&quot;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  who <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id=</span><span class="dv">1</span>, <span class="at">new_sp_m5564=</span><span class="dv">2</span>, <span class="at">newrel_f65=</span><span class="dv">3</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: tidyr</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(who)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;country&quot;      &quot;iso2&quot;         &quot;iso3&quot;         &quot;year&quot;         &quot;new_sp_m014&quot; </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;new_sp_m1524&quot; &quot;new_sp_m2534&quot; &quot;new_sp_m3544&quot; &quot;new_sp_m4554&quot; &quot;new_sp_m5564&quot;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;new_sp_m65&quot;   &quot;new_sp_f014&quot;  &quot;new_sp_f1524&quot; &quot;new_sp_f2534&quot; &quot;new_sp_f3544&quot;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] &quot;new_sp_f4554&quot; &quot;new_sp_f5564&quot; &quot;new_sp_f65&quot;   &quot;new_sn_m014&quot;  &quot;new_sn_m1524&quot;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] &quot;new_sn_m2534&quot; &quot;new_sn_m3544&quot; &quot;new_sn_m4554&quot; &quot;new_sn_m5564&quot; &quot;new_sn_m65&quot;  </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [26] &quot;new_sn_f014&quot;  &quot;new_sn_f1524&quot; &quot;new_sn_f2534&quot; &quot;new_sn_f3544&quot; &quot;new_sn_f4554&quot;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [31] &quot;new_sn_f5564&quot; &quot;new_sn_f65&quot;   &quot;new_ep_m014&quot;  &quot;new_ep_m1524&quot; &quot;new_ep_m2534&quot;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [36] &quot;new_ep_m3544&quot; &quot;new_ep_m4554&quot; &quot;new_ep_m5564&quot; &quot;new_ep_m65&quot;   &quot;new_ep_f014&quot; </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [41] &quot;new_ep_f1524&quot; &quot;new_ep_f2534&quot; &quot;new_ep_f3544&quot; &quot;new_ep_f4554&quot; &quot;new_ep_f5564&quot;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [46] &quot;new_ep_f65&quot;   &quot;newrel_m014&quot;  &quot;newrel_m1524&quot; &quot;newrel_m2534&quot; &quot;newrel_m3544&quot;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [51] &quot;newrel_m4554&quot; &quot;newrel_m5564&quot; &quot;newrel_m65&quot;   &quot;newrel_f014&quot;  &quot;newrel_f1524&quot;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [56] &quot;newrel_f2534&quot; &quot;newrel_f3544&quot; &quot;newrel_f4554&quot; &quot;newrel_f5564&quot; &quot;newrel_f65&quot;</span></span></code></pre></div>
+<p>Each column which starts with <code>new</code> has three distinct pieces of information encoded in its name: diagnosis type (e.g. sp or rel), gender (m or f), and age range (e.g. 5564 or 1524). We would like to use a regex to match these column names, then using the matching columns as measure.vars in a melt, then join the two results.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>new.diag.gender <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;new_?&quot;</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">diagnosis=</span><span class="st">&quot;.*&quot;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender=</span><span class="st">&quot;.&quot;</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(who, new.diag.gender, <span class="at">ages=</span><span class="st">&quot;.*&quot;</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          country   iso2   iso3  year diagnosis gender   ages</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;    &lt;char&gt; &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:               Afghanistan     AF    AFG  1997        sp      m    014</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:               Afghanistan     AF    AFG  1998        sp      m    014</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:               Afghanistan     AF    AFG  1999        sp      m    014</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:               Afghanistan     AF    AFG  2000        sp      m    014</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:               Afghanistan     AF    AFG  2001        sp      m    014</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                      </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:                  Viet Nam     VN    VNM  2013       rel      f     65</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043: Wallis and Futuna Islands     WF    WLF  2013       rel      f     65</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:                     Yemen     YE    YEM  2013       rel      f     65</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:                    Zambia     ZM    ZMB  2013       rel      f     65</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:                  Zimbabwe     ZW    ZWE  2013       rel      f     65</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        value</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;num&gt;</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:     0</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:    30</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:     8</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:    52</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:   129</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---      </span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:  3110</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043:     2</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:   360</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:   669</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:   725</span></span></code></pre></div>
+<p>Note the output includes the new reshape column called <code>value</code> by default, as in <code>melt</code>. The input reshape column names which matched the specified pattern, and there is a new column for each group in that pattern. The following example shows how to rename the <code>value</code> column and use numeric type conversion functions:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>years.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(new.diag.gender, <span class="at">ages=</span><span class="fu">list</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">min.years=</span><span class="st">&quot;0|[0-9]{2}&quot;</span>, as.numeric,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">max.years=</span><span class="st">&quot;[0-9]{0,2}&quot;</span>, <span class="cf">function</span>(x)<span class="fu">ifelse</span>(x<span class="sc">==</span><span class="st">&quot;&quot;</span>, <span class="cn">Inf</span>, <span class="fu">as.numeric</span>(x))))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(who.typed <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  who, years.pattern,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value.name=</span><span class="st">&quot;count&quot;</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          country   iso2   iso3  year diagnosis gender   ages</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;    &lt;char&gt; &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:               Afghanistan     AF    AFG  1997        sp      m    014</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:               Afghanistan     AF    AFG  1998        sp      m    014</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:               Afghanistan     AF    AFG  1999        sp      m    014</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:               Afghanistan     AF    AFG  2000        sp      m    014</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:               Afghanistan     AF    AFG  2001        sp      m    014</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                      </span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:                  Viet Nam     VN    VNM  2013       rel      f     65</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043: Wallis and Futuna Islands     WF    WLF  2013       rel      f     65</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:                     Yemen     YE    YEM  2013       rel      f     65</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:                    Zambia     ZM    ZMB  2013       rel      f     65</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:                  Zimbabwe     ZW    ZWE  2013       rel      f     65</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        min.years max.years count</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;num&gt;     &lt;num&gt; &lt;num&gt;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:         0        14     0</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:         0        14    30</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:         0        14     8</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:         0        14    52</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:         0        14   129</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                          </span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:        65       Inf  3110</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043:        65       Inf     2</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:        65       Inf   360</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:        65       Inf   669</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:        65       Inf   725</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(who.typed)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   76046 obs. of  10 variables:</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ country  : chr  &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; ...</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ iso2     : chr  &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; ...</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ iso3     : chr  &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; ...</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ year     : num  1997 1998 1999 2000 2001 ...</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ diagnosis: chr  &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; ...</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gender   : chr  &quot;m&quot; &quot;m&quot; &quot;m&quot; &quot;m&quot; ...</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ ages     : chr  &quot;014&quot; &quot;014&quot; &quot;014&quot; &quot;014&quot; ...</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ min.years: num  0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ max.years: num  14 14 14 14 14 14 14 14 14 14 ...</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ count    : num  0 30 8 52 129 90 127 139 151 193 ...</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
+<p>Note in the code/result above that non-character captured output columns can be obtained by specifying type conversion functions in the pattern.</p>
+</div>
+<div id="melting-monthly-eurostat-data" class="section level2">
+<h2>Melting monthly Eurostat data</h2>
+<p>Another example is <a href="https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=data/ert_eff_ic_m.tsv.gz">exchange rate data from Eurostat</a>. We first use read the entire data set into R:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ert.gz <span class="ot">&lt;-</span> <span class="fu">system.file</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;ert_eff_ic_m.tsv.gz&quot;</span>, <span class="at">package=</span><span class="st">&quot;nc&quot;</span>, <span class="at">mustWork=</span><span class="cn">TRUE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ert.all <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(ert.gz, <span class="at">na.strings=</span><span class="st">&quot;:&quot;</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>ert.all[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    exch_rt,unit,geo\\time 2020M07 2020M06 2020M05 2020M04</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt;   &lt;num&gt;   &lt;num&gt;   &lt;num&gt;   &lt;num&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:       NEER_EA19,I10,AT  100.00  100.00   100.0  100.00</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:       NEER_EA19,I10,AU   88.50   88.39    86.3   83.46</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:       NEER_EA19,I10,BE  100.00  100.00   100.0  100.00</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:       NEER_EA19,I10,BG  100.00  100.00   100.0  100.00</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:       NEER_EA19,I10,BR   38.49   39.94    38.0   40.45</span></span></code></pre></div>
+<p>We see that the first column has some CSV data which we can parse via:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ert.first <span class="ot">&lt;-</span> ert.all[, <span class="dv">1</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>csv.lines <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\\\</span><span class="st">.*&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">names</span>(ert.first)), ert.first[[<span class="dv">1</span>]])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ert.first.dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="at">text=</span><span class="fu">paste</span>(csv.lines, <span class="at">collapse=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ert.wide <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(ert.first.dt, ert.all[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ert.wide[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      exch_rt   unit    geo 2020M07 2020M06</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt; &lt;char&gt; &lt;char&gt;   &lt;num&gt;   &lt;num&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: NEER_EA19    I10     AT  100.00  100.00</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: NEER_EA19    I10     AU   88.50   88.39</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: NEER_EA19    I10     BE  100.00  100.00</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: NEER_EA19    I10     BG  100.00  100.00</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: NEER_EA19    I10     BR   38.49   39.94</span></span></code></pre></div>
+<p>The wide data table can then be melted:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(ert.tall <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  ert.wide,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">year=</span><span class="st">&quot;[0-9]{4}&quot;</span>, as.integer,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;M&quot;</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">month=</span><span class="st">&quot;[0-9]{2}&quot;</span>, as.integer))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         exch_rt   unit    geo  year month   value</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;   &lt;num&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: NEER_EA19    I10     AT  2020     7  100.00</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: NEER_EA19    I10     AU  2020     7   88.50</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: NEER_EA19    I10     BE  2020     7  100.00</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: NEER_EA19    I10     BG  2020     7  100.00</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: NEER_EA19    I10     BR  2020     7   38.49</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                            </span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2229: NEER_EA19    I10     BE  1994     1   99.07</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2230: NEER_EA19    I10     BG  1994     1 4808.49</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2231: NEER_EA19    I10     BR  1994     1 1225.11</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2232: NEER_EA19    I10     CA  1994     1   92.19</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2233: NEER_EA19    I10     CH  1994     1   83.43</span></span></code></pre></div>
+<p>After that we can create a time variable and plot via</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ert.tall[, month.IDate <span class="sc">:</span><span class="er">=</span> data.table<span class="sc">::</span><span class="fu">as.IDate</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sprintf</span>(<span class="st">&quot;%d-%d-15&quot;</span>, year, month))]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(<span class="st">&quot;ggplot2&quot;</span>)){</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="fu">aes</span>(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">yintercept=</span>value),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;grey&quot;</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">data=</span><span class="fu">data.frame</span>(<span class="at">value=</span><span class="dv">100</span>))<span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      month.IDate, value, <span class="at">color=</span>geo),</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">data=</span>ert.tall[geo <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;CA&quot;</span>, <span class="st">&quot;US&quot;</span>, <span class="st">&quot;JP&quot;</span>, <span class="st">&quot;FR&quot;</span>)])<span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(exch_rt <span class="sc">~</span> .)<span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing=</span>grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>))</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Another way to do it would be via</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(ert.wide, <span class="at">month.POSIXct=</span><span class="st">&quot;[0-9].*&quot;</span>, <span class="cf">function</span>(x){</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="fu">paste0</span>(x,<span class="st">&quot;15&quot;</span>), <span class="st">&quot;%YM%m%d&quot;</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         exch_rt   unit    geo month.POSIXct   value</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;char&gt;         &lt;num&gt;   &lt;num&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: NEER_EA19    I10     AT    1594796400  100.00</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: NEER_EA19    I10     AU    1594796400   88.50</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: NEER_EA19    I10     BE    1594796400  100.00</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: NEER_EA19    I10     BG    1594796400  100.00</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: NEER_EA19    I10     BR    1594796400   38.49</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                              </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2229: NEER_EA19    I10     BE     758617200   99.07</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2230: NEER_EA19    I10     BG     758617200 4808.49</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2231: NEER_EA19    I10     BR     758617200 1225.11</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2232: NEER_EA19    I10     CA     758617200   92.19</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2233: NEER_EA19    I10     CH     758617200   83.43</span></span></code></pre></div>
+</div>
+<div id="melting-into-multiple-output-columns-with-missing-input-columns" class="section level2">
+<h2>Melting into multiple output columns with missing input columns</h2>
+<p>What if the input data set has “missing” input columns?</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>iris.missing <span class="ot">&lt;-</span> iris[, <span class="fu">names</span>(iris) <span class="sc">!=</span> <span class="st">&quot;Sepal.Length&quot;</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris.missing)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Sepal.Width Petal.Length Petal.Width Species</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         3.5          1.4         0.2  setosa</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         3.0          1.4         0.2  setosa</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3         3.2          1.3         0.2  setosa</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4         3.1          1.5         0.2  setosa</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5         3.6          1.4         0.2  setosa</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6         3.9          1.7         0.4  setosa</span></span></code></pre></div>
+<p>In that case melting into multiple columns is an error by default:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>iris.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">column=</span><span class="st">&quot;.*&quot;</span>, <span class="st">&quot;[.]&quot;</span>, <span class="at">dim=</span><span class="st">&quot;.*&quot;</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(iris.missing, iris.pattern)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in (function (subject.names, match.dt, no.match, fill = TRUE) : need dim=same count for each value, but have: Length=1 Width=2; please change pattern, edit input column names, or use fill=TRUE to output missing values</span></span></code></pre></div>
+<p>The error message explains that the number of input columns for each value of <code>dim</code> must be the same, but there is one for <code>Length</code> and two for <code>Width</code>. To ignore the error and fill the output with missing values,</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(iris.missing, iris.pattern, <span class="at">fill=</span><span class="cn">TRUE</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species    dim Petal Sepal</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;fctr&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Length   1.4    NA</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Length   1.4    NA</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Length   1.3    NA</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Length   1.5    NA</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Length   1.4    NA</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Width   2.3   3.0</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Width   1.9   2.5</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Width   2.0   3.0</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Width   2.3   3.4</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Width   1.8   3.0</span></span></code></pre></div>
+<p>Note the missing values in the table above, which correspond to the missing input column in the original/wide data set.</p>
+</div>
+<div id="multiple-output-columns-of-different-types" class="section level2">
+<h2>Multiple output columns of different types</h2>
+<p>Some real-world data sets can be reshaped into output columns with different types. An example data set from the <a href="https://lftdi.camden.rutgers.edu/repository/PROVEDIt_1-5-Person%20CSVs%20Filtered.zip">PROVEDIt</a> benchmark in criminology:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>peaks.csv <span class="ot">&lt;-</span> <span class="fu">system.file</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;RD12-0002_PP16HS_5sec_GM_F_1P.csv.gz&quot;</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">package=</span><span class="st">&quot;nc&quot;</span>, <span class="at">mustWork=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>peaks.wide <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(peaks.csv)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">names=</span><span class="fu">names</span>(peaks.wide),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">class=</span><span class="fu">sapply</span>(peaks.wide, class)),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">topn=</span><span class="dv">10</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            names     class</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;    &lt;char&gt;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1: Sample File character</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:      Marker character</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:         Dye character</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    Allele 1 character</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:      Size 1   numeric</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   6:    Height 1   integer</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   7:    Allele 2 character</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   8:      Size 2   numeric</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   9:    Height 2   integer</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10:    Allele 3 character</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                      </span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 294:   Height 97   logical</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 295:   Allele 98   logical</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296:     Size 98   logical</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297:   Height 98   logical</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298:   Allele 99   logical</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299:     Size 99   logical</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300:   Height 99   logical</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 301:  Allele 100   logical</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 302:    Size 100   logical</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 303:  Height 100   logical</span></span></code></pre></div>
+<p>There are 303 columns, with info for 100 peaks. Each peak has three features: Allele=character, Size=numeric, and Height=integer. The ending peaks are class logical because they are all missing. These data can be reshaped via</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>peaks.tall <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  peaks.wide,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;.*&quot;</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot; &quot;</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">peak=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Allele 1, Allele 2, Allele 3, Allele 4, ...] are not all of the same</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; type. By order of hierarchy, the molten data value column will be of type &#39;character&#39;.</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; All measure variables not of type &#39;character&#39; will be coerced too. Check DETAILS in</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ?melt.data.table for more on coercion.</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Height 1, Height 2, Height 3, Height 4, ...] are not all of the same</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; type. By order of hierarchy, the molten data value column will be of type &#39;integer&#39;. All</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; measure variables not of type &#39;integer&#39; will be coerced too. Check DETAILS in</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ?melt.data.table for more on coercion.</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Size 1, Size 2, Size 3, Size 4, ...] are not all of the same type. By</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; order of hierarchy, the molten data value column will be of type &#39;double&#39;. All measure</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; variables not of type &#39;double&#39; will be coerced too. Check DETAILS in ?melt.data.table for</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; more on coercion.</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">90</span>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(peaks.tall)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                Sample File  Marker    Dye  peak Allele Height   Size</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                     &lt;char&gt;  &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;char&gt;  &lt;int&gt;  &lt;num&gt;</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1: A02-RD12-0002-35-0.5PP16-001.5sec.fsa D3S1358      B     1     OL      5  94.68</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2: A02-RD12-0002-35-0.5PP16-001.5sec.fsa    TH01      B     1     OL      3 148.69</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3: A02-RD12-0002-35-0.5PP16-001.5sec.fsa  D21S11      B     1     OL      7 195.84</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4: A02-RD12-0002-35-0.5PP16-001.5sec.fsa  D18S51      B     1     OL      4 285.51</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5: A02-RD12-0002-35-0.5PP16-001.5sec.fsa Penta E      B     1     OL      3 369.36</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                </span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 438: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA      Y    25     OL      5 413.28</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 439: A02-RD12-0002-35-0.5PP16-001.5sec.fsa Penta E      B    26     OL      3 479.21</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 440: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA      Y    26     OL      4 415.55</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 441: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA      Y    27     OL      4 428.06</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 442: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA      Y    28     OL      4 445.08</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(peaks.tall)</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   442 obs. of  7 variables:</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Sample File: chr  &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; ...</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Marker     : chr  &quot;D3S1358&quot; &quot;TH01&quot; &quot;D21S11&quot; &quot;D18S51&quot; ...</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Dye        : chr  &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; ...</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ peak       : int  1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Allele     : chr  &quot;OL&quot; &quot;OL&quot; &quot;OL&quot; &quot;OL&quot; ...</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Height     : int  5 3 7 4 3 4 3 197 45 4 ...</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Size       : num  94.7 148.7 195.8 285.5 369.4 ...</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
+</div>
+</div>
 
-<p>In conclusion <code>nc::capture_melt_single</code> does data
-reshaping from wide to tall/long which (1) makes it easy to define complex patterns (2)
-supports type conversion without a post-processing step, and (3)
-reduces repetition in user code.</p>
 
-<h2>Melting columns of different types into multiple result columns</h2>
 
-<p>In the previous sections we discussed methods for melting wide data
-columns that all have the same type. Sometimes wide data have columns
-of different types that we want to melt. The example below is taken
-from a data.table vignette,</p>
+<!-- code folding -->
 
-<pre><code class="r">family.dt &lt;- fread(text=&quot;
-family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
-1         30 1998-11-26 2000-01-29         NA             1             2            NA
-2         27 1996-06-22         NA         NA             2            NA            NA
-3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1
-4         32 2004-10-10 2009-08-27 2012-07-21             1             1             1
-5         29 2000-12-05 2005-02-28         NA             2             1            NA&quot;)
-</code></pre>
 
-<p>The data table above has one row for each family, and two columns for
-each child. One column is the date of birth (character), the other is
-the gender (coded as an integer). We can use standard data.table
-functions to melt these data into a tall/long table with one row for each
-child:</p>
-
-<pre><code class="r">melt(family.dt, measure.vars=patterns(
-  dob=&quot;^dob&quot;, gender=&quot;^gender&quot;
-))
-#&gt;     family_id age_mother variable        dob gender
-#&gt;  1:         1         30        1 1998-11-26      1
-#&gt;  2:         2         27        1 1996-06-22      2
-#&gt;  3:         3         26        1 2002-07-11      2
-#&gt;  4:         4         32        1 2004-10-10      1
-#&gt;  5:         5         29        1 2000-12-05      2
-#&gt;  6:         1         30        2 2000-01-29      2
-#&gt;  7:         2         27        2       &lt;NA&gt;     NA
-#&gt;  8:         3         26        2 2004-04-05      2
-#&gt;  9:         4         32        2 2009-08-27      1
-#&gt; 10:         5         29        2 2005-02-28      1
-#&gt; 11:         1         30        3       &lt;NA&gt;     NA
-#&gt; 12:         2         27        3       &lt;NA&gt;     NA
-#&gt; 13:         3         26        3 2007-09-02      1
-#&gt; 14:         4         32        3 2012-07-21      1
-#&gt; 15:         5         29        3       &lt;NA&gt;     NA
-</code></pre>
-
-<p>The melt above results in a table with one row for each child, and one
-column for each argument of <code>patterns</code>. However the code is somewhat
-repetitive, as <code>dob</code> and <code>gender</code> must be repeated. To avoid this
-repetition we can instead use:</p>
-
-<pre><code class="r">(children.dt &lt;- nc::capture_melt_multiple(
-  family.dt,
-  column=&quot;.*&quot;,
-  &quot;_&quot;,
-  nc::field(&quot;child&quot;, &quot;&quot;, &quot;[1-3]&quot;, as.integer),
-  na.rm=TRUE))
-#&gt;     family_id age_mother child        dob gender
-#&gt;  1:         1         30     1 1998-11-26      1
-#&gt;  2:         2         27     1 1996-06-22      2
-#&gt;  3:         3         26     1 2002-07-11      2
-#&gt;  4:         4         32     1 2004-10-10      1
-#&gt;  5:         5         29     1 2000-12-05      2
-#&gt;  6:         1         30     2 2000-01-29      2
-#&gt;  7:         3         26     2 2004-04-05      2
-#&gt;  8:         4         32     2 2009-08-27      1
-#&gt;  9:         5         29     2 2005-02-28      1
-#&gt; 10:         3         26     3 2007-09-02      1
-#&gt; 11:         4         32     3 2012-07-21      1
-str(children.dt)
-#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   11 obs. of  5 variables:
-#&gt;  $ family_id : int  1 2 3 4 5 1 3 4 5 3 ...
-#&gt;  $ age_mother: int  30 27 26 32 29 30 26 32 29 26 ...
-#&gt;  $ child     : int  1 1 1 1 1 2 2 2 2 3 ...
-#&gt;  $ dob       : IDate, format: &quot;1998-11-26&quot; &quot;1996-06-22&quot; ...
-#&gt;  $ gender    : int  1 2 2 1 2 2 2 1 1 1 ...
-#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;
-</code></pre>
-
-<p>The result above is similar to the previous result (and in fact
-<code>melt.data.table</code> is used internally), but the code is less
-repetitive. The first argument of <code>capture_melt_multiple</code> is the
-subject data table and the following arguments form a pattern which is
-matched to the input data column names. The pattern must have at least
-two groups:</p>
-
-<ul>
-<li>One group must be named <code>column</code>. This group is used to capture the
-part of the input column names which will be used for the output
-column names. The output will contain one column for each unique
-value captured in this group.</li>
-<li>One or more other groups (with any names) specify an identifier for
-each observation (above it was the <code>child</code> number).</li>
-</ul>
-
-<p>Another example is the iris data set which usually has one
-5-dimensional observation per row (four numeric measures, and one
-character <code>Species</code>). Below we create a shuffled version of the iris
-data with two observations per row:</p>
-
-<pre><code class="r">set.seed(1)
-iris.rand &lt;- iris.dt[sample(.N)]
-iris.wide &lt;- cbind(treatment=iris.rand[1:75], control=iris.rand[76:150])
-print(iris.wide, topn=2, nrows=10)
-#&gt;     treatment.i treatment.Sepal.Length treatment.Sepal.Width
-#&gt;  1:          68                    5.8                   2.7
-#&gt;  2:         129                    6.4                   2.8
-#&gt; ---                                                         
-#&gt; 74:          91                    5.5                   2.6
-#&gt; 75:          64                    6.1                   2.9
-#&gt;     treatment.Petal.Length treatment.Petal.Width treatment.Species control.i
-#&gt;  1:                    4.1                   1.0        versicolor        60
-#&gt;  2:                    5.6                   2.1         virginica       113
-#&gt; ---                                                                         
-#&gt; 74:                    4.4                   1.2        versicolor        57
-#&gt; 75:                    4.7                   1.4        versicolor        72
-#&gt;     control.Sepal.Length control.Sepal.Width control.Petal.Length
-#&gt;  1:                  5.2                 2.7                  3.9
-#&gt;  2:                  6.8                 3.0                  5.5
-#&gt; ---                                                              
-#&gt; 74:                  6.3                 3.3                  4.7
-#&gt; 75:                  6.1                 2.8                  4.0
-#&gt;     control.Petal.Width control.Species
-#&gt;  1:                 1.4      versicolor
-#&gt;  2:                 2.1       virginica
-#&gt; ---                                    
-#&gt; 74:                 1.6      versicolor
-#&gt; 75:                 1.3      versicolor
-</code></pre>
-
-<p>Below we show the usual data.table syntax for getting the original
-iris back.</p>
-
-<pre><code class="r">iris.melted &lt;- melt(iris.wide, measure.vars = patterns(
-  i=&quot;i$&quot;,
-  Sepal.Length=&quot;Sepal.Length$&quot;,
-  Sepal.Width=&quot;Sepal.Width$&quot;,
-  Petal.Length=&quot;Petal.Length$&quot;,
-  Petal.Width=&quot;Petal.Width$&quot;,
-  Species=&quot;Species$&quot;))
-identical(iris.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
-#&gt; [1] TRUE
-</code></pre>
-
-<p>We can do the same thing with less repetition via:</p>
-
-<pre><code class="r">(nc.melted &lt;- nc::capture_melt_multiple(
-  iris.wide,
-  group=&quot;.*?&quot;,
-  &quot;[.]&quot;,
-  column=&quot;.*&quot;))
-#&gt;          group Petal.Length Petal.Width Sepal.Length Sepal.Width    Species   i
-#&gt;   1:   control          3.9         1.4          5.2         2.7 versicolor  60
-#&gt;   2:   control          5.5         2.1          6.8         3.0  virginica 113
-#&gt;   3:   control          5.6         1.4          6.1         2.6  virginica 135
-#&gt;   4:   control          1.5         0.1          4.9         3.1     setosa  10
-#&gt;   5:   control          1.4         0.2          5.1         3.5     setosa   1
-#&gt;  ---                                                                           
-#&gt; 146: treatment          1.6         0.2          4.8         3.1     setosa  31
-#&gt; 147: treatment          1.3         0.4          5.4         3.9     setosa  17
-#&gt; 148: treatment          5.4         2.1          6.9         3.1  virginica 140
-#&gt; 149: treatment          4.4         1.2          5.5         2.6 versicolor  91
-#&gt; 150: treatment          4.7         1.4          6.1         2.9 versicolor  64
-identical(nc.melted[order(i), names(iris.dt), with=FALSE], iris.dt)
-#&gt; [1] TRUE
-</code></pre>
-
-<p>To conclude this section, we have seen that a simple non-repetitive
-regex syntax can be used with <code>nc::capture_melt_multiple</code> to
-melt wide data into several columns of different types.</p>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 </body>
-
 </html>

@@ -99,6 +99,13 @@ elapsed.pattern <- list(
 nc::capture_first_df(sacct.df, JobID=job.pattern, Elapsed=elapsed.pattern)
 
 ## -----------------------------------------------------------------------------
+nc::capture_first_df(sacct.df, JobID=job.pattern)
+sacct.df
+(sacct.DT <- data.table::as.data.table(sacct.df))
+nc::capture_first_df(sacct.DT, JobID=job.pattern)
+sacct.DT
+
+## -----------------------------------------------------------------------------
 fsa.vec <- c(#control samples:
   "A01-Ladder-PP16-001.10sec.fsa",
   "D07_Ladder-IP_004.5sec.fsa",
