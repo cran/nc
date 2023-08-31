@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-05-01" />
+<meta name="date" content="2023-08-31" />
 
 <title>Overview of nc functionality</title>
 
@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Overview of nc functionality</h1>
-<h4 class="date">2023-05-01</h4>
+<h4 class="date">2023-08-31</h4>
 
 
 
@@ -163,11 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;chr1:110-111 chr2:220-222&quot;</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  subject.vec, <span class="at">chrom=</span><span class="st">&quot;chr.*?&quot;</span>, <span class="st">&quot;:&quot;</span>, <span class="at">chromStart=</span><span class="st">&quot;[0-9,]+&quot;</span>, as.integer)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     chrom chromStart</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;      &lt;int&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  chr10  213054000</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:   chrM     111000</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   chr1        110</span></span></code></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    chrom chromStart</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: chr10  213054000</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  chrM     111000</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:  chr1        110</span></span></code></pre></div>
 <p>A variant is doing the same thing, but with input subjects coming from a data table/frame with character columns.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>subject.dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">JobID =</span> <span class="fu">c</span>(<span class="st">&quot;13937810_25&quot;</span>, <span class="st">&quot;14022192_1&quot;</span>),</span>
@@ -177,22 +176,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  subject.dt,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">JobID=</span><span class="fu">list</span>(<span class="at">job=</span>int.pat, <span class="st">&quot;_&quot;</span>, <span class="at">task=</span>int.pat),</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Elapsed=</span><span class="fu">list</span>(<span class="at">hours=</span>int.pat, <span class="st">&quot;:&quot;</span>, <span class="at">minutes=</span>int.pat, <span class="st">&quot;:&quot;</span>, <span class="at">seconds=</span>int.pat))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          JobID  Elapsed      job  task hours minutes seconds</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;char&gt;   &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;   &lt;int&gt;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 13937810_25 07:04:42 13937810    25     7       4      42</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  14022192_1 07:04:49 14022192     1     7       4      49</span></span></code></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          JobID  Elapsed      job task hours minutes seconds</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 13937810_25 07:04:42 13937810   25     7       4      42</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  14022192_1 07:04:49 14022192    1     7       4      49</span></span></code></pre></div>
 </div>
 <div id="capture-all-matches-in-a-single-subject" class="section level2">
 <h2>Capture all matches in a single subject</h2>
 <p><a href="v2-capture-all.html">Capture all</a> is for the situation when your input is a single character string or text file subject, you want to find all matches of a regex to that subject, and your desired output is a data table (one row per match, one column per capture group in the regex).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_all_str</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  subject.vec, <span class="at">chrom=</span><span class="st">&quot;chr.*?&quot;</span>, <span class="st">&quot;:&quot;</span>, <span class="at">chromStart=</span><span class="st">&quot;[0-9,]+&quot;</span>, as.integer)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     chrom chromStart</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;      &lt;int&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  chr10  213054000</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:   chrM     111000</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   chr1        110</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   chr2        220</span></span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    chrom chromStart</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: chr10  213054000</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  chrM     111000</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:  chr1        110</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:  chr2        220</span></span></code></pre></div>
 </div>
 <div id="reshape-a-data-table-with-regularly-named-columns" class="section level2">
 <h2>Reshape a data table with regularly named columns</h2>
@@ -201,22 +198,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          5.1         3.5          1.4         0.2  setosa</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_single</span>  (one.iris, <span class="at">part  =</span><span class="st">&quot;.*&quot;</span>, <span class="st">&quot;[.]&quot;</span>, <span class="at">dim   =</span><span class="st">&quot;.*&quot;</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Species   part    dim value</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;fctr&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  setosa  Sepal Length   5.1</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  setosa  Sepal  Width   3.5</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:  setosa  Petal Length   1.4</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:  setosa  Petal  Width   0.2</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(one.iris, <span class="at">column=</span><span class="st">&quot;.*&quot;</span>, <span class="st">&quot;[.]&quot;</span>, <span class="at">dim   =</span><span class="st">&quot;.*&quot;</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Species    dim Petal Sepal</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;fctr&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  setosa Length   1.4   5.1</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  setosa  Width   0.2   3.5</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(one.iris, <span class="at">part  =</span><span class="st">&quot;.*&quot;</span>, <span class="st">&quot;[.]&quot;</span>, <span class="at">column=</span><span class="st">&quot;.*&quot;</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Species   part Length Width</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;fctr&gt; &lt;char&gt;  &lt;num&gt; &lt;num&gt;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  setosa  Petal    1.4   0.2</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  setosa  Sepal    5.1   3.5</span></span></code></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Species  part    dim value</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  setosa Sepal Length   5.1</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  setosa Sepal  Width   3.5</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:  setosa Petal Length   1.4</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:  setosa Petal  Width   0.2</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(one.iris, <span class="at">column=</span><span class="st">&quot;.*&quot;</span>, <span class="st">&quot;[.]&quot;</span>, <span class="at">dim   =</span><span class="st">&quot;.*&quot;</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Species    dim Petal Sepal</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  setosa Length   1.4   5.1</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  setosa  Width   0.2   3.5</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(one.iris, <span class="at">part  =</span><span class="st">&quot;.*&quot;</span>, <span class="st">&quot;[.]&quot;</span>, <span class="at">column=</span><span class="st">&quot;.*&quot;</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Species  part Length Width</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  setosa Petal    1.4   0.2</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  setosa Sepal    5.1   3.5</span></span></code></pre></div>
 </div>
 <div id="helper-functions-for-defining-complex-pattterns" class="section level2">
 <h2>Helper functions for defining complex pattterns</h2>
@@ -227,10 +221,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;child&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;[12]&quot;</span>, as.integer))</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(subject.vec, pattern)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    variable child</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt; &lt;int&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:      sex     1</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:      age     1</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:      sex     2</span></span></code></pre></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:      sex     1</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:      age     1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:      sex     2</span></span></code></pre></div>
 <p>It also explains how to define common sub-patterns which are used in several different alternatives.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>subject.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mar 17, 1983&quot;</span>, <span class="st">&quot;26 sep 2017&quot;</span>, <span class="st">&quot;17 mar 1984&quot;</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pattern <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">alternatives_with_shared_groups</span>(</span>
@@ -238,11 +231,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(month, <span class="st">&quot; &quot;</span>, day, <span class="st">&quot;, &quot;</span>, year),</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(day, <span class="st">&quot; &quot;</span>, month, <span class="st">&quot; &quot;</span>, year))</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(subject.vec, pattern)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     month    day   year</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt; &lt;char&gt; &lt;char&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    mar     17   1983</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:    sep     26   2017</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    mar     17   1984</span></span></code></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    month day year</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:   mar  17 1983</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:   sep  26 2017</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   mar  17 1984</span></span></code></pre></div>
 </div>
 </div>
 

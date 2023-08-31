@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-05-01" />
+<meta name="date" content="2023-08-31" />
 
 <title>Capture melt</title>
 
@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Capture melt</h1>
-<h4 class="date">2023-05-01</h4>
+<h4 class="date">2023-08-31</h4>
 
 
 
@@ -183,19 +183,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim=</span><span class="st">&quot;.*&quot;</span>,</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value.name=</span><span class="st">&quot;cm&quot;</span>))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species   part    dim    cm</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;fctr&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa  Sepal Length   5.1</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa  Sepal Length   4.9</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa  Sepal Length   4.7</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa  Sepal Length   4.6</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa  Sepal Length   5.0</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 596: virginica  Petal  Width   2.3</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 597: virginica  Petal  Width   1.9</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 598: virginica  Petal  Width   2.0</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 599: virginica  Petal  Width   2.3</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 600: virginica  Petal  Width   1.8</span></span></code></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species  part    dim  cm</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Sepal Length 5.1</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Sepal Length 4.9</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Sepal Length 4.7</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Sepal Length 4.6</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Sepal Length 5.0</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                           </span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 596: virginica Petal  Width 2.3</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 597: virginica Petal  Width 1.9</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 598: virginica Petal  Width 2.0</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 599: virginica Petal  Width 2.3</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 600: virginica Petal  Width 1.8</span></span></code></pre></div>
 <p>Note the output above has one copy column (Species), two capture columns (part, dim), and one reshape column (cm). Internally the function joins the result of <code>nc::capture_first_vec</code> (on column names) to the result of <code>melt</code> (on the data).</p>
 <p>The reshaped data can be plotted with different parts on rows and different dimensions on columns:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -222,18 +221,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim=</span><span class="st">&quot;.*&quot;</span>))</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species    dim Petal Sepal</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;fctr&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Length   1.4   5.1</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Length   1.4   4.9</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Length   1.3   4.7</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Length   1.5   4.6</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Length   1.4   5.0</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Width   2.3   3.0</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Width   1.9   2.5</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Width   2.0   3.0</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Width   2.3   3.4</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Width   1.8   3.0</span></span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Length   1.4   5.1</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Length   1.4   4.9</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Length   1.3   4.7</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Length   1.5   4.6</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Length   1.4   5.0</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Width   2.3   3.0</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Width   1.9   2.5</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Width   2.0   3.0</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Width   2.3   3.4</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Width   1.8   3.0</span></span></code></pre></div>
 <p>Note that the reshaped table above contains one copy column (Species), one capture column (dim), and two reshape columns (Petal, Sepal). We can plot these data to see whether or not sepals are bigger than petals:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(ggplot2)){</span>
@@ -280,32 +278,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender=</span><span class="st">&quot;.&quot;</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(who, new.diag.gender, <span class="at">ages=</span><span class="st">&quot;.*&quot;</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          country   iso2   iso3  year diagnosis gender   ages</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;    &lt;char&gt; &lt;char&gt; &lt;char&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:               Afghanistan     AF    AFG  1997        sp      m    014</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:               Afghanistan     AF    AFG  1998        sp      m    014</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:               Afghanistan     AF    AFG  1999        sp      m    014</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:               Afghanistan     AF    AFG  2000        sp      m    014</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:               Afghanistan     AF    AFG  2001        sp      m    014</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                      </span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:                  Viet Nam     VN    VNM  2013       rel      f     65</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043: Wallis and Futuna Islands     WF    WLF  2013       rel      f     65</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:                     Yemen     YE    YEM  2013       rel      f     65</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:                    Zambia     ZM    ZMB  2013       rel      f     65</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:                  Zimbabwe     ZW    ZWE  2013       rel      f     65</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        value</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;num&gt;</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:     0</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:    30</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:     8</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:    52</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:   129</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---      </span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:  3110</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043:     2</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:   360</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:   669</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:   725</span></span></code></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          country iso2 iso3 year diagnosis gender ages value</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:               Afghanistan   AF  AFG 1997        sp      m  014     0</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:               Afghanistan   AF  AFG 1998        sp      m  014    30</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:               Afghanistan   AF  AFG 1999        sp      m  014     8</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:               Afghanistan   AF  AFG 2000        sp      m  014    52</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:               Afghanistan   AF  AFG 2001        sp      m  014   129</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                     </span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:                  Viet Nam   VN  VNM 2013       rel      f   65  3110</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043: Wallis and Futuna Islands   WF  WLF 2013       rel      f   65     2</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:                     Yemen   YE  YEM 2013       rel      f   65   360</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:                    Zambia   ZM  ZMB 2013       rel      f   65   669</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:                  Zimbabwe   ZW  ZWE 2013       rel      f   65   725</span></span></code></pre></div>
 <p>Note the output includes the new reshape column called <code>value</code> by default, as in <code>melt</code>. The input reshape column names which matched the specified pattern, and there is a new column for each group in that pattern. The following example shows how to rename the <code>value</code> column and use numeric type conversion functions:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>years.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(new.diag.gender, <span class="at">ages=</span><span class="fu">list</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">min.years=</span><span class="st">&quot;0|[0-9]{2}&quot;</span>, as.numeric,</span>
@@ -313,45 +297,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(who.typed <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  who, years.pattern,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value.name=</span><span class="st">&quot;count&quot;</span>))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          country   iso2   iso3  year diagnosis gender   ages</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;    &lt;char&gt; &lt;char&gt; &lt;char&gt;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:               Afghanistan     AF    AFG  1997        sp      m    014</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:               Afghanistan     AF    AFG  1998        sp      m    014</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:               Afghanistan     AF    AFG  1999        sp      m    014</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:               Afghanistan     AF    AFG  2000        sp      m    014</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:               Afghanistan     AF    AFG  2001        sp      m    014</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                      </span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:                  Viet Nam     VN    VNM  2013       rel      f     65</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043: Wallis and Futuna Islands     WF    WLF  2013       rel      f     65</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:                     Yemen     YE    YEM  2013       rel      f     65</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:                    Zambia     ZM    ZMB  2013       rel      f     65</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:                  Zimbabwe     ZW    ZWE  2013       rel      f     65</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        min.years max.years count</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;num&gt;     &lt;num&gt; &lt;num&gt;</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:         0        14     0</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:         0        14    30</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:         0        14     8</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:         0        14    52</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:         0        14   129</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                          </span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:        65       Inf  3110</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043:        65       Inf     2</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:        65       Inf   360</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:        65       Inf   669</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:        65       Inf   725</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(who.typed)</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   76046 obs. of  10 variables:</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ country  : chr  &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; ...</span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ iso2     : chr  &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; ...</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ iso3     : chr  &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; ...</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ year     : num  1997 1998 1999 2000 2001 ...</span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ diagnosis: chr  &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; ...</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gender   : chr  &quot;m&quot; &quot;m&quot; &quot;m&quot; &quot;m&quot; ...</span></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ ages     : chr  &quot;014&quot; &quot;014&quot; &quot;014&quot; &quot;014&quot; ...</span></span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ min.years: num  0 0 0 0 0 0 0 0 0 0 ...</span></span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ max.years: num  14 14 14 14 14 14 14 14 14 14 ...</span></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ count    : num  0 30 8 52 129 90 127 139 151 193 ...</span></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          country iso2 iso3 year diagnosis gender ages min.years</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:               Afghanistan   AF  AFG 1997        sp      m  014         0</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:               Afghanistan   AF  AFG 1998        sp      m  014         0</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:               Afghanistan   AF  AFG 1999        sp      m  014         0</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:               Afghanistan   AF  AFG 2000        sp      m  014         0</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:               Afghanistan   AF  AFG 2001        sp      m  014         0</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                         </span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:                  Viet Nam   VN  VNM 2013       rel      f   65        65</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043: Wallis and Futuna Islands   WF  WLF 2013       rel      f   65        65</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:                     Yemen   YE  YEM 2013       rel      f   65        65</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:                    Zambia   ZM  ZMB 2013       rel      f   65        65</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:                  Zimbabwe   ZW  ZWE 2013       rel      f   65        65</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        max.years count</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:        14     0</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:        14    30</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:        14     8</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:        14    52</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:        14   129</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                </span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76042:       Inf  3110</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76043:       Inf     2</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76044:       Inf   360</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76045:       Inf   669</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76046:       Inf   725</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(who.typed)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   76046 obs. of  10 variables:</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ country  : chr  &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; ...</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ iso2     : chr  &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; &quot;AF&quot; ...</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ iso3     : chr  &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; &quot;AFG&quot; ...</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ year     : num  1997 1998 1999 2000 2001 ...</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ diagnosis: chr  &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; &quot;sp&quot; ...</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gender   : chr  &quot;m&quot; &quot;m&quot; &quot;m&quot; &quot;m&quot; ...</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ ages     : chr  &quot;014&quot; &quot;014&quot; &quot;014&quot; &quot;014&quot; ...</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ min.years: num  0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ max.years: num  14 14 14 14 14 14 14 14 14 14 ...</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ count    : num  0 30 8 52 129 90 127 139 151 193 ...</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
 <p>Note in the code/result above that non-character captured output columns can be obtained by specifying type conversion functions in the pattern.</p>
 </div>
 <div id="melting-monthly-eurostat-data" class="section level2">
@@ -362,44 +344,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ert.all <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(ert.gz, <span class="at">na.strings=</span><span class="st">&quot;:&quot;</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>ert.all[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    exch_rt,unit,geo\\time 2020M07 2020M06 2020M05 2020M04</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt;   &lt;num&gt;   &lt;num&gt;   &lt;num&gt;   &lt;num&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:       NEER_EA19,I10,AT  100.00  100.00   100.0  100.00</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:       NEER_EA19,I10,AU   88.50   88.39    86.3   83.46</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:       NEER_EA19,I10,BE  100.00  100.00   100.0  100.00</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:       NEER_EA19,I10,BG  100.00  100.00   100.0  100.00</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:       NEER_EA19,I10,BR   38.49   39.94    38.0   40.45</span></span></code></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:       NEER_EA19,I10,AT  100.00  100.00   100.0  100.00</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:       NEER_EA19,I10,AU   88.50   88.39    86.3   83.46</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:       NEER_EA19,I10,BE  100.00  100.00   100.0  100.00</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:       NEER_EA19,I10,BG  100.00  100.00   100.0  100.00</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:       NEER_EA19,I10,BR   38.49   39.94    38.0   40.45</span></span></code></pre></div>
 <p>We see that the first column has some CSV data which we can parse via:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ert.first <span class="ot">&lt;-</span> ert.all[, <span class="dv">1</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>csv.lines <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\\\</span><span class="st">.*&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">names</span>(ert.first)), ert.first[[<span class="dv">1</span>]])</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ert.first.dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="at">text=</span><span class="fu">paste</span>(csv.lines, <span class="at">collapse=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>))</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ert.wide <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(ert.first.dt, ert.all[,<span class="sc">-</span><span class="dv">1</span>])</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ert.wide[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      exch_rt   unit    geo 2020M07 2020M06</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt; &lt;char&gt; &lt;char&gt;   &lt;num&gt;   &lt;num&gt;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: NEER_EA19    I10     AT  100.00  100.00</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: NEER_EA19    I10     AU   88.50   88.39</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: NEER_EA19    I10     BE  100.00  100.00</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: NEER_EA19    I10     BG  100.00  100.00</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: NEER_EA19    I10     BR   38.49   39.94</span></span></code></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      exch_rt unit geo 2020M07 2020M06</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: NEER_EA19  I10  AT  100.00  100.00</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: NEER_EA19  I10  AU   88.50   88.39</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: NEER_EA19  I10  BE  100.00  100.00</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: NEER_EA19  I10  BG  100.00  100.00</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: NEER_EA19  I10  BR   38.49   39.94</span></span></code></pre></div>
 <p>The wide data table can then be melted:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(ert.tall <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  ert.wide,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">year=</span><span class="st">&quot;[0-9]{4}&quot;</span>, as.integer,</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;M&quot;</span>,</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">month=</span><span class="st">&quot;[0-9]{2}&quot;</span>, as.integer))</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         exch_rt   unit    geo  year month   value</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;   &lt;num&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: NEER_EA19    I10     AT  2020     7  100.00</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: NEER_EA19    I10     AU  2020     7   88.50</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: NEER_EA19    I10     BE  2020     7  100.00</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: NEER_EA19    I10     BG  2020     7  100.00</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: NEER_EA19    I10     BR  2020     7   38.49</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                            </span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2229: NEER_EA19    I10     BE  1994     1   99.07</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2230: NEER_EA19    I10     BG  1994     1 4808.49</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2231: NEER_EA19    I10     BR  1994     1 1225.11</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2232: NEER_EA19    I10     CA  1994     1   92.19</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2233: NEER_EA19    I10     CH  1994     1   83.43</span></span></code></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         exch_rt unit geo year month   value</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: NEER_EA19  I10  AT 2020     7  100.00</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: NEER_EA19  I10  AU 2020     7   88.50</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: NEER_EA19  I10  BE 2020     7  100.00</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: NEER_EA19  I10  BG 2020     7  100.00</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: NEER_EA19  I10  BR 2020     7   38.49</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                      </span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2229: NEER_EA19  I10  BE 1994     1   99.07</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2230: NEER_EA19  I10  BG 1994     1 4808.49</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2231: NEER_EA19  I10  BR 1994     1 1225.11</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2232: NEER_EA19  I10  CA 1994     1   92.19</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2233: NEER_EA19  I10  CH 1994     1   83.43</span></span></code></pre></div>
 <p>After that we can create a time variable and plot via</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ert.tall[, month.IDate <span class="sc">:</span><span class="er">=</span> data.table<span class="sc">::</span><span class="fu">as.IDate</span>(</span>
@@ -422,19 +401,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_single</span>(ert.wide, <span class="at">month.POSIXct=</span><span class="st">&quot;[0-9].*&quot;</span>, <span class="cf">function</span>(x){</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="fu">paste0</span>(x,<span class="st">&quot;15&quot;</span>), <span class="st">&quot;%YM%m%d&quot;</span>))</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         exch_rt   unit    geo month.POSIXct   value</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;char&gt;         &lt;num&gt;   &lt;num&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: NEER_EA19    I10     AT    1594796400  100.00</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: NEER_EA19    I10     AU    1594796400   88.50</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: NEER_EA19    I10     BE    1594796400  100.00</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: NEER_EA19    I10     BG    1594796400  100.00</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: NEER_EA19    I10     BR    1594796400   38.49</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                              </span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2229: NEER_EA19    I10     BE     758617200   99.07</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2230: NEER_EA19    I10     BG     758617200 4808.49</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2231: NEER_EA19    I10     BR     758617200 1225.11</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2232: NEER_EA19    I10     CA     758617200   92.19</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2233: NEER_EA19    I10     CH     758617200   83.43</span></span></code></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         exch_rt unit geo month.POSIXct   value</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: NEER_EA19  I10  AT    2020-07-15  100.00</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: NEER_EA19  I10  AU    2020-07-15   88.50</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: NEER_EA19  I10  BE    2020-07-15  100.00</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: NEER_EA19  I10  BG    2020-07-15  100.00</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: NEER_EA19  I10  BR    2020-07-15   38.49</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                         </span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2229: NEER_EA19  I10  BE    1994-01-15   99.07</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2230: NEER_EA19  I10  BG    1994-01-15 4808.49</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2231: NEER_EA19  I10  BR    1994-01-15 1225.11</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2232: NEER_EA19  I10  CA    1994-01-15   92.19</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2233: NEER_EA19  I10  CH    1994-01-15   83.43</span></span></code></pre></div>
 </div>
 <div id="melting-into-multiple-output-columns-with-missing-input-columns" class="section level2">
 <h2>Melting into multiple output columns with missing input columns</h2>
@@ -455,25 +433,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The error message explains that the number of input columns for each value of <code>dim</code> must be the same, but there is one for <code>Length</code> and two for <code>Width</code>. To ignore the error and fill the output with missing values,</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(iris.missing, iris.pattern, <span class="at">fill=</span><span class="cn">TRUE</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species    dim Petal Sepal</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;fctr&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Length   1.4    NA</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Length   1.4    NA</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Length   1.3    NA</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Length   1.5    NA</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Length   1.4    NA</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Width   2.3   3.0</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Width   1.9   2.5</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Width   2.0   3.0</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Width   2.3   3.4</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Width   1.8   3.0</span></span></code></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Length   1.4    NA</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Length   1.4    NA</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Length   1.3    NA</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Length   1.5    NA</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Length   1.4    NA</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Width   2.3   3.0</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Width   1.9   2.5</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Width   2.0   3.0</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Width   2.3   3.4</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Width   1.8   3.0</span></span></code></pre></div>
 <p>Note the missing values in the table above, which correspond to the missing input column in the original/wide data set.</p>
 </div>
 <div id="multiple-output-columns-of-different-types" class="section level2">
 <h2>Multiple output columns of different types</h2>
 <p>Some real-world data sets can be reshaped into output columns with different types. An example data set from the <a href="https://lftdi.camden.rutgers.edu/repository/PROVEDIt_1-5-Person%20CSVs%20Filtered.zip">PROVEDIt</a> benchmark in criminology:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>peaks.csv <span class="ot">&lt;-</span> <span class="fu">system.file</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;RD12-0002_PP16HS_5sec_GM_F_1P.csv.gz&quot;</span>,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;RD12-0002_PP16HS_5sec_GM_F_1P.csv&quot;</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">package=</span><span class="st">&quot;nc&quot;</span>, <span class="at">mustWork=</span><span class="cn">TRUE</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>peaks.wide <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(peaks.csv)</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
@@ -481,28 +458,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">class=</span><span class="fu">sapply</span>(peaks.wide, class)),</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">topn=</span><span class="dv">10</span>)</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            names     class</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;    &lt;char&gt;</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1: Sample File character</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:      Marker character</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:         Dye character</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    Allele 1 character</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:      Size 1   numeric</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   6:    Height 1   integer</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   7:    Allele 2 character</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   8:      Size 2   numeric</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   9:    Height 2   integer</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10:    Allele 3 character</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                      </span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 294:   Height 97   logical</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 295:   Allele 98   logical</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296:     Size 98   logical</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297:   Height 98   logical</span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298:   Allele 99   logical</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299:     Size 99   logical</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300:   Height 99   logical</span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 301:  Allele 100   logical</span></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 302:    Size 100   logical</span></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 303:  Height 100   logical</span></span></code></pre></div>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1: Sample File character</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:      Marker character</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:         Dye character</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    Allele 1 character</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:      Size 1   numeric</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   6:    Height 1   integer</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   7:    Allele 2 character</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   8:      Size 2   numeric</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   9:    Height 2   integer</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10:    Allele 3 character</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                      </span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 294:   Height 97   logical</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 295:   Allele 98   logical</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296:     Size 98   logical</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297:   Height 98   logical</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298:   Allele 99   logical</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299:     Size 99   logical</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300:   Height 99   logical</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 301:  Allele 100   logical</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 302:    Size 100   logical</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 303:  Height 100   logical</span></span></code></pre></div>
 <p>There are 303 columns, with info for 100 peaks. Each peak has three features: Allele=character, Size=numeric, and Height=integer. The ending peaks are class logical because they are all missing. These data can be reshaped via</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>peaks.tall <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  peaks.wide,</span>
@@ -510,45 +486,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot; &quot;</span>,</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">peak=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer,</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(data.table(L[[&quot;data&quot;]]), measure.vars = measure.vars, :</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Allele 1, Allele 2, Allele 3, Allele 4, ...] are not all of the same</span></span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; type. By order of hierarchy, the molten data value column will be of type &#39;character&#39;.</span></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; All measure variables not of type &#39;character&#39; will be coerced too. Check DETAILS in</span></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ?melt.data.table for more on coercion.</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(data.table(L[[&quot;data&quot;]]), measure.vars = measure.vars, :</span></span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Height 1, Height 2, Height 3, Height 4, ...] are not all of the same</span></span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; type. By order of hierarchy, the molten data value column will be of type &#39;integer&#39;. All</span></span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; measure variables not of type &#39;integer&#39; will be coerced too. Check DETAILS in</span></span>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ?melt.data.table for more on coercion.</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(data.table(L[[&quot;data&quot;]]), measure.vars = measure.vars, :</span></span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Size 1, Size 2, Size 3, Size 4, ...] are not all of the same type. By</span></span>
 <span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; order of hierarchy, the molten data value column will be of type &#39;double&#39;. All measure</span></span>
 <span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; variables not of type &#39;double&#39; will be coerced too. Check DETAILS in ?melt.data.table for</span></span>
 <span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; more on coercion.</span></span>
 <span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">90</span>)</span>
 <span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(peaks.tall)</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                Sample File  Marker    Dye  peak Allele Height   Size</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                     &lt;char&gt;  &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;char&gt;  &lt;int&gt;  &lt;num&gt;</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1: A02-RD12-0002-35-0.5PP16-001.5sec.fsa D3S1358      B     1     OL      5  94.68</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2: A02-RD12-0002-35-0.5PP16-001.5sec.fsa    TH01      B     1     OL      3 148.69</span></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3: A02-RD12-0002-35-0.5PP16-001.5sec.fsa  D21S11      B     1     OL      7 195.84</span></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4: A02-RD12-0002-35-0.5PP16-001.5sec.fsa  D18S51      B     1     OL      4 285.51</span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5: A02-RD12-0002-35-0.5PP16-001.5sec.fsa Penta E      B     1     OL      3 369.36</span></span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                </span></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 438: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA      Y    25     OL      5 413.28</span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 439: A02-RD12-0002-35-0.5PP16-001.5sec.fsa Penta E      B    26     OL      3 479.21</span></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 440: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA      Y    26     OL      4 415.55</span></span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 441: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA      Y    27     OL      4 428.06</span></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 442: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA      Y    28     OL      4 445.08</span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(peaks.tall)</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   442 obs. of  7 variables:</span></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Sample File: chr  &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; ...</span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Marker     : chr  &quot;D3S1358&quot; &quot;TH01&quot; &quot;D21S11&quot; &quot;D18S51&quot; ...</span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Dye        : chr  &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; ...</span></span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ peak       : int  1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Allele     : chr  &quot;OL&quot; &quot;OL&quot; &quot;OL&quot; &quot;OL&quot; ...</span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Height     : int  5 3 7 4 3 4 3 197 45 4 ...</span></span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Size       : num  94.7 148.7 195.8 285.5 369.4 ...</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                Sample File  Marker Dye peak Allele Height   Size</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1: A02-RD12-0002-35-0.5PP16-001.5sec.fsa D3S1358   B    1     OL      5  94.68</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2: A02-RD12-0002-35-0.5PP16-001.5sec.fsa    TH01   B    1     OL      3 148.69</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3: A02-RD12-0002-35-0.5PP16-001.5sec.fsa  D21S11   B    1     OL      7 195.84</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4: A02-RD12-0002-35-0.5PP16-001.5sec.fsa  D18S51   B    1     OL      4 285.51</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5: A02-RD12-0002-35-0.5PP16-001.5sec.fsa Penta E   B    1     OL      3 369.36</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                            </span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 438: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA   Y   25     OL      5 413.28</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 439: A02-RD12-0002-35-0.5PP16-001.5sec.fsa Penta E   B   26     OL      3 479.21</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 440: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA   Y   26     OL      4 415.55</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 441: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA   Y   27     OL      4 428.06</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 442: A02-RD12-0002-35-0.5PP16-001.5sec.fsa     FGA   Y   28     OL      4 445.08</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(peaks.tall)</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   442 obs. of  7 variables:</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Sample File: chr  &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; &quot;A02-RD12-0002-35-0.5PP16-001.5sec.fsa&quot; ...</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Marker     : chr  &quot;D3S1358&quot; &quot;TH01&quot; &quot;D21S11&quot; &quot;D18S51&quot; ...</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Dye        : chr  &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; ...</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ peak       : int  1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Allele     : chr  &quot;OL&quot; &quot;OL&quot; &quot;OL&quot; &quot;OL&quot; ...</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Height     : int  5 3 7 4 3 4 3 197 45 4 ...</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Size       : num  94.7 148.7 195.8 285.5 369.4 ...</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;sorted&quot;)= chr &quot;peak&quot;</span></span>
 <span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
 </div>
 </div>

@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-05-01" />
+<meta name="date" content="2023-08-31" />
 
 <title>Comparisons with other packages</title>
 
@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Comparisons with other packages</h1>
-<h4 class="date">2023-05-01</h4>
+<h4 class="date">2023-08-31</h4>
 
 
 
@@ -161,18 +161,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data.table</span>(iris)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:          5.1         3.5          1.4         0.2    setosa</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:          4.9         3.0          1.4         0.2    setosa</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:          4.7         3.2          1.3         0.2    setosa</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:          4.6         3.1          1.5         0.2    setosa</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:          5.0         3.6          1.4         0.2    setosa</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146:          6.7         3.0          5.2         2.3 virginica</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147:          6.3         2.5          5.0         1.9 virginica</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148:          6.5         3.0          5.2         2.0 virginica</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149:          6.2         3.4          5.4         2.3 virginica</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150:          5.9         3.0          5.1         1.8 virginica</span></span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:          5.1         3.5          1.4         0.2    setosa</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:          4.9         3.0          1.4         0.2    setosa</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:          4.7         3.2          1.3         0.2    setosa</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:          4.6         3.1          1.5         0.2    setosa</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:          5.0         3.6          1.4         0.2    setosa</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146:          6.7         3.0          5.2         2.3 virginica</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147:          6.3         2.5          5.0         1.9 virginica</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148:          6.5         3.0          5.2         2.0 virginica</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149:          6.2         3.4          5.4         2.3 virginica</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150:          5.9         3.0          5.1         1.8 virginica</span></span></code></pre></div>
 <p>The goal in this section will be to convert these data into a format with a column for each flower part (<code>Sepal</code> and <code>Petal</code>) so we can easily make a facetted scatterplot to visually examine whether or not sepals or larger than petals. The easiest way to perform this conversion is with packages which provide a function for melting into multiple output columns:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>iris.parts <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
@@ -211,18 +210,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: cdata</span></span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>iris.parts<span class="sc">$</span>nc</span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species    dim Petal Sepal</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;fctr&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Length   1.4   5.1</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Length   1.4   4.9</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Length   1.3   4.7</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Length   1.5   4.6</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Length   1.4   5.0</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Width   2.3   3.0</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Width   1.9   2.5</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Width   2.0   3.0</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Width   2.3   3.4</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Width   1.8   3.0</span></span></code></pre></div>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Length   1.4   5.1</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Length   1.4   4.9</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Length   1.3   4.7</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Length   1.5   4.6</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Length   1.4   5.0</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Width   2.3   3.0</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Width   1.9   2.5</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Width   2.0   3.0</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Width   2.3   3.4</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Width   1.8   3.0</span></span></code></pre></div>
 <p>It is clear from the code above that each package is capable of the conversions. However the syntax and level of explicitness varies:</p>
 <ul>
 <li><code>nc::capture_melt_multiple</code> requires a regular expression: (most implicit, least repetition)
@@ -271,19 +269,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">varying=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep=</span><span class="st">&quot;.&quot;</span>))</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>iris.dims<span class="sc">$</span>nc</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species   part Length Width</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;fctr&gt; &lt;char&gt;  &lt;num&gt; &lt;num&gt;</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa  Petal    1.4   0.2</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa  Petal    1.4   0.2</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa  Petal    1.3   0.2</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa  Petal    1.5   0.2</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa  Petal    1.4   0.2</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica  Sepal    6.7   3.0</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica  Sepal    6.3   2.5</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica  Sepal    6.5   3.0</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica  Sepal    6.2   3.4</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica  Sepal    5.9   3.0</span></span></code></pre></div>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species  part Length Width</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa Petal    1.4   0.2</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa Petal    1.4   0.2</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa Petal    1.3   0.2</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa Petal    1.5   0.2</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa Petal    1.4   0.2</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                             </span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 296: virginica Sepal    6.7   3.0</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 297: virginica Sepal    6.3   2.5</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 298: virginica Sepal    6.5   3.0</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 299: virginica Sepal    6.2   3.4</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 300: virginica Sepal    5.9   3.0</span></span></code></pre></div>
 <p>The code above shows that the syntax is mostly the same for this example. The biggest difference is for <code>stats::reshape</code> which assumes that each input column name is composed of (1) the output column name, (2) a delimiter, and (3) some additional information to be stored in the output column given by <code>timevar</code>. Therefore we need to pre-process column names using <code>sub</code> for it to work.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(ggplot2)){</span>
@@ -344,47 +341,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>output.list</span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $nc</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        group   age    sex</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt; &lt;num&gt; &lt;char&gt;</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: treatment     1      F</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: treatment     5      F</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   control    10      M</span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   control    50      M</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $cdata</span></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        group   age    sex</span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt; &lt;num&gt; &lt;char&gt;</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: treatment     1      F</span></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: treatment     5      F</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   control    10      M</span></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   control    50      M</span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $data.table</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    variable   age    sex</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;fctr&gt; &lt;num&gt; &lt;char&gt;</span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:        1     1      M</span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:        1     5      M</span></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:        2    10      F</span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:        2    50      F</span></span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stats</span></span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         time   age    sex    id</span></span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt; &lt;num&gt; &lt;char&gt; &lt;int&gt;</span></span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: treatment     1      M     1</span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: treatment     5      M     2</span></span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   control    10      F     1</span></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   control    50      F     2</span></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $tidyr</span></span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        group   age    sex</span></span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt; &lt;num&gt; &lt;char&gt;</span></span>
-<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: treatment     1      F</span></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: treatment     5      F</span></span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   control    10      M</span></span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   control    50      M</span></span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(output.list, <span class="cf">function</span>(DT)<span class="fu">identical</span>(DT<span class="sc">$</span>sex, <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>)))</span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         nc      cdata data.table      stats      tidyr </span></span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       TRUE       TRUE      FALSE      FALSE       TRUE</span></span></code></pre></div>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        group age sex</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: treatment   1   F</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: treatment   5   F</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   control  10   M</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   control  50   M</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $cdata</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        group age sex</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: treatment   1   F</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: treatment   5   F</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   control  10   M</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   control  50   M</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $data.table</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    variable age sex</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:        1   1   M</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:        1   5   M</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:        2  10   F</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:        2  50   F</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stats</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         time age sex id</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: treatment   1   M  1</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: treatment   5   M  2</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   control  10   F  1</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   control  50   F  2</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $tidyr</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        group age sex</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: treatment   1   F</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: treatment   5   F</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   control  10   M</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   control  50   M</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(output.list, <span class="cf">function</span>(DT)<span class="fu">identical</span>(DT<span class="sc">$</span>sex, <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>)))</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         nc      cdata data.table      stats      tidyr </span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       TRUE       TRUE      FALSE      FALSE       TRUE</span></span></code></pre></div>
 <p>In conclusion, when the input column names to melt do not appear in the same order across groups or output columns, then the correct tall data can be computed using one of <code>nc::capture_melt_multiple</code>, <code>tidyr::pivot_longer</code>, <code>cdata::rowrecs_to_blocks</code>.</p>
 </div>
 <div id="melting-into-a-single-output-column-who-data" class="section level2">
@@ -575,113 +567,108 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>],</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Species=</span><span class="fu">paste</span>(iris<span class="sc">$</span>Species))</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(iris.dt)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          i Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;char&gt;</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     1          5.1         3.5          1.4         0.2    setosa</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2          4.9         3.0          1.4         0.2    setosa</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     3          4.7         3.2          1.3         0.2    setosa</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     4          4.6         3.1          1.5         0.2    setosa</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     5          5.0         3.6          1.4         0.2    setosa</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                  </span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146:   146          6.7         3.0          5.2         2.3 virginica</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147:   147          6.3         2.5          5.0         1.9 virginica</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148:   148          6.5         3.0          5.2         2.0 virginica</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149:   149          6.2         3.4          5.4         2.3 virginica</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150:   150          5.9         3.0          5.1         1.8 virginica</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="do">## what if we had two observations on each row?</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>iris.rand <span class="ot">&lt;-</span> iris.dt[<span class="fu">sample</span>(.N)]</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>iris.wide <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">treatment=</span>iris.rand[<span class="dv">1</span><span class="sc">:</span><span class="dv">75</span>], <span class="at">control=</span>iris.rand[<span class="dv">76</span><span class="sc">:</span><span class="dv">150</span>])</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(iris.wide, <span class="at">topn=</span><span class="dv">2</span>, <span class="at">nrows=</span><span class="dv">10</span>)</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     treatment.i treatment.Sepal.Length treatment.Sepal.Width treatment.Petal.Length</span></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;int&gt;                  &lt;num&gt;                 &lt;num&gt;                  &lt;num&gt;</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:          68                    5.8                   2.7                    4.1</span></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         129                    6.4                   2.8                    5.6</span></span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---                                                                                </span></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 74:          91                    5.5                   2.6                    4.4</span></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75:          64                    6.1                   2.9                    4.7</span></span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     treatment.Petal.Width treatment.Species control.i control.Sepal.Length</span></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     &lt;num&gt;            &lt;char&gt;     &lt;int&gt;                &lt;num&gt;</span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:                   1.0        versicolor        60                  5.2</span></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:                   2.1         virginica       113                  6.8</span></span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---                                                                       </span></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 74:                   1.2        versicolor        57                  6.3</span></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75:                   1.4        versicolor        72                  6.1</span></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     control.Sepal.Width control.Petal.Length control.Petal.Width control.Species</span></span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                   &lt;num&gt;                &lt;num&gt;               &lt;num&gt;          &lt;char&gt;</span></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:                 2.7                  3.9                 1.4      versicolor</span></span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:                 3.0                  5.5                 2.1       virginica</span></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---                                                                             </span></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 74:                 3.3                  4.7                 1.6      versicolor</span></span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75:                 2.8                  4.0                 1.3      versicolor</span></span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="do">## This is the usual data.table syntax for getting the original iris back.</span></span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>iris.melted <span class="ot">&lt;-</span> <span class="fu">melt</span>(iris.wide, <span class="at">value.factor=</span><span class="cn">TRUE</span>, <span class="at">measure.vars =</span> <span class="fu">patterns</span>(</span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">i=</span><span class="st">&quot;i$&quot;</span>,</span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sepal.Length=</span><span class="st">&quot;Sepal.Length$&quot;</span>,</span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sepal.Width=</span><span class="st">&quot;Sepal.Width$&quot;</span>,</span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">Petal.Length=</span><span class="st">&quot;Petal.Length$&quot;</span>,</span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">Petal.Width=</span><span class="st">&quot;Petal.Width$&quot;</span>,</span>
-<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">Species=</span><span class="st">&quot;Species$&quot;</span>))</span>
-<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(iris.melted[<span class="fu">order</span>(i), <span class="fu">names</span>(iris.dt), <span class="at">with=</span><span class="cn">FALSE</span>], iris.dt)</span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a><span class="do">## nc can do the same thing -- you must define an R argument named</span></span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="do">## column, and another named argument which identifies each group.</span></span>
-<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>(nc.melted <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>  iris.wide,</span>
-<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">group=</span><span class="st">&quot;[^.]+&quot;</span>,</span>
-<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
-<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;.*&quot;</span>))</span>
-<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          group Petal.Length Petal.Width Sepal.Length Sepal.Width    Species     i</span></span>
-<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;char&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;     &lt;char&gt; &lt;int&gt;</span></span>
-<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:   control          3.9         1.4          5.2         2.7 versicolor    60</span></span>
-<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:   control          5.5         2.1          6.8         3.0  virginica   113</span></span>
-<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:   control          5.6         1.4          6.1         2.6  virginica   135</span></span>
-<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   control          1.5         0.1          4.9         3.1     setosa    10</span></span>
-<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:   control          1.4         0.2          5.1         3.5     setosa     1</span></span>
-<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                             </span></span>
-<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146: treatment          1.6         0.2          4.8         3.1     setosa    31</span></span>
-<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147: treatment          1.3         0.4          5.4         3.9     setosa    17</span></span>
-<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148: treatment          5.4         2.1          6.9         3.1  virginica   140</span></span>
-<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149: treatment          4.4         1.2          5.5         2.6 versicolor    91</span></span>
-<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150: treatment          4.7         1.4          6.1         2.9 versicolor    64</span></span>
-<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(nc.melted[<span class="fu">order</span>(i), <span class="fu">names</span>(iris.dt), <span class="at">with=</span><span class="cn">FALSE</span>], iris.dt)</span>
-<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a><span class="do">## This is how we do it using stats::reshape.</span></span>
-<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>iris.wide.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(iris.wide)</span>
-<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(iris.wide.df) <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;(.*?)[.](.*)&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">2_</span><span class="sc">\\</span><span class="st">1&quot;</span>, <span class="fu">names</span>(iris.wide))</span>
-<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>iris.reshaped <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">reshape</span>(</span>
-<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a>  iris.wide.df,</span>
-<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>  <span class="at">direction=</span><span class="st">&quot;long&quot;</span>,</span>
-<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>  <span class="at">timevar=</span><span class="st">&quot;group&quot;</span>,</span>
-<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>  <span class="at">varying=</span><span class="fu">names</span>(iris.wide.df),</span>
-<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
-<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(<span class="fu">data.table</span>(iris.reshaped[, <span class="fu">names</span>(iris.dt)])[<span class="fu">order</span>(i)], iris.dt)</span>
-<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a><span class="do">## get the parts columns and groups -- is there any difference</span></span>
-<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a><span class="do">## between groups? of course not!</span></span>
-<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>parts.wide <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
-<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>  iris.wide,</span>
-<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>  <span class="at">group=</span><span class="st">&quot;.*?&quot;</span>,</span>
-<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
-<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;.*?&quot;</span>,</span>
-<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
-<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim=</span><span class="st">&quot;.*&quot;</span>)</span>
-<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(<span class="st">&quot;ggplot2&quot;</span>)){</span>
-<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing=</span>grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>))<span class="sc">+</span></span>
-<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(dim <span class="sc">~</span> group)<span class="sc">+</span></span>
-<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_equal</span>()<span class="sc">+</span></span>
-<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>)<span class="sc">+</span></span>
-<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(</span>
-<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a>      Petal, Sepal),</span>
-<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>      <span class="at">data=</span>parts.wide)</span>
-<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        i Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:   1          5.1         3.5          1.4         0.2    setosa</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:   2          4.9         3.0          1.4         0.2    setosa</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:   3          4.7         3.2          1.3         0.2    setosa</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   4          4.6         3.1          1.5         0.2    setosa</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:   5          5.0         3.6          1.4         0.2    setosa</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                </span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146: 146          6.7         3.0          5.2         2.3 virginica</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147: 147          6.3         2.5          5.0         1.9 virginica</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148: 148          6.5         3.0          5.2         2.0 virginica</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149: 149          6.2         3.4          5.4         2.3 virginica</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150: 150          5.9         3.0          5.1         1.8 virginica</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="do">## what if we had two observations on each row?</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>iris.rand <span class="ot">&lt;-</span> iris.dt[<span class="fu">sample</span>(.N)]</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>iris.wide <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">treatment=</span>iris.rand[<span class="dv">1</span><span class="sc">:</span><span class="dv">75</span>], <span class="at">control=</span>iris.rand[<span class="dv">76</span><span class="sc">:</span><span class="dv">150</span>])</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(iris.wide, <span class="at">topn=</span><span class="dv">2</span>, <span class="at">nrows=</span><span class="dv">10</span>)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     treatment.i treatment.Sepal.Length treatment.Sepal.Width treatment.Petal.Length</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:          68                    5.8                   2.7                    4.1</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         129                    6.4                   2.8                    5.6</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---                                                                                </span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 74:          91                    5.5                   2.6                    4.4</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75:          64                    6.1                   2.9                    4.7</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     treatment.Petal.Width treatment.Species control.i control.Sepal.Length</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:                   1.0        versicolor        60                  5.2</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:                   2.1         virginica       113                  6.8</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---                                                                       </span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 74:                   1.2        versicolor        57                  6.3</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75:                   1.4        versicolor        72                  6.1</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     control.Sepal.Width control.Petal.Length control.Petal.Width control.Species</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:                 2.7                  3.9                 1.4      versicolor</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:                 3.0                  5.5                 2.1       virginica</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---                                                                             </span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 74:                 3.3                  4.7                 1.6      versicolor</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75:                 2.8                  4.0                 1.3      versicolor</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="do">## This is the usual data.table syntax for getting the original iris back.</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>iris.melted <span class="ot">&lt;-</span> <span class="fu">melt</span>(iris.wide, <span class="at">value.factor=</span><span class="cn">TRUE</span>, <span class="at">measure.vars =</span> <span class="fu">patterns</span>(</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">i=</span><span class="st">&quot;i$&quot;</span>,</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sepal.Length=</span><span class="st">&quot;Sepal.Length$&quot;</span>,</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sepal.Width=</span><span class="st">&quot;Sepal.Width$&quot;</span>,</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">Petal.Length=</span><span class="st">&quot;Petal.Length$&quot;</span>,</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">Petal.Width=</span><span class="st">&quot;Petal.Width$&quot;</span>,</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">Species=</span><span class="st">&quot;Species$&quot;</span>))</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(iris.melted[<span class="fu">order</span>(i), <span class="fu">names</span>(iris.dt), <span class="at">with=</span><span class="cn">FALSE</span>], iris.dt)</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="do">## nc can do the same thing -- you must define an R argument named</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="do">## column, and another named argument which identifies each group.</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>(nc.melted <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>  iris.wide,</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">group=</span><span class="st">&quot;[^.]+&quot;</span>,</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;.*&quot;</span>))</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          group Petal.Length Petal.Width Sepal.Length Sepal.Width    Species   i</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:   control          3.9         1.4          5.2         2.7 versicolor  60</span></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:   control          5.5         2.1          6.8         3.0  virginica 113</span></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:   control          5.6         1.4          6.1         2.6  virginica 135</span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   control          1.5         0.1          4.9         3.1     setosa  10</span></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:   control          1.4         0.2          5.1         3.5     setosa   1</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                           </span></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146: treatment          1.6         0.2          4.8         3.1     setosa  31</span></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147: treatment          1.3         0.4          5.4         3.9     setosa  17</span></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148: treatment          5.4         2.1          6.9         3.1  virginica 140</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149: treatment          4.4         1.2          5.5         2.6 versicolor  91</span></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150: treatment          4.7         1.4          6.1         2.9 versicolor  64</span></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(nc.melted[<span class="fu">order</span>(i), <span class="fu">names</span>(iris.dt), <span class="at">with=</span><span class="cn">FALSE</span>], iris.dt)</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a><span class="do">## This is how we do it using stats::reshape.</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>iris.wide.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(iris.wide)</span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(iris.wide.df) <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;(.*?)[.](.*)&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">2_</span><span class="sc">\\</span><span class="st">1&quot;</span>, <span class="fu">names</span>(iris.wide))</span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>iris.reshaped <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">reshape</span>(</span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>  iris.wide.df,</span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>  <span class="at">direction=</span><span class="st">&quot;long&quot;</span>,</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>  <span class="at">timevar=</span><span class="st">&quot;group&quot;</span>,</span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a>  <span class="at">varying=</span><span class="fu">names</span>(iris.wide.df),</span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(<span class="fu">data.table</span>(iris.reshaped[, <span class="fu">names</span>(iris.dt)])[<span class="fu">order</span>(i)], iris.dt)</span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a><span class="do">## get the parts columns and groups -- is there any difference</span></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="do">## between groups? of course not!</span></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>parts.wide <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a>  iris.wide,</span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>  <span class="at">group=</span><span class="st">&quot;.*?&quot;</span>,</span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;.*?&quot;</span>,</span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim=</span><span class="st">&quot;.*&quot;</span>)</span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(<span class="st">&quot;ggplot2&quot;</span>)){</span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing=</span>grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>))<span class="sc">+</span></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(dim <span class="sc">~</span> group)<span class="sc">+</span></span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_equal</span>()<span class="sc">+</span></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>)<span class="sc">+</span></span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(</span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>      Petal, Sepal),</span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>      <span class="at">data=</span>parts.wide)</span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAABHVBMVEUAAAAAADoAAGYAOpAAZrYZGT8ZGWIZP2IZP4EZYp8aGhozMzM6AAA6ADo6kNs/GRk/GT8/GWI/P2I/P4E/gb1NTU1NTW5NTY5NbqtNjshiGRliGT9iGWJiPxlin9lmAABmtv9uTU1uTW5uTY5ubo5ubqtuq+SBPxmBPz+BYhmBgWKBvb2BvdmOTU2OTW6OTY6Obk2ObquOyP+QOgCQ27aQ2/+fYhmfvYGf2Z+f2b2f2dmrbk2rbm6rjk2r5OSr5P+2ZgC22/+2//+9gT+92dm+vr7Ijk3I///Zn2LZvYHZvb3Z2Z/Z2b3Z2dnbkDrb/7bb///kq27k///r6+v/tmb/yI7/25D/27b/29v/5Kv//7b//8j//9v//+T///9LU8J1AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAQ60lEQVR4nO2dC3vVxhGGlYTSYCiUxm4aSoxpG0xbaBvckgBN4wBqcPFxa2xowUb//2dUq+vO7GX2MpIWe+d5MNZZHc2c98zuakeyvqLKZrVi6QBStwyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIMFdAl8+uMQFazWjzOsuACGcZEOEsAyKcZUCEswyIcJYBEc4yIMLZooD2rj82bllidj6iw4EppxlQOoBe3lj7yT3x8+Lj1d5nv19b2xS/f/OLLy8+7l6MB4SOuNq71rl5dPcPa2vrL+p/KyUEq9f5AO1vb65efPr84br4uXet/e/6471rm6vVw34rFtBKOuKzS6uXv77XvHL98f72pZrWpeZLaNvGEOzOZgPURvLy5mMRtthoIxe/SS9yALreHK05autRALp7byX+1Q1d2xhCKoA+e95hqgOFgKQXuQDdWFsTHXr1cK3uQghQ25YeoFkzqMueG5t9F5MAtW3JARJjUB3NONyMgJjHIHjEvZ/fg4BWOIREAMFZrI1uf/viNyJAtllsJR1R9LBna2s//XKzfvGRBKhtG0NIZBbjs3N0Jh0Y86zOMiDCWQZEOMuACGfBgN7e3vj8xwHQuTMS0Mmfvq8Of/WqB1T/OwLtcIu18fKkR8fO7IllBvT2q1fVyZ/7FMqAFBszqMm4oxltYmdFUcjOQgFVJ/c3hh52ljKoECY5C+5iv/m+ev35GexiXIBe1+kjullrEwIawh1jngFQ0XNKPoOkL7RvnHiQLiSLAFS93tj4ZZ9AZwqQjCgGELAMiLCzMga1ziQ+HwCgI8BoWkA9lc5h1CwGbVJAci+bB5DsLAPqTepXsrO0AYnT/pkAFR8ioC7gWcagDxkQamQC1ByaAlQmBwhEqAVU8gAalhStTw2fet+SLYMYaw1ytQFstFYylTsK1ZR9yphyBwRk/qZ0m8RA0P2mfWfJ1cU0gFC21vmT0BjU5/p4qtb9DvctK9YxyEqoTGmQHkaEMYH6vFdjniCDKhVQmdQsViAiekAl4yym5A0CVKY1zUvBHsHkl/btY54OEPCVJCCxBXN/3HeIORZQMaxIB6e4h5X9vokDkvcdY44EJKFAfIaPWw7vTAWQFCIENEQtxcwFaKSCAJXjO1MBhMegfmMIW46ZCRB0IqzbtZTemQggPOgogEDMbGMQtH7XUt43HND7J1xFezXQ4dUeEIyZYxZT8AyASrBvOKB/PmiujbUWA0gXaTV0BMiHDZDsbfQqGku4rwDU3DgsbLyd0eHa/HDjQlVNCUjsi2OOBwTdDVkLfY2Abir3ebrc3fFd18Vib17QJHtxJK/rS/QGhtU8djYY9nUUDuj2g+YWmNZ0GVQUhbxp+lJ1fMClhRK/MyaDxo6LErZSfcVmEHFtHvo2fgQ9H3TOj2IOBzQcvZDOhEy+4gCdfO0CaPi0hoGABlSq7+QAJG+bfMUBErOYtYvBj6v5CG0LxUfzzkBARaEWNcAW9hU5zZ/cl2/i1ETpBqi5sjPuqPBhA6T/AgAfI6D97XqO//S5HyBghmmeBoR6GQLUr99RzMa1inR05EzpyxXeV/U1ANrfXt+/e++ZTIhrqTEEQ56MyIDkmB0BmbPVAKjzMuyr8SWPQTUgMBJxZhAMBGyBaOWfY8zegHAV27y4kBt1vqQM2pwog7wA4cYSbkoxhwFq9zmqwFx2ZPE1jkF71x9tTzcGGT7mGDPkg2JmBFQNjRiQ3lfkLAbMOkgrrgs4jWiuLqP1O4rZOEhrcBu+G/DFGXxND0gKWDlb025oYnae5o2EyHMAk69xkL6B1vI8gEC8mtPZtkX/gdD6HcXMC8joC2XQs0u8GVS4AOpOFPuXNTFPDsjsCwGKm+atFQWnJmlTqTmgCgRVwbC/HRrhS7p54QVzFzNnkNz/xi9u2NTUHOAWmUFqo2lLUyvAzsYxaJN5kHYBJMU1bGtqDihmvi6mqRVgZ9PNYlZAYKoHY5Cu5oBiZgOkqxVgZ0sBMm1qaw4oZvxiMUyHfoC0tQLsrBl8Hk6xmg8CpK85oJjV807Jl/sYpK8VYGer/bt/3F4X0zz7Wkz+Ph0BGWoOKGYzIPvRVV8ugF7e/PZm/1wWXkAOazG0aao5oJhZAJlqBdiZWMs/XJ/gRLECZ8lOgIw1BxSzZgxSJkXbAUZfTmNQf92Qe6nhDchcc0AxmwBZj671tegs5gvIUnNAMccDstQKsLOBif8Y9P7Jg/5X8xjkGoi15oBiNgByPoC1VoCdrbqa/RqY6Z0AHW5QgKxRwk1rzQHFrOwDp3byANZaAXY25E79819egN7+7i98gOw1BxSzP36TrynHoPd//0fbxTievECtqeECe0ZfR8G3v1SHd+gxyPWbUu5PsL4zLoOoWgF2NiTNs3WvDHr71Ss2QGTNAcUcA4isFWBnobPY4YawO91WFCC65oBijgBE1wqws4EJeEgf0zTvFIhDzQHFHA7IoVaAna3CC2Y8gFxqDijmYEAutQLsLHgWAxYOyKnmgGIOBeRUK8DOFgbkVnNAMQcCcqsVYGeLAiodaw4o5iBAWl+JA3JeUqOYQwA5L4WxswUBuS+pUcwBgNyXwtjZcoA8ltQoZv+P6bEUxs4WA+SzpEYxe39Mn6UwdrYUIK8lNYrZ92MSl9+tjUsBsixP2QH5LYWxMyZAk5YccAViRl8LPXnBd0kNt/wyyHcpjJ05Anp3a7i28vHTSjE/QN5LahSzz8f0XgpjZwtkkP+SGsXs8TH9l8LY2fyAApbUKGb3AwQshbEzD0BvrnB0sZAlNYrZ+QAhS2HszB3Q6c7V052td7e2KtXcAQUtqVHMrgcIWgpjZ+6ABJrdq9XxJ/+pFHMGFLakRjE7HsD18ru10RPQwYXqOKaLuV5+tzY6AgqsFWBnHmPQbkPnICKDQmsOKGanA4TWCrAzD0D1IFTtFh/9rVLNDVBwzQHF7HKA4FoBduYBCNrb2xue1+bDaw4oZod9wmsF2FkoIPEHveKh2625AIqoOaCY6X0iagXYmQ+gA3Ea1M3yr7+omj/sbc0BUEzNAcVM7hNTK8DOPAAdiPnr3a2rwwvtn4W73bwQt6aGC+wZffms5rtTxHGaf/+kv/JMZ5Dn5XdrI5VBcbUC7Cwc0Mn9gQ8JKLLmgGK27xNZK8DOPLrYsZjhhy4mHt4xGAEotuaAYrbuE1srwM58MkguCQE+BKDomgOK2bZPdK0AO/OZxWRrb38ZZrFzZySgLJ/VmHIetNUvxbJ8VmNwsfrJv29tne5caDbOrnwWcuY1zYuZvp/mz6p8FnYWCujMymdhZx5d7EB0sf48aDb5rA8IUHUszoH688ScQcIs9aCZ5LM+XEDAMqB6BKpXYmK1cbXSWAbUrFTFOZBcDxotAxIF++rNlS0xl8VcF+NoTBJQUwxq6h1R18VYGtMF1CTP+QLkLH50urNVtcuw3aW7GJP4kVOjh/hRnT3NEHTcX9YANiOgcsYMKn2m+V0xw5/uaC+s8qlDkVbOuJoXV0c+tBNFRvEjsjEp8SPHRkbxI7IxLfEjt0ZO8SOqMTHxI6dGVvEjojE18SOXRjbxI4fG5MSPHBrZxI8cGhMUPyIb+cSP6MYExY/IRkbxI7IxQfEjspFV/IhoZBI/AjY1IH7xI3Mjl/gRsIkB8YsfmRs14kdhgPjks8hGfvEjc6NO/CgMEJt8FtmoxDwhIFVIKBQQn3wW1cgqfkQ06sWPggDxyWc51BygTedMc/enBGjvms8TqGj5LNs35d7IK35kbzSJH9X2DD3t1iWDZrk2zyh+RDYaxY9e3liTH8/lOAZR8lksH4FR/IhsJMSP1j0BkfJZHB/BQ/wo2rVF/KjvZFIfcwBEymfFfwQP8aNo1zbxo2GUvu7zmEBgkwDyET+KdW0VP+rmMPlxwCkA8hI/inRNiB+tXsCHJScByE/8KM41IX5Uz2LyE/DSAOQrfhTjmhY/ap4H7PckTmjsgPzFj8Jdk+JHwzzm9SxXYNyAAsSPgl27ih+l1MVCxI9CXTuIH/XyWd/eTCSDiL+oZAVEPX1poQcs+a6p4QJ7Rl8p3rwQKH4U5NpV/GgS6RrnKOFmqPhRiGtH8aP9iaRrHKOEmyHiR6GuHcWPxof+JwAoRPwo1LWj+JHoYRNJ17hECTeDxI8CXbuKH4U+9B8YE6Aw8aMw187iR6yzmJ/ADt4MFT8KAeQhftQZxxjkK9EEN4PFjwIAeYkfhUrXSMYBKFz8yB+Qn/hRoHSNbAyAPMWPgJyPLyBP8aMkxiBP8SOo9egJyFv8KHAW45Ou8RY/KmIABYofeUrXVKp8liXrqUC8nr4UCcjv6UsRsxiWz7LFTATiLX5k1aSzHyBY/MhXukaRz2oinqbmgCoQR6P09dS+ZPksT+kaRT7LV0dvsEDxI9OUibofbIwQP/KcxVT5LH+pyi5m3+H98nhKoQGEeh9sDBM/CgKkymcFAgoVPwoBNLP4EUsGBYofQQxaQH3r2Di3+BHHGBQoflSMpuwz8kGNS4sf6TNIilKTXqHiRwUkpO6jobe4+JE266WPoOkSYU98dgCkSa/AJzXPBQj0CBRzzBhkByQdIAF1KB2gQjU15jhAwz7N73gA6htTUIfSjEEaPuMHilKHUo+n99Q1JqEOJQflAChOHcoPUBLqUDCq6khLZxwWItWhhp7Uv2pyJRrTUIfCYVn4VNHqUPDLMHwbfWMi6lB9WP0yWA8ocE0NF9j9waXXZBecvjhvXnDJoK4xWh3KI4NmUociTLfUsPDxjRLF3OGXXtWna+PL9+jY2XSzmPk79Y4SxYxf1ONp3CWlDiXzkcNEgNjVoUx8irnVoSyGr2qAKBU+MwGaWx3KZhZAsHtNoQ6l8dX+nFkdymYOgMb84QakemtfmVsdymaugDjVocasVHOnGvkkDgiO0JzqUFK/ldHg7yJ1QFo+0wDqUgrzSR/Q4ItXHUoCJJWCVF+LAbLKZ+kAcatDjXzafWRAC6lDyWaXzxqTfgA0uTqUBGghdShgdvmsPtjhW46rOaCYDfsMX4bn/QnWxqgxyCyf1QCSX2BVtCLaOX1FlTss8lnyCCrsfKhDIbPKZyE+kVGimK37LKcOhcxDPutcqkMh+axzZyQgKJ/VQDLuy984py+ruZ5Jx7nOgDKgc2sZEGEZEGEZEGEZEGHOgICgHzZQOlJNuhlUbZIe97mEL8pcAQm/h18YGmHpSLVD8ycCj/tcwBdproDEcznf/vZHfSMsHSkm/1GM5rCL+iLNFRB8qqLOvbFx+KMY7WG/U9N+Tl+kuQKCkpCayMbSETbwRzHI4OM+F/BFGlMGyaUj9Z2WoHWHndMXaSxjECqNQIN/FIMP+7Um6Dl9keY+i90xzyy2mNs322YWJe3n9EUay3mQWjqCZgkaPO5zCV+U5TNpwjIgwjIgwjIgwjIgwjIgwlIAdLrTXMiW1Sf/+8Pw65ufaVUp57I0ADXq0gejAK4MJQPqATVawa1lQMAkQKK3ffz0zRUh+Sp+iv8yoA7Q7sdPGy1lIRlcQ2nFp2taGVA3SNdDUKPDXZMRUP4nFKfrXzKgPoNqO2jvCr3aQjluprYMSAbUCZW3Xaye93MGCRsBHXfnQgLKsYB1nDOokgGd7tRUaihigBaw3lzJgCoZUDNeiyzaLS4IefeP/toO2AtaCoCStgyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsAyIsP8DKDkeLeVp8scAAAAASUVORK5CYII=" /><!-- --></p>
 </div>
 <div id="lots-of-column-types" class="section level2">
@@ -707,126 +694,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">d=</span><span class="st">&quot;^d&quot;</span>,</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">l=</span><span class="st">&quot;^l&quot;</span></span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        c_1 variable     i      f          d              l</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;char&gt;   &lt;fctr&gt; &lt;int&gt; &lt;char&gt;     &lt;Date&gt;         &lt;list&gt;</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:      a        1     1      a 2013-09-02        1,1,1,1</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:      a        1     2      a 2013-09-03            2,2</span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:   &lt;NA&gt;        1     3   &lt;NA&gt; 2013-09-04              3</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:      b        1     4      a       &lt;NA&gt;          4,4,4</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:      b        1     5      c 2013-09-05              5</span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:   &lt;NA&gt;        1    NA      c 2013-09-06             NA</span></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:      a        2    NA      z 2012-01-07        a,a,a,a</span></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:      a        2     6      a 2012-01-06      a,a,a,a,a</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:   &lt;NA&gt;        2     7      x 2012-01-05             NA</span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:      b        2     8      c 2012-01-04          b,b,b</span></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:      b        2     9      x 2012-01-03        b,b,b,b</span></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:   &lt;NA&gt;        2    10      x 2012-01-02 NA,NA,NA,NA,NA</span></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="do">## nc syntax uses a single regex rather than four.</span></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>  DT,</span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;^[^c]&quot;</span>,</span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">number=</span><span class="st">&quot;[12]&quot;</span>)</span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        c_1 number          d      f     i              l</span></span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;char&gt; &lt;char&gt;     &lt;Date&gt; &lt;char&gt; &lt;int&gt;         &lt;list&gt;</span></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:      a      1 2013-09-02      a     1        1,1,1,1</span></span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:      a      1 2013-09-03      a     2            2,2</span></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:   &lt;NA&gt;      1 2013-09-04   &lt;NA&gt;     3              3</span></span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:      b      1       &lt;NA&gt;      a     4          4,4,4</span></span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:      b      1 2013-09-05      c     5              5</span></span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:   &lt;NA&gt;      1 2013-09-06      c    NA             NA</span></span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:      a      2 2012-01-07      z    NA        a,a,a,a</span></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:      a      2 2012-01-06      a     6      a,a,a,a,a</span></span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:   &lt;NA&gt;      2 2012-01-05      x     7             NA</span></span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:      b      2 2012-01-04      c     8          b,b,b</span></span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:      b      2 2012-01-03      x     9        b,b,b,b</span></span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:   &lt;NA&gt;      2 2012-01-02      x    10 NA,NA,NA,NA,NA</span></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a><span class="do">## id.vars can be specified using original DT syntax.</span></span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="fu">melt</span>(DT, <span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">measure=</span><span class="fu">patterns</span>(</span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">f=</span><span class="st">&quot;^f&quot;</span>,</span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">l=</span><span class="st">&quot;^l&quot;</span></span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       i_1   i_2 variable      f              l</span></span>
-<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;int&gt;   &lt;fctr&gt; &lt;char&gt;         &lt;list&gt;</span></span>
-<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:     1    NA        1      a        1,1,1,1</span></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:     2     6        1      a            2,2</span></span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:     3     7        1   &lt;NA&gt;              3</span></span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:     4     8        1      a          4,4,4</span></span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:     5     9        1      c              5</span></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:    NA    10        1      c             NA</span></span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:     1    NA        2      z        a,a,a,a</span></span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:     2     6        2      a      a,a,a,a,a</span></span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:     3     7        2      x             NA</span></span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:     4     8        2      c          b,b,b</span></span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:     5     9        2      x        b,b,b,b</span></span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:    NA    10        2      x NA,NA,NA,NA,NA</span></span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
-<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>  DT,</span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;^[fl]&quot;</span>,</span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
-<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a>  <span class="at">number=</span><span class="st">&quot;[12]&quot;</span>)</span>
-<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       i_1   i_2    c_1        d_1        d_2 number      f              l</span></span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;int&gt; &lt;char&gt;     &lt;Date&gt;     &lt;Date&gt; &lt;char&gt; &lt;char&gt;         &lt;list&gt;</span></span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:     1    NA      a 2013-09-02 2012-01-07      1      a        1,1,1,1</span></span>
-<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:     2     6      a 2013-09-03 2012-01-06      1      a            2,2</span></span>
-<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:     3     7   &lt;NA&gt; 2013-09-04 2012-01-05      1   &lt;NA&gt;              3</span></span>
-<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:     4     8      b       &lt;NA&gt; 2012-01-04      1      a          4,4,4</span></span>
-<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:     5     9      b 2013-09-05 2012-01-03      1      c              5</span></span>
-<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:    NA    10   &lt;NA&gt; 2013-09-06 2012-01-02      1      c             NA</span></span>
-<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:     1    NA      a 2013-09-02 2012-01-07      2      z        a,a,a,a</span></span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:     2     6      a 2013-09-03 2012-01-06      2      a      a,a,a,a,a</span></span>
-<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:     3     7   &lt;NA&gt; 2013-09-04 2012-01-05      2      x             NA</span></span>
-<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:     4     8      b       &lt;NA&gt; 2012-01-04      2      c          b,b,b</span></span>
-<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:     5     9      b 2013-09-05 2012-01-03      2      x        b,b,b,b</span></span>
-<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:    NA    10   &lt;NA&gt; 2013-09-06 2012-01-02      2      x NA,NA,NA,NA,NA</span></span>
-<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="do">## reshape does not support list columns.</span></span>
-<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a><span class="fu">reshape</span>(</span>
-<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a>  DT,</span>
-<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a>  <span class="at">varying=</span><span class="fu">grep</span>(<span class="st">&quot;^[fid]&quot;</span>, <span class="fu">names</span>(DT)),</span>
-<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep=</span><span class="st">&quot;_&quot;</span>,</span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>  <span class="at">direction=</span><span class="st">&quot;long&quot;</span>,</span>
-<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>  <span class="at">timevar=</span><span class="st">&quot;number&quot;</span>)</span>
-<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        c_1     l_1            l_2 number     i     f          d    id</span></span>
-<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;char&gt;  &lt;list&gt;         &lt;list&gt;  &lt;num&gt; &lt;int&gt; &lt;ord&gt;     &lt;Date&gt; &lt;int&gt;</span></span>
-<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:      a 1,1,1,1        a,a,a,a      1     1     a 2013-09-02     1</span></span>
-<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:      a     2,2      a,a,a,a,a      1     2     a 2013-09-03     2</span></span>
-<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:   &lt;NA&gt;       3             NA      1     3  &lt;NA&gt; 2013-09-04     3</span></span>
-<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:      b   4,4,4          b,b,b      1     4     a       &lt;NA&gt;     4</span></span>
-<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:      b       5        b,b,b,b      1     5     c 2013-09-05     5</span></span>
-<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:   &lt;NA&gt;      NA NA,NA,NA,NA,NA      1    NA     c 2013-09-06     6</span></span>
-<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:      a 1,1,1,1        a,a,a,a      2    NA     z 2012-01-07     1</span></span>
-<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:      a     2,2      a,a,a,a,a      2     6     a 2012-01-06     2</span></span>
-<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:   &lt;NA&gt;       3             NA      2     7     x 2012-01-05     3</span></span>
-<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:      b   4,4,4          b,b,b      2     8     c 2012-01-04     4</span></span>
-<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:      b       5        b,b,b,b      2     9     x 2012-01-03     5</span></span>
-<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:   &lt;NA&gt;      NA NA,NA,NA,NA,NA      2    10     x 2012-01-02     6</span></span>
-<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a><span class="do">## tidyr does, but errors for combining ordered and un-ordered factors.</span></span>
-<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">requireNamespace</span>(<span class="st">&quot;tidyr&quot;</span>)){</span>
-<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>    DT, <span class="fu">grep</span>(<span class="st">&quot;[cf]&quot;</span>, <span class="fu">names</span>(DT), <span class="at">invert=</span><span class="cn">TRUE</span>),</span>
-<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern=</span><span class="st">&quot;(.)_(.)&quot;</span>,</span>
-<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to=</span><span class="fu">c</span>(<span class="st">&quot;.value&quot;</span>, <span class="st">&quot;number&quot;</span>))</span>
-<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 12 × 7</span></span>
-<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    f_1   f_2   c_1   number     i d          l        </span></span>
-<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;fct&gt; &lt;ord&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;date&gt;     &lt;list&gt;   </span></span>
-<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 a     z     a     1          1 2013-09-02 &lt;int [4]&gt;</span></span>
-<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 a     z     a     2         NA 2012-01-07 &lt;chr [4]&gt;</span></span>
-<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 a     a     a     1          2 2013-09-03 &lt;int [2]&gt;</span></span>
-<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 a     a     a     2          6 2012-01-06 &lt;chr [5]&gt;</span></span>
-<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 &lt;NA&gt;  x     &lt;NA&gt;  1          3 2013-09-04 &lt;int [1]&gt;</span></span>
-<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 &lt;NA&gt;  x     &lt;NA&gt;  2          7 2012-01-05 &lt;chr [1]&gt;</span></span>
-<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 a     c     b     1          4 NA         &lt;int [3]&gt;</span></span>
-<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 a     c     b     2          8 2012-01-04 &lt;chr [3]&gt;</span></span>
-<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 c     x     b     1          5 2013-09-05 &lt;int [1]&gt;</span></span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 c     x     b     2          9 2012-01-03 &lt;chr [4]&gt;</span></span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 c     x     &lt;NA&gt;  1         NA 2013-09-06 &lt;int [1]&gt;</span></span>
-<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 c     x     &lt;NA&gt;  2         10 2012-01-02 &lt;chr [5]&gt;</span></span></code></pre></div>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      c_1 variable  i    f          d              l</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:    a        1  1    a 2013-09-02        1,1,1,1</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:    a        1  2    a 2013-09-03            2,2</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3: &lt;NA&gt;        1  3 &lt;NA&gt; 2013-09-04              3</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:    b        1  4    a       &lt;NA&gt;          4,4,4</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:    b        1  5    c 2013-09-05              5</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: &lt;NA&gt;        1 NA    c 2013-09-06             NA</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    a        2 NA    z 2012-01-07        a,a,a,a</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    a        2  6    a 2012-01-06      a,a,a,a,a</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: &lt;NA&gt;        2  7    x 2012-01-05             NA</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    b        2  8    c 2012-01-04          b,b,b</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:    b        2  9    x 2012-01-03        b,b,b,b</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: &lt;NA&gt;        2 10    x 2012-01-02 NA,NA,NA,NA,NA</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="do">## nc syntax uses a single regex rather than four.</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>  DT,</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;^[^c]&quot;</span>,</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">number=</span><span class="st">&quot;[12]&quot;</span>)</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      c_1 number          d    f  i              l</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:    a      1 2013-09-02    a  1        1,1,1,1</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:    a      1 2013-09-03    a  2            2,2</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3: &lt;NA&gt;      1 2013-09-04 &lt;NA&gt;  3              3</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:    b      1       &lt;NA&gt;    a  4          4,4,4</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:    b      1 2013-09-05    c  5              5</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: &lt;NA&gt;      1 2013-09-06    c NA             NA</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    a      2 2012-01-07    z NA        a,a,a,a</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    a      2 2012-01-06    a  6      a,a,a,a,a</span></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: &lt;NA&gt;      2 2012-01-05    x  7             NA</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    b      2 2012-01-04    c  8          b,b,b</span></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:    b      2 2012-01-03    x  9        b,b,b,b</span></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: &lt;NA&gt;      2 2012-01-02    x 10 NA,NA,NA,NA,NA</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a><span class="do">## id.vars can be specified using original DT syntax.</span></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="fu">melt</span>(DT, <span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">measure=</span><span class="fu">patterns</span>(</span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">f=</span><span class="st">&quot;^f&quot;</span>,</span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">l=</span><span class="st">&quot;^l&quot;</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     i_1 i_2 variable    f              l</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:   1  NA        1    a        1,1,1,1</span></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:   2   6        1    a            2,2</span></span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:   3   7        1 &lt;NA&gt;              3</span></span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:   4   8        1    a          4,4,4</span></span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:   5   9        1    c              5</span></span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:  NA  10        1    c             NA</span></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:   1  NA        2    z        a,a,a,a</span></span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:   2   6        2    a      a,a,a,a,a</span></span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:   3   7        2    x             NA</span></span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:   4   8        2    c          b,b,b</span></span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:   5   9        2    x        b,b,b,b</span></span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:  NA  10        2    x NA,NA,NA,NA,NA</span></span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>  DT,</span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;^[fl]&quot;</span>,</span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>  <span class="at">number=</span><span class="st">&quot;[12]&quot;</span>)</span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     i_1 i_2  c_1        d_1        d_2 number    f              l</span></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:   1  NA    a 2013-09-02 2012-01-07      1    a        1,1,1,1</span></span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:   2   6    a 2013-09-03 2012-01-06      1    a            2,2</span></span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:   3   7 &lt;NA&gt; 2013-09-04 2012-01-05      1 &lt;NA&gt;              3</span></span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:   4   8    b       &lt;NA&gt; 2012-01-04      1    a          4,4,4</span></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:   5   9    b 2013-09-05 2012-01-03      1    c              5</span></span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:  NA  10 &lt;NA&gt; 2013-09-06 2012-01-02      1    c             NA</span></span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:   1  NA    a 2013-09-02 2012-01-07      2    z        a,a,a,a</span></span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:   2   6    a 2013-09-03 2012-01-06      2    a      a,a,a,a,a</span></span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:   3   7 &lt;NA&gt; 2013-09-04 2012-01-05      2    x             NA</span></span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:   4   8    b       &lt;NA&gt; 2012-01-04      2    c          b,b,b</span></span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:   5   9    b 2013-09-05 2012-01-03      2    x        b,b,b,b</span></span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:  NA  10 &lt;NA&gt; 2013-09-06 2012-01-02      2    x NA,NA,NA,NA,NA</span></span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a><span class="do">## reshape does not support list columns.</span></span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="fu">reshape</span>(</span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a>  DT,</span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a>  <span class="at">varying=</span><span class="fu">grep</span>(<span class="st">&quot;^[fid]&quot;</span>, <span class="fu">names</span>(DT)),</span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep=</span><span class="st">&quot;_&quot;</span>,</span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a>  <span class="at">direction=</span><span class="st">&quot;long&quot;</span>,</span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a>  <span class="at">timevar=</span><span class="st">&quot;number&quot;</span>)</span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      c_1     l_1            l_2 number  i    f          d id</span></span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:    a 1,1,1,1        a,a,a,a      1  1    a 2013-09-02  1</span></span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:    a     2,2      a,a,a,a,a      1  2    a 2013-09-03  2</span></span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3: &lt;NA&gt;       3             NA      1  3 &lt;NA&gt; 2013-09-04  3</span></span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:    b   4,4,4          b,b,b      1  4    a       &lt;NA&gt;  4</span></span>
+<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:    b       5        b,b,b,b      1  5    c 2013-09-05  5</span></span>
+<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: &lt;NA&gt;      NA NA,NA,NA,NA,NA      1 NA    c 2013-09-06  6</span></span>
+<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    a 1,1,1,1        a,a,a,a      2 NA    z 2012-01-07  1</span></span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    a     2,2      a,a,a,a,a      2  6    a 2012-01-06  2</span></span>
+<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: &lt;NA&gt;       3             NA      2  7    x 2012-01-05  3</span></span>
+<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    b   4,4,4          b,b,b      2  8    c 2012-01-04  4</span></span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:    b       5        b,b,b,b      2  9    x 2012-01-03  5</span></span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: &lt;NA&gt;      NA NA,NA,NA,NA,NA      2 10    x 2012-01-02  6</span></span>
+<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a><span class="do">## tidyr does, but errors for combining ordered and un-ordered factors.</span></span>
+<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">requireNamespace</span>(<span class="st">&quot;tidyr&quot;</span>)){</span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>    DT, <span class="fu">grep</span>(<span class="st">&quot;[cf]&quot;</span>, <span class="fu">names</span>(DT), <span class="at">invert=</span><span class="cn">TRUE</span>),</span>
+<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern=</span><span class="st">&quot;(.)_(.)&quot;</span>,</span>
+<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to=</span><span class="fu">c</span>(<span class="st">&quot;.value&quot;</span>, <span class="st">&quot;number&quot;</span>))</span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 12 × 7</span></span>
+<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    f_1   f_2   c_1   number     i d          l        </span></span>
+<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;fct&gt; &lt;ord&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;date&gt;     &lt;list&gt;   </span></span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 a     z     a     1          1 2013-09-02 &lt;int [4]&gt;</span></span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 a     z     a     2         NA 2012-01-07 &lt;chr [4]&gt;</span></span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 a     a     a     1          2 2013-09-03 &lt;int [2]&gt;</span></span>
+<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 a     a     a     2          6 2012-01-06 &lt;chr [5]&gt;</span></span>
+<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 &lt;NA&gt;  x     &lt;NA&gt;  1          3 2013-09-04 &lt;int [1]&gt;</span></span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 &lt;NA&gt;  x     &lt;NA&gt;  2          7 2012-01-05 &lt;chr [1]&gt;</span></span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 a     c     b     1          4 NA         &lt;int [3]&gt;</span></span>
+<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 a     c     b     2          8 2012-01-04 &lt;chr [3]&gt;</span></span>
+<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 c     x     b     1          5 2013-09-05 &lt;int [1]&gt;</span></span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 c     x     b     2          9 2012-01-03 &lt;chr [4]&gt;</span></span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 c     x     &lt;NA&gt;  1         NA 2013-09-06 &lt;int [1]&gt;</span></span>
+<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 c     x     &lt;NA&gt;  2         10 2012-01-02 &lt;chr [5]&gt;</span></span></code></pre></div>
 </div>
 <div id="family-data" class="section level2">
 <h2>family data</h2>
@@ -844,65 +826,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dob=</span><span class="st">&quot;^dob&quot;</span>, <span class="at">gender=</span><span class="st">&quot;^gender&quot;</span></span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>), <span class="at">na.rm=</span><span class="cn">TRUE</span>, <span class="at">variable.factor=</span><span class="cn">FALSE</span>))</span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     family_id age_mother variable        dob gender</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;      &lt;int&gt;   &lt;char&gt;     &lt;IDat&gt;  &lt;int&gt;</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1         30        1 1998-11-26      1</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         2         27        1 1996-06-22      2</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         3         26        1 2002-07-11      2</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         4         32        1 2004-10-10      1</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         5         29        1 2000-12-05      2</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         1         30        2 2000-01-29      2</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         3         26        2 2004-04-05      2</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         4         32        2 2009-08-27      1</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         5         29        2 2005-02-28      1</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         3         26        3 2007-09-02      1</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         4         32        3 2012-07-21      1</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="do">## nc::field can be used to define group name and pattern at the</span></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="do">## same time, to avoid repetitive code.</span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>(children.nc <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>  family.dt,</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;[^_]+&quot;</span>,</span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;child&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;[1-3]&quot;</span>),</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     family_id age_mother  child        dob gender</span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;      &lt;int&gt; &lt;char&gt;     &lt;IDat&gt;  &lt;int&gt;</span></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1         30      1 1998-11-26      1</span></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         2         27      1 1996-06-22      2</span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         3         26      1 2002-07-11      2</span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         4         32      1 2004-10-10      1</span></span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         5         29      1 2000-12-05      2</span></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         1         30      2 2000-01-29      2</span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         3         26      2 2004-04-05      2</span></span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         4         32      2 2009-08-27      1</span></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         5         29      2 2005-02-28      1</span></span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         3         26      3 2007-09-02      1</span></span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         4         32      3 2012-07-21      1</span></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="do">## reshape works too.</span></span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">reshape</span>(</span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>  family.dt,</span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">varying=</span><span class="fu">grep</span>(<span class="st">&quot;child&quot;</span>, <span class="fu">names</span>(family.dt)),</span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">direction=</span><span class="st">&quot;long&quot;</span>,</span>
-<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep=</span><span class="st">&quot;_&quot;</span>,</span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">timevar=</span><span class="st">&quot;child.str&quot;</span>)</span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     family_id age_mother child.str        dob gender    id</span></span>
-<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;      &lt;int&gt;    &lt;char&gt;     &lt;IDat&gt;  &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1         30    child1 1998-11-26      1     1</span></span>
-<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         2         27    child1 1996-06-22      2     2</span></span>
-<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         3         26    child1 2002-07-11      2     3</span></span>
-<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         4         32    child1 2004-10-10      1     4</span></span>
-<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         5         29    child1 2000-12-05      2     5</span></span>
-<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         1         30    child2 2000-01-29      2     1</span></span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         2         27    child2       &lt;NA&gt;     NA     2</span></span>
-<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         3         26    child2 2004-04-05      2     3</span></span>
-<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         4         32    child2 2009-08-27      1     4</span></span>
-<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         5         29    child2 2005-02-28      1     5</span></span>
-<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         1         30    child3       &lt;NA&gt;     NA     1</span></span>
-<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:         2         27    child3       &lt;NA&gt;     NA     2</span></span>
-<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:         3         26    child3 2007-09-02      1     3</span></span>
-<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:         4         32    child3 2012-07-21      1     4</span></span>
-<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:         5         29    child3       &lt;NA&gt;     NA     5</span></span></code></pre></div>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1         30        1 1998-11-26      1</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         2         27        1 1996-06-22      2</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         3         26        1 2002-07-11      2</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         4         32        1 2004-10-10      1</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         5         29        1 2000-12-05      2</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         1         30        2 2000-01-29      2</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         3         26        2 2004-04-05      2</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         4         32        2 2009-08-27      1</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         5         29        2 2005-02-28      1</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         3         26        3 2007-09-02      1</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         4         32        3 2012-07-21      1</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="do">## nc::field can be used to define group name and pattern at the</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="do">## same time, to avoid repetitive code.</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>(children.nc <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_melt_multiple</span>(</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>  family.dt,</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;[^_]+&quot;</span>,</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;child&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;[1-3]&quot;</span>),</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     family_id age_mother child        dob gender</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1         30     1 1998-11-26      1</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         2         27     1 1996-06-22      2</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         3         26     1 2002-07-11      2</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         4         32     1 2004-10-10      1</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         5         29     1 2000-12-05      2</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         1         30     2 2000-01-29      2</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         3         26     2 2004-04-05      2</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         4         32     2 2009-08-27      1</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         5         29     2 2005-02-28      1</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         3         26     3 2007-09-02      1</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         4         32     3 2012-07-21      1</span></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="do">## reshape works too.</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">reshape</span>(</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>  family.dt,</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">varying=</span><span class="fu">grep</span>(<span class="st">&quot;child&quot;</span>, <span class="fu">names</span>(family.dt)),</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">direction=</span><span class="st">&quot;long&quot;</span>,</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep=</span><span class="st">&quot;_&quot;</span>,</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">timevar=</span><span class="st">&quot;child.str&quot;</span>)</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     family_id age_mother child.str        dob gender id</span></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1         30    child1 1998-11-26      1  1</span></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         2         27    child1 1996-06-22      2  2</span></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         3         26    child1 2002-07-11      2  3</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         4         32    child1 2004-10-10      1  4</span></span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         5         29    child1 2000-12-05      2  5</span></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         1         30    child2 2000-01-29      2  1</span></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         2         27    child2       &lt;NA&gt;     NA  2</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         3         26    child2 2004-04-05      2  3</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         4         32    child2 2009-08-27      1  4</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         5         29    child2 2005-02-28      1  5</span></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         1         30    child3       &lt;NA&gt;     NA  1</span></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:         2         27    child3       &lt;NA&gt;     NA  2</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:         3         26    child3 2007-09-02      1  3</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:         4         32    child3 2012-07-21      1  4</span></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:         5         29    child3       &lt;NA&gt;     NA  5</span></span></code></pre></div>
 </div>
 <div id="histogram-of-iris" class="section level2">
 <h2>histogram of iris</h2>
@@ -1019,7 +998,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="multiple-output-columns-of-different-types" class="section level3">
 <h3>Multiple output columns of different types</h3>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>peaks.csv <span class="ot">&lt;-</span> <span class="fu">system.file</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;RD12-0002_PP16HS_5sec_GM_F_1P.csv.gz&quot;</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;RD12-0002_PP16HS_5sec_GM_F_1P.csv&quot;</span>,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">package=</span><span class="st">&quot;nc&quot;</span>, <span class="at">mustWork=</span><span class="cn">TRUE</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>peaks.wide <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(peaks.csv)</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>tidyr.long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
@@ -1033,17 +1012,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">column=</span><span class="st">&quot;.*&quot;</span>,</span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot; &quot;</span>,</span>
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">peak=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(data.table(L[[&quot;data&quot;]]), measure.vars = measure.vars, :</span></span>
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Allele 1, Allele 2, Allele 3, Allele 4, ...] are not all of the same</span></span>
 <span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; type. By order of hierarchy, the molten data value column will be of type &#39;character&#39;.</span></span>
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; All measure variables not of type &#39;character&#39; will be coerced too. Check DETAILS in</span></span>
 <span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ?melt.data.table for more on coercion.</span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(data.table(L[[&quot;data&quot;]]), measure.vars = measure.vars, :</span></span>
 <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Height 1, Height 2, Height 3, Height 4, ...] are not all of the same</span></span>
 <span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; type. By order of hierarchy, the molten data value column will be of type &#39;integer&#39;. All</span></span>
 <span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; measure variables not of type &#39;integer&#39; will be coerced too. Check DETAILS in</span></span>
 <span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ?melt.data.table for more on coercion.</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(L[[&quot;data&quot;]], measure.vars = L[[&quot;measure.vars&quot;]], :</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in melt.data.table(data.table(L[[&quot;data&quot;]]), measure.vars = measure.vars, :</span></span>
 <span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;measure.vars&#39; [Size 1, Size 2, Size 3, Size 4, ...] are not all of the same type. By</span></span>
 <span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; order of hierarchy, the molten data value column will be of type &#39;double&#39;. All measure</span></span>
 <span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; variables not of type &#39;double&#39; will be coerced too. Check DETAILS in ?melt.data.table for</span></span>

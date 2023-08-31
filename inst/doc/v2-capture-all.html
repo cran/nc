@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-05-01" />
+<meta name="date" content="2023-08-31" />
 
 <title>Capture all matches in a single subject string</title>
 
@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Capture all matches in a single subject string</h1>
-<h4 class="date">2023-05-01</h4>
+<h4 class="date">2023-08-31</h4>
 
 
 
@@ -206,18 +206,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The result is a data.table with one row for each track block that matches the regex. There are two character columns: <code>track</code> is a unique name, and <code>fields</code> is a string with the rest of the data in that block:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tracks.dt[, .(track, <span class="at">fields.start=</span><span class="fu">substr</span>(fields, <span class="dv">1</span>, <span class="dv">30</span>))]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         track                     fields.start</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        &lt;char&gt;                           &lt;char&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                    bcell \nsuperTrack on show\nshortLabel</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:             kidneyCancer \nsuperTrack on show\nshortLabel</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                   kidney \nsuperTrack on show\nshortLabel</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   leukemiaCD19CD10BCells \nsuperTrack on show\nshortLabel</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:                 monocyte \nsuperTrack on show\nshortLabel</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                          </span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 119: tcell_McGill0106Coverage  \n  bigDataUrl http://hubs.hpc.</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 120:    tcell_McGill0106Peaks  \n  bigDataUrl http://hubs.hpc.</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 121:         tcell_McGill0107 \n parent tcell\n container mult</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 122: tcell_McGill0107Coverage  \n  bigDataUrl http://hubs.hpc.</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 123:    tcell_McGill0107Peaks  \n  bigDataUrl http://hubs.hpc.</span></span></code></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                    bcell \nsuperTrack on show\nshortLabel</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:             kidneyCancer \nsuperTrack on show\nshortLabel</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                   kidney \nsuperTrack on show\nshortLabel</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   leukemiaCD19CD10BCells \nsuperTrack on show\nshortLabel</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:                 monocyte \nsuperTrack on show\nshortLabel</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                          </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 119: tcell_McGill0106Coverage  \n  bigDataUrl http://hubs.hpc.</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 120:    tcell_McGill0106Peaks  \n  bigDataUrl http://hubs.hpc.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 121:         tcell_McGill0107 \n parent tcell\n container mult</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 122: tcell_McGill0107Coverage  \n  bigDataUrl http://hubs.hpc.</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 123:    tcell_McGill0107Peaks  \n  bigDataUrl http://hubs.hpc.</span></span></code></pre></div>
 </div>
 <div id="match-all-fields-in-each-track" class="section level2">
 <h2>Match all fields in each track</h2>
@@ -230,24 +229,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value=</span><span class="st">&quot;[^</span><span class="sc">\n</span><span class="st">]+&quot;</span>),  </span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">by=</span>track])</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      track   variable                      value</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     &lt;char&gt;     &lt;char&gt;                     &lt;char&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                 bcell superTrack                    on show</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:                 bcell shortLabel                      bcell</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                 bcell  longLabel     bcell ChIP-seq samples</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:          kidneyCancer superTrack                    on show</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:          kidneyCancer shortLabel               kidneyCancer</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 899: tcell_McGill0107Peaks shortLabel      tcell_McGill0107Peaks</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 900: tcell_McGill0107Peaks  longLabel tcell | McGill0107 | Peaks</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 901: tcell_McGill0107Peaks     parent           tcell_McGill0107</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 902: tcell_McGill0107Peaks       type                     bigWig</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 903: tcell_McGill0107Peaks      color                      0,0,0</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(fields.dt)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   903 obs. of  3 variables:</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ track   : chr  &quot;bcell&quot; &quot;bcell&quot; &quot;bcell&quot; &quot;kidneyCancer&quot; ...</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ variable: chr  &quot;superTrack&quot; &quot;shortLabel&quot; &quot;longLabel&quot; &quot;superTrack&quot; ...</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ value   : chr  &quot;on show&quot; &quot;bcell&quot; &quot;bcell ChIP-seq samples&quot; &quot;on show&quot; ...</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                 bcell superTrack                    on show</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:                 bcell shortLabel                      bcell</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                 bcell  longLabel     bcell ChIP-seq samples</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:          kidneyCancer superTrack                    on show</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:          kidneyCancer shortLabel               kidneyCancer</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 899: tcell_McGill0107Peaks shortLabel      tcell_McGill0107Peaks</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 900: tcell_McGill0107Peaks  longLabel tcell | McGill0107 | Peaks</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 901: tcell_McGill0107Peaks     parent           tcell_McGill0107</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 902: tcell_McGill0107Peaks       type                     bigWig</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 903: tcell_McGill0107Peaks      color                      0,0,0</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(fields.dt)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   903 obs. of  3 variables:</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ track   : chr  &quot;bcell&quot; &quot;bcell&quot; &quot;bcell&quot; &quot;kidneyCancer&quot; ...</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ variable: chr  &quot;superTrack&quot; &quot;shortLabel&quot; &quot;longLabel&quot; &quot;superTrack&quot; ...</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ value   : chr  &quot;on show&quot; &quot;bcell&quot; &quot;bcell ChIP-seq samples&quot; &quot;on show&quot; ...</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
 <p>Note that because <code>by=track</code> was specified, <code>nc::capture_all_str</code> is called for each unique value of <code>track</code> (i.e. each row). The results are combined into a single data.table with one row for each field. This data.table can be easily queried, e.g.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fields.dt[</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">J</span>(<span class="st">&quot;tcell_McGill0107Coverage&quot;</span>, <span class="st">&quot;bigDataUrl&quot;</span>),</span>
@@ -256,23 +254,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-/samples/tcell/McGill0107/coverage.bigWig&quot;</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>fields.dt[, .(<span class="at">count=</span>.N), by<span class="ot">=</span>variable][<span class="fu">order</span>(count)]</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  variable count</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt; &lt;int&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:               itemRgb     4</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:              spectrum     4</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:            superTrack     8</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:             container    37</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:             graphType    37</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:             aggregate    37</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: showSubtrackColorOnUi    37</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:       maxHeightPixels    37</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:             autoScale    37</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:            visibility    41</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:                 color    74</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:            bigDataUrl    78</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:                parent   111</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:                  type   115</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:            shortLabel   123</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:             longLabel   123</span></span></code></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:               itemRgb     4</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:              spectrum     4</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:            superTrack     8</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:             container    37</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:             graphType    37</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:             aggregate    37</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: showSubtrackColorOnUi    37</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:       maxHeightPixels    37</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:             autoScale    37</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:            visibility    41</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:                 color    74</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:            bigDataUrl    78</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:                parent   111</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:                  type   115</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:            shortLabel   123</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:             longLabel   123</span></span></code></pre></div>
 <p>For more information about data.table syntax, read <code>vignette(&quot;datatable-intro&quot;, package=&quot;data.table&quot;)</code>.</p>
 </div>
 <div id="match-all-tracks-and-some-fields-with-one-regex" class="section level2">
@@ -287,18 +284,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataType=</span><span class="st">&quot;Coverage|Peaks&quot;</span>)</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_all_str</span>(trackDb.vec, cell.sample.type)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      cellType sampleName sampleID dataType</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;     &lt;char&gt;    &lt;int&gt;   &lt;char&gt;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    bcell McGill0091       91 Coverage</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    bcell McGill0091       91 Coverage</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    bcell McGill0091       91    Peaks</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    bcell McGill0091       91    Peaks</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    bcell McGill0322      322 Coverage</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                      </span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 144:    tcell McGill0106      106    Peaks</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 145:    tcell McGill0107      107 Coverage</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146:    tcell McGill0107      107 Coverage</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147:    tcell McGill0107      107    Peaks</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148:    tcell McGill0107      107    Peaks</span></span></code></pre></div>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    bcell McGill0091       91 Coverage</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    bcell McGill0091       91 Coverage</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    bcell McGill0091       91    Peaks</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    bcell McGill0091       91    Peaks</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    bcell McGill0322      322 Coverage</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                      </span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 144:    tcell McGill0106      106    Peaks</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 145:    tcell McGill0107      107 Coverage</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146:    tcell McGill0107      107 Coverage</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147:    tcell McGill0107      107    Peaks</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148:    tcell McGill0107      107    Peaks</span></span></code></pre></div>
 <p>Note that the pattern above defines nested capture groups via named lists (e.g. sampleID is a subset of sampleName). The pattern below matches either the previously specified track pattern, or any other type of track name:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sample.or.anything <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  cell.sample.type,</span>
@@ -309,18 +305,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">track=</span>sample.or.anything)</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_all_str</span>(trackDb.vec, track.pattern.old)</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         track cellType sampleName sampleID dataType</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        &lt;char&gt;   &lt;char&gt;     &lt;char&gt;    &lt;int&gt;   &lt;char&gt;</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                    bcell                           NA         </span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:             kidneyCancer                           NA         </span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                   kidney                           NA         </span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   leukemiaCD19CD10BCells                           NA         </span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:                 monocyte                           NA         </span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                               </span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 119: tcell_McGill0106Coverage    tcell McGill0106      106 Coverage</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 120:    tcell_McGill0106Peaks    tcell McGill0106      106    Peaks</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 121:         tcell_McGill0107                           NA         </span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 122: tcell_McGill0107Coverage    tcell McGill0107      107 Coverage</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 123:    tcell_McGill0107Peaks    tcell McGill0107      107    Peaks</span></span></code></pre></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                    bcell                           NA         </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:             kidneyCancer                           NA         </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                   kidney                           NA         </span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   leukemiaCD19CD10BCells                           NA         </span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:                 monocyte                           NA         </span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                               </span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 119: tcell_McGill0106Coverage    tcell McGill0106      106 Coverage</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 120:    tcell_McGill0106Peaks    tcell McGill0106      106    Peaks</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 121:         tcell_McGill0107                           NA         </span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 122: tcell_McGill0107Coverage    tcell McGill0107      107 Coverage</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 123:    tcell_McGill0107Peaks    tcell McGill0107      107    Peaks</span></span></code></pre></div>
 <p>Notice the repetition of <code>track</code> in the pattern above. This can be avoided by using the <code>nc::field</code> helper function, which takes three arguments, that are pasted together to form a pattern:</p>
 <ul>
 <li><code>field.name</code> is used as a pattern, and as the capture group (column) name for the pattern specified in the third argument.</li>
@@ -331,18 +326,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>track.pattern <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;track&quot;</span>, <span class="st">&quot; &quot;</span>, sample.or.anything)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_all_str</span>(trackDb.vec, track.pattern)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         track cellType sampleName sampleID dataType</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        &lt;char&gt;   &lt;char&gt;     &lt;char&gt;    &lt;int&gt;   &lt;char&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                    bcell                           NA         </span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:             kidneyCancer                           NA         </span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                   kidney                           NA         </span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   leukemiaCD19CD10BCells                           NA         </span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:                 monocyte                           NA         </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                               </span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 119: tcell_McGill0106Coverage    tcell McGill0106      106 Coverage</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 120:    tcell_McGill0106Peaks    tcell McGill0106      106    Peaks</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 121:         tcell_McGill0107                           NA         </span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 122: tcell_McGill0107Coverage    tcell McGill0107      107 Coverage</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 123:    tcell_McGill0107Peaks    tcell McGill0107      107    Peaks</span></span></code></pre></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                    bcell                           NA         </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:             kidneyCancer                           NA         </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                   kidney                           NA         </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:   leukemiaCD19CD10BCells                           NA         </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:                 monocyte                           NA         </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                               </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 119: tcell_McGill0106Coverage    tcell McGill0106      106 Coverage</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 120:    tcell_McGill0106Peaks    tcell McGill0106      106    Peaks</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 121:         tcell_McGill0107                           NA         </span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 122: tcell_McGill0107Coverage    tcell McGill0107      107 Coverage</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 123:    tcell_McGill0107Peaks    tcell McGill0107      107    Peaks</span></span></code></pre></div>
 <p>Finally we use <code>field</code> again to match the type column:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>any.lines.pattern <span class="ot">&lt;-</span> <span class="st">&quot;(?:</span><span class="sc">\n</span><span class="st">[^</span><span class="sc">\n</span><span class="st">]+)*&quot;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_all_str</span>(</span>
@@ -352,18 +346,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">s+&quot;</span>,</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;[^</span><span class="sc">\n</span><span class="st">]+&quot;</span>))</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         track cellType sampleName sampleID dataType     type</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        &lt;char&gt;   &lt;char&gt;     &lt;char&gt;    &lt;int&gt;   &lt;char&gt;   &lt;char&gt;</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:               all_labels                           NA          bigBed 9</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:                 problems                           NA          bigBed 3</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:            jointProblems                           NA          bigBed 3</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:            peaks_summary                           NA          bigBed 5</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:         bcell_McGill0091                           NA            bigWig</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                        </span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 111: tcell_McGill0106Coverage    tcell McGill0106      106 Coverage   bigWig</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 112:    tcell_McGill0106Peaks    tcell McGill0106      106    Peaks   bigWig</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 113:         tcell_McGill0107                           NA            bigWig</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 114: tcell_McGill0107Coverage    tcell McGill0107      107 Coverage   bigWig</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 115:    tcell_McGill0107Peaks    tcell McGill0107      107    Peaks   bigWig</span></span></code></pre></div>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:               all_labels                           NA          bigBed 9</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:                 problems                           NA          bigBed 3</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:            jointProblems                           NA          bigBed 3</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:            peaks_summary                           NA          bigBed 5</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:         bcell_McGill0091                           NA            bigWig</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                        </span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 111: tcell_McGill0106Coverage    tcell McGill0106      106 Coverage   bigWig</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 112:    tcell_McGill0106Peaks    tcell McGill0106      106    Peaks   bigWig</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 113:         tcell_McGill0107                           NA            bigWig</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 114: tcell_McGill0107Coverage    tcell McGill0107      107 Coverage   bigWig</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 115:    tcell_McGill0107Peaks    tcell McGill0107      107    Peaks   bigWig</span></span></code></pre></div>
 <p>Exercise for the reader (easy): modify the above regex in order to capture the bigDataUrl field, and three additional columns (red, green, blue) from the color field. Assume that <code>bigDataUrl</code> occurs before <code>color</code> in each track. Note that this is a limitation of the single regex approach — using two regex, as described in previous sections, could extract any/all fields, even if they appear in different orders in different tracks.</p>
 <p>Exercise for the reader (hard): note that the last code block only matches tracks which define the type field. How would you optionally match the type field? Hint: the current <code>any.lines.pattern</code> can match the type field.</p>
 </div>
@@ -442,17 +435,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">chrom=</span><span class="st">&quot;.*&quot;</span>,</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>))</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     alignment      chrom</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;     &lt;char&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1 scaffold_0</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         2 scaffold_1</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         3 scaffold_2</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         4 scaffold_3</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         5 scaffold_4</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         6 scaffold_5</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         7 scaffold_6</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         8 scaffold_7</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         9 scaffold_8</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:        10 scaffold_9</span></span></code></pre></div>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1 scaffold_0</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         2 scaffold_1</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         3 scaffold_2</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         4 scaffold_3</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         5 scaffold_4</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         6 scaffold_5</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         7 scaffold_6</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         8 scaffold_7</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         9 scaffold_8</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:        10 scaffold_9</span></span></code></pre></div>
 <p>Then we capture all alignment/csv blocks in the report file:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(report.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_all_str</span>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  report.vec,</span>
@@ -464,33 +456,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="at">text=</span>csv)</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}, <span class="at">by=</span>alignment])</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        alignment   Position   Likelihood        Alpha</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;      &lt;num&gt;        &lt;num&gt;        &lt;num&gt;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:         1      700.0 4.637328e-03 2.763840e+02</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:         1   130585.6 3.781283e-01 8.490200e-04</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:         1   260471.2 3.602315e-02 4.691340e-03</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:         1   390356.9 7.618749e-01 5.377668e-04</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:         1   520242.5 2.979971e-08 1.411765e-01</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                               </span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9996:        10 82991564.8 8.051006e-03 1.357819e-03</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9997:        10 83074967.8 7.048433e-03 1.825764e-03</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9998:        10 83158370.8 1.012360e-07 7.999999e-03</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9999:        10 83241773.8 3.977189e-08 9.999997e-01</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10000:        10 83325174.0 3.980538e-08 1.200000e+03</span></span></code></pre></div>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:         1      700.0 4.637328e-03 2.763840e+02</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:         1   130585.6 3.781283e-01 8.490200e-04</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:         1   260471.2 3.602315e-02 4.691340e-03</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:         1   390356.9 7.618749e-01 5.377668e-04</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:         1   520242.5 2.979971e-08 1.411765e-01</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                               </span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9996:        10 82991564.8 8.051006e-03 1.357819e-03</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9997:        10 83074967.8 7.048433e-03 1.825764e-03</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9998:        10 83158370.8 1.012360e-07 7.999999e-03</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9999:        10 83241773.8 3.977189e-08 9.999997e-01</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10000:        10 83325174.0 3.980538e-08 1.200000e+03</span></span></code></pre></div>
 <p>Note that because <code>by=alignment</code> was specified, <code>fread</code> is called for each unique value of <code>alignment</code> (i.e. each row). The results are combined into a single data.table with all of the csv data from the original file, plus the additional <code>alignment</code> column. Next, we join this table to the previous table in order to get the <code>chrom</code> column:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(join.dt <span class="ot">&lt;-</span> report.dt[info.dt, <span class="at">on=</span>.(alignment)])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        alignment   Position   Likelihood        Alpha      chrom</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;      &lt;num&gt;        &lt;num&gt;        &lt;num&gt;     &lt;char&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:         1      700.0 4.637328e-03 2.763840e+02 scaffold_0</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:         1   130585.6 3.781283e-01 8.490200e-04 scaffold_0</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:         1   260471.2 3.602315e-02 4.691340e-03 scaffold_0</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:         1   390356.9 7.618749e-01 5.377668e-04 scaffold_0</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:         1   520242.5 2.979971e-08 1.411765e-01 scaffold_0</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                          </span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9996:        10 82991564.8 8.051006e-03 1.357819e-03 scaffold_9</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9997:        10 83074967.8 7.048433e-03 1.825764e-03 scaffold_9</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9998:        10 83158370.8 1.012360e-07 7.999999e-03 scaffold_9</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9999:        10 83241773.8 3.977189e-08 9.999997e-01 scaffold_9</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10000:        10 83325174.0 3.980538e-08 1.200000e+03 scaffold_9</span></span></code></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:         1      700.0 4.637328e-03 2.763840e+02 scaffold_0</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:         1   130585.6 3.781283e-01 8.490200e-04 scaffold_0</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:         1   260471.2 3.602315e-02 4.691340e-03 scaffold_0</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:         1   390356.9 7.618749e-01 5.377668e-04 scaffold_0</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:         1   520242.5 2.979971e-08 1.411765e-01 scaffold_0</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                          </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9996:        10 82991564.8 8.051006e-03 1.357819e-03 scaffold_9</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9997:        10 83074967.8 7.048433e-03 1.825764e-03 scaffold_9</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9998:        10 83158370.8 1.012360e-07 7.999999e-03 scaffold_9</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9999:        10 83241773.8 3.977189e-08 9.999997e-01 scaffold_9</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10000:        10 83325174.0 3.980538e-08 1.200000e+03 scaffold_9</span></span></code></pre></div>
 <p>Finally the desired bed table can be created via</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>join.dt[, .(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  chrom,</span>
@@ -498,18 +488,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">chromEnd=</span><span class="fu">as.integer</span>(Position),</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  Likelihood)]</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             chrom chromStart chromEnd   Likelihood</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;      &lt;int&gt;    &lt;int&gt;        &lt;num&gt;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: scaffold_0        699      700 4.637328e-03</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: scaffold_0     130584   130585 3.781283e-01</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: scaffold_0     260470   260471 3.602315e-02</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: scaffold_0     390355   390356 7.618749e-01</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: scaffold_0     520241   520242 2.979971e-08</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                            </span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9996: scaffold_9   82991563 82991564 8.051006e-03</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9997: scaffold_9   83074966 83074967 7.048433e-03</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9998: scaffold_9   83158369 83158370 1.012360e-07</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9999: scaffold_9   83241772 83241773 3.977189e-08</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10000: scaffold_9   83325173 83325174 3.980538e-08</span></span></code></pre></div>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: scaffold_0        699      700 4.637328e-03</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: scaffold_0     130584   130585 3.781283e-01</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: scaffold_0     260470   260471 3.602315e-02</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: scaffold_0     390355   390356 7.618749e-01</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: scaffold_0     520241   520242 2.979971e-08</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                            </span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9996: scaffold_9   82991563 82991564 8.051006e-03</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9997: scaffold_9   83074966 83074967 7.048433e-03</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9998: scaffold_9   83158369 83158370 1.012360e-07</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9999: scaffold_9   83241772 83241773 3.977189e-08</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10000: scaffold_9   83325173 83325174 3.980538e-08</span></span></code></pre></div>
 <p>Exercise for the reader (easy): notice that the code above for creating <code>info.dt</code> involves repetition in the pattern and group names (<code>alignment</code>, <code>Alignment</code>, <code>chrom</code>, <code>Chromosome</code>). Re-write the pattern using <code>nc::field</code> in order to eliminate that repetition.</p>
 <p>Exercise for the reader (hard): notice that Chromosome is only the first field – how could you extract the other fields as well? Hint: use <code>nc::field</code> in a helper function in order to avoid repetition.</p>
 </div>

@@ -128,7 +128,7 @@ nc::capture_melt_multiple(iris.missing, iris.pattern, fill=TRUE)
 
 ## -----------------------------------------------------------------------------
 peaks.csv <- system.file(
-  "extdata", "RD12-0002_PP16HS_5sec_GM_F_1P.csv.gz",
+  "extdata", "RD12-0002_PP16HS_5sec_GM_F_1P.csv",
   package="nc", mustWork=TRUE)
 peaks.wide <- data.table::fread(peaks.csv)
 print(data.table::data.table(

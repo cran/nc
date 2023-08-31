@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-05-01" />
+<meta name="date" content="2023-08-31" />
 
 <title>Helper functions</title>
 
@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Helper functions</h1>
-<h4 class="date">2023-05-01</h4>
+<h4 class="date">2023-08-31</h4>
 
 
 
@@ -248,11 +248,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>The pattern can be used for matching, and the result is a data table with one column for each unique name,</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(match.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(subject.vec, pattern))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     month   day  year</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    mar    17  1983</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:    sep    26  2017</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    mar    17  1984</span></span></code></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    month day year</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:   mar  17 1983</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:   sep  26 2017</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   mar  17 1984</span></span></code></pre></div>
 <p>After having parsed the dates into these three columns, we can add a date column:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="at">locale=</span><span class="st">&quot;C&quot;</span>)<span class="co">#to recognize months in English.</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C&quot;</span></span>
@@ -277,15 +276,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">european=</span><span class="fu">list</span>(day, <span class="st">&quot; &quot;</span>, month, <span class="st">&quot; &quot;</span>, year)))</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>pattern <span class="ot">&lt;-</span> <span class="fu">do.call</span>(nc<span class="sc">::</span>alternatives, alt.args)</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>(match.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(subject.vec, pattern))</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        american  month   day  year    european</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;      &lt;char&gt;</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: mar 17, 1983    mar    17  1983            </span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:                 sep    26  2017 26 sep 2017</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:                 mar    17  1984 17 mar 1984</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>match.dt[, <span class="fu">lapply</span>(.SD, <span class="cf">function</span>(x)<span class="fu">sum</span>(x<span class="sc">!=</span><span class="st">&quot;&quot;</span>)), .SDcols<span class="ot">=</span><span class="fu">names</span>(alt.args)]</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    american european</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;int&gt;    &lt;int&gt;</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:        1        2</span></span></code></pre></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        american month day year    european</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: mar 17, 1983   mar  17 1983            </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:                sep  26 2017 26 sep 2017</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:                mar  17 1984 17 mar 1984</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>match.dt[, <span class="fu">lapply</span>(.SD, <span class="cf">function</span>(x)<span class="fu">sum</span>(x<span class="sc">!=</span><span class="st">&quot;&quot;</span>)), .SDcols<span class="ot">=</span><span class="fu">names</span>(alt.args)]</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    american european</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:        1        2</span></span></code></pre></div>
 </div>
 
 

@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-05-01" />
+<meta name="date" content="2023-08-31" />
 
 <title>Uniform interface to three regex engines</title>
 
@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Uniform interface to three regex engines</h1>
-<h4 class="date">2023-05-01</h4>
+<h4 class="date">2023-08-31</h4>
 
 
 
@@ -160,13 +160,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(iris), </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">part =</span> <span class="st">&quot;.*&quot;</span>, <span class="st">&quot;[.]&quot;</span>, <span class="at">dim =</span> <span class="st">&quot;.*&quot;</span>, </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> <span class="st">&quot;ICU&quot;</span>, <span class="at">nomatch.error =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      part    dim</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt; &lt;char&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  Sepal Length</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  Sepal  Width</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:  Petal Length</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:  Petal  Width</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:   &lt;NA&gt;   &lt;NA&gt;</span></span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     part    dim</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: Sepal Length</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: Sepal  Width</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: Petal Length</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: Petal  Width</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:  &lt;NA&gt;   &lt;NA&gt;</span></span></code></pre></div>
 <p>Above we see an example usage of <code>nc:capture_first_vec</code>, which is for capturing the first match of a regex from each element of a character vector subject (the first argument). There are a variable number of other arguments (<code>...</code>) which are used to define the regex pattern. In this case there are three pattern arguments: <code>part = &quot;.*&quot;, &quot;[.]&quot;, dim = &quot;.*&quot;</code>. Each named R argument in the pattern generates an un-named capture group by enclosing the specified character string in parentheses, e.g., <code>(.*)</code> for both <code>part</code> and <code>dim</code> arguments above. All of the sub-patterns are pasted together in the sequence they appear in order to create the final pattern that is used with the specified regex engine. The <code>nomatch.error = FALSE</code> argument is given because the default is to stop with an error if any subjects do not match the specified pattern (the fifth subject <code>Species</code> does not match). Under the hood, the following function is called to parse the pattern arguments:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(compiled <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">var_args_list</span>(<span class="at">part =</span> <span class="st">&quot;.*&quot;</span>, <span class="st">&quot;[.]&quot;</span>, <span class="at">dim =</span> <span class="st">&quot;.*&quot;</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; List of 2</span></span>
@@ -191,17 +190,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>old.opt <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">nc.engine=</span><span class="st">&quot;ICU&quot;</span>)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(u.subject, u.pattern)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           emoji</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: &lt;U+0001F60E&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(u.subject, u.pattern, <span class="at">engine=</span><span class="st">&quot;PCRE&quot;</span>) </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           emoji</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: &lt;U+0001F60E&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(u.subject, u.pattern, <span class="at">engine=</span><span class="st">&quot;RE2&quot;</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; re2google/re2/re2.cc:205: Error parsing &#39;(?:(?:(\p{EMOJI_Presentation})))&#39;: invalid character class range: \p{EMOJI_Presentation}</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in value[[3L]](cond): (?:(?:(\p{EMOJI_Presentation})))</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; when matching pattern above with RE2 engine, an error occured: invalid character class range: \p{EMOJI_Presentation}</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(old.opt)</span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: &lt;U+0001F60E&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(u.subject, u.pattern, <span class="at">engine=</span><span class="st">&quot;PCRE&quot;</span>) </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           emoji</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: &lt;U+0001F60E&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(u.subject, u.pattern, <span class="at">engine=</span><span class="st">&quot;RE2&quot;</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in stop_for_engine(engine): RE2 engine not available; try install.packages(&#39;re2&#39;)</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(old.opt)</span></code></pre></div>
 <p>Note that the standard output format used by nc, as shown above with <code>nc::capture_first_vec</code>, is a data table (not a character matrix, as in other regex packages). The main reason that data tables are always output by nc is in order to support output columns of different types, when type conversion functions are specified.</p>
 </div>
 
