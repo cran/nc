@@ -1,3 +1,13 @@
+Changes in version 2024.1.31
+
+- Imports data.table >= 1.15.0.
+- Remove code which uses old pre-measure data.table.
+- Fix eurostat URL in vignette 3.
+
+Changes in version 2024.1.4
+
+- new vignette v7-capture-glob.
+
 Changes in version 2023.8.24
 
 - provide argument descriptions for un-exported functions (required to avoid NOTE on CRAN using new R-devel).
