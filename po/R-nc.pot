@@ -1,0 +1,301 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: nc 2021.11.30\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-26 09:58-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: alternatives.R:10
+msgid "alternatives should have at least two arguments"
+msgstr ""
+
+#: alternatives.R:61
+msgid "all arguments to altlist must be named"
+msgstr ""
+
+#: alternatives.R:111
+msgid ""
+"alternatives_with_shared_groups must have at least one named argument; each "
+"named argument should define a sub-pattern/group"
+msgstr ""
+
+#: alternatives.R:114
+msgid ""
+"alternatives_with_shared_groups must have at least one un-named argument; "
+"each un-named argument should define an alternative pattern"
+msgstr ""
+
+#: apply_type_funs.R:23
+#, c-format
+msgid ""
+"type conversion functions should take one argument (character vector of "
+"captured text) and return an atomic vector of the same size; function for "
+"group %s raised an error: %s"
+msgstr ""
+
+#: apply_type_funs.R:26
+#, c-format
+msgid ""
+"each type conversion function must return an atomic vector, but function for "
+"group %s did not"
+msgstr ""
+
+#: apply_type_funs.R:29
+#, c-format
+msgid ""
+"type conversion function for group %s returned vector of length %s but "
+"expected length %s"
+msgstr ""
+
+#: apply_type_funs.R:32
+#, c-format
+msgid ""
+"a non-match(NA) was converted to a match(non-NA) by the conversion function "
+"in group %s; please fix conversion function"
+msgstr ""
+
+#: apply_type_funs.R:47
+#, c-format
+msgid ""
+"capture groups with identical names should have conversion functions that "
+"all return the same type; problem group name=%s has types %s"
+msgstr ""
+
+#: apply_type_funs.R:51
+#, c-format
+msgid ""
+"duplicate capture group names are only allowed in alternatives, problem: %s"
+msgstr ""
+
+#: capture_first_df.R:36
+msgid "subject must be a data.frame with character columns to match"
+msgstr ""
+
+#: capture_first_df.R:42
+msgid ""
+"no patterns specified in ...; must specify "
+"subjectColName=list(groupName=pattern, etc), etc"
+msgstr ""
+
+#: capture_first_df.R:47
+#, c-format
+msgid ""
+"named args (%s) not found in subject column names (%s); each pattern in ... "
+"must be named using a column name of subject"
+msgstr ""
+
+#: capture_first_df.R:50
+msgid "first argument (subject data.frame) should not be named"
+msgstr ""
+
+#: capture_first_df.R:54
+#, c-format
+msgid "each argument / subject column name should be unique, problems: %s"
+msgstr ""
+
+#: capture_first_df.R:66
+#, c-format
+msgid "problem for subject column %s: %s"
+msgstr ""
+
+#: capture_first_df.R:70
+#, c-format
+msgid ""
+"capture group names (%s) must not conflict with existing column names (%s); "
+"fix by changing capture group names or use existing.error=FALSE to overwrite "
+"existing column names"
+msgstr ""
+
+#: capture_first_vec.R:38
+#, c-format
+msgid ""
+"subject(s) %s (%d total) did not match regex below; to output missing rows "
+"use nomatch.error=FALSE\n"
+"%s"
+msgstr ""
+
+#: capture_first_vec.R:66
+msgid ""
+"regex contains more groups than names; please remove literal groups "
+"(parentheses) from the regex pattern, and use named arguments in R code "
+"instead"
+msgstr ""
+
+#: check_names.R:8
+msgid "first argument (subject) must be a data.frame"
+msgstr ""
+
+#: check_names.R:26
+#, c-format
+msgid "input must have columns with unique names, problems: %s"
+msgstr ""
+
+#: check_names.R:38
+#, c-format
+msgid ""
+"no column names match regex below, please change regex or column names\n"
+"%s"
+msgstr ""
+
+#: check_names.R:42
+#, c-format
+msgid ""
+"need to change type conversion function(s), which should return at least one "
+"non-NA, but are always returning NA, even though regex matched %s column(s): "
+"%s"
+msgstr ""
+
+#: field.R:14
+msgid "first argument of field must be character string (field name)"
+msgstr ""
+
+#: group.R:13
+msgid "first argument of group must be a character string (group name)"
+msgstr ""
+
+#: measure.R:62
+#, c-format
+msgid ""
+"value.name (%s) is the same as %s; please change one so that all output "
+"column names will be unique"
+msgstr ""
+
+#: measure.R:78
+msgid "pattern must define group named column"
+msgstr ""
+
+#: measure.R:81
+#, c-format
+msgid "column group must be character, but conversion function returned %s"
+msgstr ""
+
+#: measure.R:85
+msgid "need at least one group other than column"
+msgstr ""
+
+#: measure.R:106
+#, c-format
+msgid ""
+"need %s=same count for each value, but have: %s; please change pattern, edit "
+"input column names, or use fill=TRUE to output missing values"
+msgstr ""
+
+#: measure.R:112
+msgid ""
+"only one input variable for each value captured in column group; typically "
+"this happens when the column group matches the entire input column name; fix "
+"by changing regex so that column group matches a strict substring (not the "
+"entire input column names)"
+msgstr ""
+
+#: measure.R:115
+#, c-format
+msgid ""
+"need multiple output columns, but only one value (%s) captured in column "
+"group; either provide a different regex that captures more than one value in "
+"column group, or use capture_melt_single if you really want only one output "
+"column"
+msgstr ""
+
+#: measure.R:130
+#, c-format
+msgid ""
+"unable to create unique output column names; some values (%s) captured by "
+"the regex group named column are the same as %s; please change either the "
+"pattern or the %s so that output column names will be unique"
+msgstr ""
+
+#: quantifier.R:12
+msgid "quantifier needs at least two arguments (patterns, quantifier)"
+msgstr ""
+
+#: quantifier.R:17
+msgid "last argument to quantifier must be un-named"
+msgstr ""
+
+#: quantifier.R:19
+msgid ""
+"last argument to quantifier must be character string (quantifier such as ?, "
+"*, or {0,2})"
+msgstr ""
+
+#: stop_for.R:5
+#, c-format
+msgid ""
+"some capture group names (%s) are the same as input column names that did "
+"not match the pattern; please change either the pattern or the capture group "
+"names so that all output column names will be unique"
+msgstr ""
+
+#: stop_for.R:15
+#, c-format
+msgid ""
+"subject has class=%s and length=%s but should be a character vector with "
+"length>0"
+msgstr ""
+
+#: stop_for.R:34
+#, c-format
+msgid "engine must be character string, one of: %s"
+msgstr ""
+
+#: stop_for.R:39
+#, c-format
+msgid "%s engine not available; try %s"
+msgstr ""
+
+#: try.R:6
+#, c-format
+msgid ""
+"%s\n"
+"when matching pattern above with %s engine, an error occured: %s"
+msgstr ""
+
+#: var_args_list.R:10
+#, c-format
+msgid ""
+"first argument is named %s but must NOT be named; please include the subject "
+"to match as the first argument, with no name"
+msgstr ""
+
+#: var_args_list.R:45
+msgid "group name must not be missing"
+msgstr ""
+
+#: var_args_list.R:50
+#, c-format
+msgid "functions must not be named, problem: %s"
+msgstr ""
+
+#: var_args_list.R:64
+msgid "patterns must be character vectors of length 1"
+msgstr ""
+
+#: var_args_list.R:67
+msgid "patterns must not be missing/NA"
+msgstr ""
+
+#: var_args_list.R:83
+#, c-format
+msgid "pattern string must not be named; did you mean %s"
+msgstr ""
+
+#: var_args_list.R:92
+msgid "too many functions; up to one function may follow each named pattern"
+msgstr ""
+
+#: var_args_list.R:99
+msgid ""
+"arguments must be character (subject/patterns), functions (for converting "
+"extracted character vectors to other types), or list (parsed recursively)"
+msgstr ""
+
+#: var_args_list.R:103
+msgid "must have at least one named argument (capture group)"
+msgstr ""

@@ -11,39 +11,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2024-01-31" />
+<meta name="date" content="2024-02-21" />
 
 <title>Capture first match</title>
 
-<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
-// be compatible with the behavior of Pandoc < 2.8).
-document.addEventListener('DOMContentLoaded', function(e) {
-  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
-  var i, h, a;
-  for (i = 0; i < hs.length; i++) {
-    h = hs[i];
-    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
-    a = h.attributes;
-    while (a.length > 0) h.removeAttribute(a[0].name);
-  }
-});
-</script>
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
-
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
-  }
-});
-</script>
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -68,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -161,187 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
-
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; } 
-code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
 
 
 
@@ -354,7 +147,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Capture first match</h1>
-<h4 class="date">2024-01-31</h4>
+<h4 class="date">2024-02-21</h4>
 
 
 
@@ -363,59 +156,59 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="capture-first-match-in-each-character-vector-element" class="section level2">
 <h2>Capture first match in each character vector element</h2>
 <p>Consider the following vector which contains genome position strings,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>pos.vec &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="st">&quot;chr10:213,054,000-213,055,000&quot;</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="st">&quot;chrM:111,000&quot;</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="st">&quot;chr1:110-111 chr2:220-222&quot;</span>) <span class="co"># two possible matches.</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pos.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;chr10:213,054,000-213,055,000&quot;</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;chrM:111,000&quot;</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;chr1:110-111 chr2:220-222&quot;</span>) <span class="co"># two possible matches.</span></span></code></pre></div>
 <p>To capture the first genome position in each string, we use the following syntax. The first argument is the subject character vector, and the other arguments are pasted together to make a capturing regular expression. Each named argument generates a capture group; the R argument name is used for the column name of the result.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>(chr.dt &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  pos.vec, </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  <span class="dt">chrom=</span><span class="st">&quot;chr.*?&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="st">&quot;:&quot;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="dt">chromStart=</span><span class="st">&quot;[0-9,]+&quot;</span>))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">#&gt;     chrom  chromStart</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">#&gt;    &lt;char&gt;      &lt;char&gt;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">#&gt; 1:  chr10 213,054,000</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="co">#&gt; 2:   chrM     111,000</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">#&gt; 3:   chr1         110</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">str</span>(chr.dt)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   3 obs. of  2 variables:</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="co">#&gt;  $ chrom     : chr  &quot;chr10&quot; &quot;chrM&quot; &quot;chr1&quot;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">#&gt;  $ chromStart: chr  &quot;213,054,000&quot; &quot;111,000&quot; &quot;110&quot;</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(chr.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  pos.vec, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">chrom=</span><span class="st">&quot;chr.*?&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;:&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">chromStart=</span><span class="st">&quot;[0-9,]+&quot;</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     chrom  chromStart</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;      &lt;char&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  chr10 213,054,000</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:   chrM     111,000</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   chr1         110</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(chr.dt)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   3 obs. of  2 variables:</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ chrom     : chr  &quot;chr10&quot; &quot;chrM&quot; &quot;chr1&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ chromStart: chr  &quot;213,054,000&quot; &quot;111,000&quot; &quot;110&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
 <p>We can add type conversion functions on the same line as each named argument:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>keep.digits &lt;-<span class="st"> </span><span class="cf">function</span>(x)<span class="kw">as.integer</span>(<span class="kw">gsub</span>(<span class="st">&quot;[^0-9]&quot;</span>, <span class="st">&quot;&quot;</span>, x))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>(int.dt &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  pos.vec, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  <span class="dt">chrom=</span><span class="st">&quot;chr.*?&quot;</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="st">&quot;:&quot;</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="dt">chromStart=</span><span class="st">&quot;[0-9,]+&quot;</span>, keep.digits))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">#&gt;     chrom chromStart</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">#&gt;    &lt;char&gt;      &lt;int&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">#&gt; 1:  chr10  213054000</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">#&gt; 2:   chrM     111000</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">#&gt; 3:   chr1        110</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">str</span>(int.dt)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   3 obs. of  2 variables:</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">#&gt;  $ chrom     : chr  &quot;chr10&quot; &quot;chrM&quot; &quot;chr1&quot;</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co">#&gt;  $ chromStart: int  213054000 111000 110</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>keep.digits <span class="ot">&lt;-</span> <span class="cf">function</span>(x)<span class="fu">as.integer</span>(<span class="fu">gsub</span>(<span class="st">&quot;[^0-9]&quot;</span>, <span class="st">&quot;&quot;</span>, x))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(int.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  pos.vec, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">chrom=</span><span class="st">&quot;chr.*?&quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;:&quot;</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">chromStart=</span><span class="st">&quot;[0-9,]+&quot;</span>, keep.digits))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     chrom chromStart</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;      &lt;int&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  chr10  213054000</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:   chrM     111000</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   chr1        110</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(int.dt)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   3 obs. of  2 variables:</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ chrom     : chr  &quot;chr10&quot; &quot;chrM&quot; &quot;chr1&quot;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ chromStart: int  213054000 111000 110</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
 <p>Below we use list variables to create patterns which are re-usable, and we use an un-named list to generate a non-capturing optional group:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>pos.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;[0-9,]+&quot;</span>, keep.digits)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>range.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  <span class="dt">chrom=</span><span class="st">&quot;chr.*?&quot;</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  <span class="st">&quot;:&quot;</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>  <span class="dt">chromStart=</span>pos.pattern,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  <span class="kw">list</span>(</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="st">&quot;-&quot;</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    <span class="dt">chromEnd=</span>pos.pattern</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>  ), <span class="st">&quot;?&quot;</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(pos.vec, range.pattern)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="co">#&gt;     chrom chromStart  chromEnd</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co">#&gt;    &lt;char&gt;      &lt;int&gt;     &lt;int&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co">#&gt; 1:  chr10  213054000 213055000</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="co">#&gt; 2:   chrM     111000        NA</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="co">#&gt; 3:   chr1        110       111</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pos.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;[0-9,]+&quot;</span>, keep.digits)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>range.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">chrom=</span><span class="st">&quot;chr.*?&quot;</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;:&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">chromStart=</span>pos.pattern,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;-&quot;</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">chromEnd=</span>pos.pattern</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  ), <span class="st">&quot;?&quot;</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(pos.vec, range.pattern)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     chrom chromStart  chromEnd</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;      &lt;int&gt;     &lt;int&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  chr10  213054000 213055000</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:   chrM     111000        NA</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   chr1        110       111</span></span></code></pre></div>
 <p>In summary, <code>nc::capture_first_vec</code> takes a variable number of arguments:</p>
 <ul>
 <li>The first argument is the subject character vector.</li>
@@ -430,67 +223,65 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="view-generated-regex" class="section level2">
 <h2>View generated regex</h2>
 <p>To see the generated regular expression pattern string, call <code>nc::var_args_list</code> with the variable number of arguments that specify the pattern:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">var_args_list</span>(range.pattern)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">#&gt; $fun.list</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">#&gt; $fun.list$chrom</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">#&gt; function (x) </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">#&gt; x</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">#&gt; &lt;bytecode: 0x23b1fd8&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">#&gt; $fun.list$chromStart</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">#&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">#&gt; &lt;bytecode: 0x707a5e0&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="co">#&gt; $fun.list$chromEnd</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="co">#&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="co">#&gt; &lt;bytecode: 0x707a5e0&gt;</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a><span class="co">#&gt; $pattern</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;(?:(chr.*?):([0-9,]+)(?:-([0-9,]+))?)&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">var_args_list</span>(range.pattern)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $fun.list</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $fun.list$chrom</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; function (x) </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;bytecode: 0x000001fae1e3aed8&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $fun.list$chromStart</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;bytecode: 0x000001fae8838ed8&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $fun.list$chromEnd</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; function(x)as.integer(gsub(&quot;[^0-9]&quot;, &quot;&quot;, x))</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;bytecode: 0x000001fae8838ed8&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pattern</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;(?:(chr.*?):([0-9,]+)(?:-([0-9,]+))?)&quot;</span></span></code></pre></div>
 <p>The generated regex is the <code>pattern</code> element of the resulting list above. The other element <code>fun.list</code> indicates the names and type conversion functions to use with the capture groups.</p>
 </div>
 <div id="errorna-if-any-subjects-do-not-match" class="section level2">
 <h2>Error/NA if any subjects do not match</h2>
 <p>The default is to stop with an error if any subject does not match:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>bad.vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">bad=</span><span class="st">&quot;does not match&quot;</span>, pos.vec)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(bad.vec, range.pattern)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">#&gt; Error in stop_for_na(make.na): subject(s) 1 (1 total) did not match regex below; to output missing rows use nomatch.error=FALSE</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">#&gt; (?:(?:(chr.*?):([0-9,]+)(?:-([0-9,]+))?))</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bad.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">bad=</span><span class="st">&quot;does not match&quot;</span>, pos.vec)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(bad.vec, range.pattern)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in stop_for_na(make.na): subject(s) 1 (1 total) did not match regex below; to output missing rows use nomatch.error=FALSE</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (?:(?:(chr.*?):([0-9,]+)(?:-([0-9,]+))?))</span></span></code></pre></div>
 <p>Sometimes you want to instead report a row of NA when a subject does not match. In that case, use <code>nomatch.error=FALSE</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(bad.vec, range.pattern, <span class="dt">nomatch.error=</span><span class="ot">FALSE</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co">#&gt;     chrom chromStart  chromEnd</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co">#&gt;    &lt;char&gt;      &lt;int&gt;     &lt;int&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co">#&gt; 1:   &lt;NA&gt;         NA        NA</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">#&gt; 2:  chr10  213054000 213055000</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">#&gt; 3:   chrM     111000        NA</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">#&gt; 4:   chr1        110       111</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(bad.vec, range.pattern, <span class="at">nomatch.error=</span><span class="cn">FALSE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     chrom chromStart  chromEnd</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;      &lt;int&gt;     &lt;int&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:   &lt;NA&gt;         NA        NA</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  chr10  213054000 213055000</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   chrM     111000        NA</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   chr1        110       111</span></span></code></pre></div>
 </div>
 <div id="other-regex-engines" class="section level2">
 <h2>Other regex engines</h2>
 <p>By default nc uses the PCRE regex engine. Other choices include ICU and RE2. Each engine has different features, which are discussed in <a href="https://github.com/tdhock/namedCapture-article">my R journal paper</a>.</p>
 <p>The engine is configurable via the <code>engine</code> argument or the <code>nc.engine</code> option:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>u.subject &lt;-<span class="st"> &quot;a\U0001F60E#&quot;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>u.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">emoji=</span><span class="st">&quot;</span><span class="ch">\\</span><span class="st">p{EMOJI_Presentation}&quot;</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>old.opt &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">nc.engine=</span><span class="st">&quot;ICU&quot;</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(u.subject, u.pattern)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">#&gt;     emoji</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">#&gt;    &lt;char&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">#&gt; 1:     😎</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(u.subject, u.pattern, <span class="dt">engine=</span><span class="st">&quot;PCRE&quot;</span>) </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="co">#&gt; Warning in regexpr(L[[&quot;pattern&quot;]], subject.vec, perl = TRUE): Erreur de compilation du motif PCRE</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="co">#&gt;  &#39;unknown property name after \P or \p&#39;</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">#&gt;  at &#39;)))&#39;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="co">#&gt; Error in value[[3L]](cond): (?:(?:(\p{EMOJI_Presentation})))</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="co">#&gt; when matching pattern above with PCRE engine, an error occured: expression régulière incorrecte &#39;(?:(?:(\p{EMOJI_Presentation})))&#39;</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(u.subject, u.pattern, <span class="dt">engine=</span><span class="st">&quot;RE2&quot;</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a><span class="co">#&gt; re2google/re2/re2.cc:205: Error parsing &#39;(?:(?:(\p{EMOJI_Presentation})))&#39;: invalid character class range: \p{EMOJI_Presentation}</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a><span class="co">#&gt; Error in value[[3L]](cond): (?:(?:(\p{EMOJI_Presentation})))</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a><span class="co">#&gt; when matching pattern above with RE2 engine, an error occured: invalid character class range: \p{EMOJI_Presentation}</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a><span class="kw">options</span>(old.opt)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>u.subject <span class="ot">&lt;-</span> <span class="st">&quot;a\U0001F60E#&quot;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>u.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">emoji=</span><span class="st">&quot;</span><span class="sc">\\</span><span class="st">p{EMOJI_Presentation}&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>old.opt <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">nc.engine=</span><span class="st">&quot;ICU&quot;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(u.subject, u.pattern)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     emoji</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:      😎</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(u.subject, u.pattern, <span class="at">engine=</span><span class="st">&quot;PCRE&quot;</span>) </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     emoji</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:      😎</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(u.subject, u.pattern, <span class="at">engine=</span><span class="st">&quot;RE2&quot;</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; re2google/re2/re2.cc:205: Error parsing &#39;(?:(?:(\p{EMOJI_Presentation})))&#39;: invalid character class range: \p{EMOJI_Presentation}</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in value[[3L]](cond): (?:(?:(\p{EMOJI_Presentation})))</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; when matching pattern above with RE2 engine, an error occured: invalid character class range: \p{EMOJI_Presentation}</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(old.opt)</span></code></pre></div>
 <p>For more details see the “engines” vignette,</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">vignette</span>(<span class="st">&quot;v6-engines&quot;</span>, <span class="dt">package=</span><span class="st">&quot;nc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">&quot;v6-engines&quot;</span>, <span class="at">package=</span><span class="st">&quot;nc&quot;</span>)</span></code></pre></div>
 </div>
 <div id="capture-first-match-from-one-or-more-character-columns-in-a-table" class="section level2">
 <h2>Capture first match from one or more character columns in a table</h2>
@@ -505,406 +296,406 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <li>For memory efficiency when the input is a <code>data.table</code>, it is modified to avoid copying the entire table.</li>
 </ul>
 <p>This function can greatly simplify the code required to create numeric data columns from character data columns. For example consider the following data which was output from the <a href="https://slurm.schedmd.com/sacct.html">sacct</a> program.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>(sacct.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>  <span class="dt">Elapsed =</span> <span class="kw">c</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>    <span class="st">&quot;07:04:42&quot;</span>, <span class="st">&quot;07:04:42&quot;</span>, <span class="st">&quot;07:04:49&quot;</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>    <span class="st">&quot;00:00:00&quot;</span>, <span class="st">&quot;00:00:00&quot;</span>),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>  <span class="dt">JobID=</span><span class="kw">c</span>(</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>    <span class="st">&quot;13937810_25&quot;</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>    <span class="st">&quot;13937810_25.batch&quot;</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>    <span class="st">&quot;13937810_25.extern&quot;</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>    <span class="st">&quot;14022192_[1-3]&quot;</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>    <span class="st">&quot;14022204_[4]&quot;</span>),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>  <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>))</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="co">#&gt;    Elapsed              JobID</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a><span class="co">#&gt; 1 07:04:42        13937810_25</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a><span class="co">#&gt; 2 07:04:42  13937810_25.batch</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a><span class="co">#&gt; 3 07:04:49 13937810_25.extern</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a><span class="co">#&gt; 4 00:00:00     14022192_[1-3]</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a><span class="co">#&gt; 5 00:00:00       14022204_[4]</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(sacct.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Elapsed =</span> <span class="fu">c</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;07:04:42&quot;</span>, <span class="st">&quot;07:04:42&quot;</span>, <span class="st">&quot;07:04:49&quot;</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;00:00:00&quot;</span>, <span class="st">&quot;00:00:00&quot;</span>),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">JobID=</span><span class="fu">c</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;13937810_25&quot;</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;13937810_25.batch&quot;</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;13937810_25.extern&quot;</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;14022192_[1-3]&quot;</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;14022204_[4]&quot;</span>),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors=</span><span class="cn">FALSE</span>))</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Elapsed              JobID</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 07:04:42        13937810_25</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 07:04:42  13937810_25.batch</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 07:04:49 13937810_25.extern</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 00:00:00     14022192_[1-3]</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 00:00:00       14022204_[4]</span></span></code></pre></div>
 <p>Say we want to filter by the total Elapsed time (which is reported as hours:minutes:seconds), and base job id (which is the number before the underscore in the JobID column). We could start by converting those character columns to integers via:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>int.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>range.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>  <span class="st">&quot;</span><span class="ch">\\</span><span class="st">[&quot;</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>  <span class="dt">task1=</span>int.pattern,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>  <span class="kw">list</span>(</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>    <span class="st">&quot;-&quot;</span>,<span class="co">#begin optional end of range.</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>    <span class="dt">taskN=</span>int.pattern</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a>  ), <span class="st">&quot;?&quot;</span>, <span class="co">#end is optional.</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a>  <span class="st">&quot;</span><span class="ch">\\</span><span class="st">]&quot;</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_df</span>(sacct.df, <span class="dt">JobID=</span>range.pattern, <span class="dt">nomatch.error=</span><span class="ot">FALSE</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a><span class="co">#&gt;     Elapsed              JobID task1 taskN</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="co">#&gt; 1: 07:04:42        13937810_25    NA    NA</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch    NA    NA</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern    NA    NA</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3]     1     3</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4]     4    NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>int.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>range.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">[&quot;</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">task1=</span>int.pattern,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;-&quot;</span>,<span class="co">#begin optional end of range.</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">taskN=</span>int.pattern</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ), <span class="st">&quot;?&quot;</span>, <span class="co">#end is optional.</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">]&quot;</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_df</span>(sacct.df, <span class="at">JobID=</span>range.pattern, <span class="at">nomatch.error=</span><span class="cn">FALSE</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Elapsed              JobID task1 taskN</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 07:04:42        13937810_25    NA    NA</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch    NA    NA</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern    NA    NA</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3]     1     3</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4]     4    NA</span></span></code></pre></div>
 <p>The result shown above is another data frame with an additional column for each capture group. Next, we define another pattern that matches either one task ID or the previously defined range pattern:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>task.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>  <span class="st">&quot;_&quot;</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a>  <span class="kw">list</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a>    <span class="dt">task=</span>int.pattern,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a>    <span class="st">&quot;|&quot;</span>,<span class="co">#either one task(above) or range(below)</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a>    range.pattern))</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_df</span>(sacct.df, <span class="dt">JobID=</span>task.pattern)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">#&gt;     Elapsed              JobID  task task1 taskN</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co">#&gt; 1: 07:04:42        13937810_25    25    NA    NA</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch    25    NA    NA</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern    25    NA    NA</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3]    NA     1     3</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4]    NA     4    NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>task.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">task=</span>int.pattern,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;|&quot;</span>,<span class="co">#either one task(above) or range(below)</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    range.pattern))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_df</span>(sacct.df, <span class="at">JobID=</span>task.pattern)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Elapsed              JobID  task task1 taskN</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 07:04:42        13937810_25    25    NA    NA</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch    25    NA    NA</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern    25    NA    NA</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3]    NA     1     3</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4]    NA     4    NA</span></span></code></pre></div>
 <p>Below we match the complete JobID column:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>job.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>  <span class="dt">job=</span>int.pattern,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>  task.pattern,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>  <span class="kw">list</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>    <span class="st">&quot;[.]&quot;</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>    <span class="dt">type=</span><span class="st">&quot;.*&quot;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a>  ), <span class="st">&quot;?&quot;</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_df</span>(sacct.df, <span class="dt">JobID=</span>job.pattern)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA       </span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3       </span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>job.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">job=</span>int.pattern,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  task.pattern,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;[.]&quot;</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">type=</span><span class="st">&quot;.*&quot;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  ), <span class="st">&quot;?&quot;</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_df</span>(sacct.df, <span class="at">JobID=</span>job.pattern)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA       </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3       </span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA</span></span></code></pre></div>
 <p>Below we match the Elapsed column with a different regex:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>elapsed.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>  <span class="dt">hours=</span>int.pattern,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>  <span class="st">&quot;:&quot;</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>  <span class="dt">minutes=</span>int.pattern,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>  <span class="st">&quot;:&quot;</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a>  <span class="dt">seconds=</span>int.pattern)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_df</span>(sacct.df, <span class="dt">JobID=</span>job.pattern, <span class="dt">Elapsed=</span>elapsed.pattern)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type hours minutes</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt;   &lt;int&gt;</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA            7       4</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch     7       4</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern     7       4</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3            0       0</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA            0       0</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true"></a><span class="co">#&gt;    seconds</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true"></a><span class="co">#&gt;      &lt;int&gt;</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true"></a><span class="co">#&gt; 1:      42</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true"></a><span class="co">#&gt; 2:      42</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true"></a><span class="co">#&gt; 3:      49</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true"></a><span class="co">#&gt; 4:       0</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true"></a><span class="co">#&gt; 5:       0</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>elapsed.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">hours=</span>int.pattern,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;:&quot;</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">minutes=</span>int.pattern,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;:&quot;</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">seconds=</span>int.pattern)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_df</span>(sacct.df, <span class="at">JobID=</span>job.pattern, <span class="at">Elapsed=</span>elapsed.pattern)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type hours minutes</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt;   &lt;int&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA            7       4</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch     7       4</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern     7       4</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3            0       0</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA            0       0</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    seconds</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:      42</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:      42</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:      49</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:       0</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:       0</span></span></code></pre></div>
 <p>Overall the result is another data table with an additional column for each capture group. Note in the code below that the input <code>sacct.df</code> was not modified, but if the input is <code>data.table</code> then it is modified:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_df</span>(sacct.df, <span class="dt">JobID=</span>job.pattern)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA       </span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3       </span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>sacct.df</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a><span class="co">#&gt;    Elapsed              JobID</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a><span class="co">#&gt; 1 07:04:42        13937810_25</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a><span class="co">#&gt; 2 07:04:42  13937810_25.batch</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a><span class="co">#&gt; 3 07:04:49 13937810_25.extern</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a><span class="co">#&gt; 4 00:00:00     14022192_[1-3]</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a><span class="co">#&gt; 5 00:00:00       14022204_[4]</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a>(sacct.DT &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">as.data.table</span>(sacct.df))</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true"></a><span class="co">#&gt;     Elapsed              JobID</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true"></a><span class="co">#&gt; 1: 07:04:42        13937810_25</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3]</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4]</span></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_df</span>(sacct.DT, <span class="dt">JobID=</span>job.pattern)</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA       </span></span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch</span></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3       </span></span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA</span></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true"></a>sacct.DT</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type</span></span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span></span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA       </span></span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch</span></span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern</span></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3       </span></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_df</span>(sacct.df, <span class="at">JobID=</span>job.pattern)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA       </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3       </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>sacct.df</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Elapsed              JobID</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 07:04:42        13937810_25</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 07:04:42  13937810_25.batch</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 07:04:49 13937810_25.extern</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 00:00:00     14022192_[1-3]</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 00:00:00       14022204_[4]</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>(sacct.DT <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">as.data.table</span>(sacct.df))</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Elapsed              JobID</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 07:04:42        13937810_25</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3]</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4]</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_df</span>(sacct.DT, <span class="at">JobID=</span>job.pattern)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA       </span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3       </span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>sacct.DT</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Elapsed              JobID      job  task task1 taskN   type</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;char&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 07:04:42        13937810_25 13937810    25    NA    NA       </span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 07:04:42  13937810_25.batch 13937810    25    NA    NA  batch</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 07:04:49 13937810_25.extern 13937810    25    NA    NA extern</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 00:00:00     14022192_[1-3] 14022192    NA     1     3       </span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 00:00:00       14022204_[4] 14022204    NA     4    NA</span></span></code></pre></div>
 </div>
 <div id="complex-example-fsa-file-names" class="section level2">
 <h2>Complex example: fsa file names</h2>
 <p>In this section we explain how to use various features to parse the fsa file names in <a href="https://lftdi.camden.rutgers.edu/provedit/files/">PROVEDIt</a>. Here are a few representative examples:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>fsa.vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="co">#control samples:</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a>  <span class="st">&quot;A01-Ladder-PP16-001.10sec.fsa&quot;</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>  <span class="st">&quot;D07_Ladder-IP_004.5sec.fsa&quot;</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a>  <span class="st">&quot;A12_RB121514ADG_001.10sec.fsa&quot;</span>, </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a>  <span class="st">&quot;A10_RB102191515LEA-IP_001.10sec.fsa&quot;</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a>  <span class="co">##single-source samples:</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a>  <span class="st">&quot;A02-RD12-0002-35-0.5PP16-001.10sec.fsa&quot;</span>, </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a>  <span class="st">&quot;G01_RD14-0003-35d3S30-0.01563P-Q10.0_003.10sec.fsa&quot;</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a>  <span class="st">&quot;A06_RD14-0003-24d3a-0.0625IP-Q0.8_001.10sec.fsa&quot;</span>, </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a>  <span class="st">&quot;A08-RD12-0002-01d-0.125PP16-001.10sec.fsa&quot;</span>,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a>  <span class="st">&quot;A10-RD12-0002-04d1-0.0625PP16-001.10sec.fsa&quot;</span>, </span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true"></a>  <span class="st">&quot;C02_RD14-0003-15d2b-0.25IP-Q0.5_003.5sec.fsa&quot;</span>,</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true"></a>  <span class="co">##mixture samples:</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true"></a>  <span class="st">&quot;A02-RD12-0002-1_2-1;9-0.125PP16-001.10sec.fsa&quot;</span>, </span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true"></a>  <span class="st">&quot;H07_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND_004.5sec.fsa&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fsa.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="co">#control samples:</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;A01-Ladder-PP16-001.10sec.fsa&quot;</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;D07_Ladder-IP_004.5sec.fsa&quot;</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;A12_RB121514ADG_001.10sec.fsa&quot;</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;A10_RB102191515LEA-IP_001.10sec.fsa&quot;</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">##single-source samples:</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;A02-RD12-0002-35-0.5PP16-001.10sec.fsa&quot;</span>, </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;G01_RD14-0003-35d3S30-0.01563P-Q10.0_003.10sec.fsa&quot;</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;A06_RD14-0003-24d3a-0.0625IP-Q0.8_001.10sec.fsa&quot;</span>, </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;A08-RD12-0002-01d-0.125PP16-001.10sec.fsa&quot;</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;A10-RD12-0002-04d1-0.0625PP16-001.10sec.fsa&quot;</span>, </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;C02_RD14-0003-15d2b-0.25IP-Q0.5_003.5sec.fsa&quot;</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="do">##mixture samples:</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;A02-RD12-0002-1_2-1;9-0.125PP16-001.10sec.fsa&quot;</span>, </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;H07_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND_004.5sec.fsa&quot;</span>)</span></code></pre></div>
 <p>The goal is to build a regex that can convert this character vector to a data table with different columns for the different variables. The structure of the file names is explained in <a href="https://lftdi.camden.rutgers.edu/wp-content/uploads/2019/12/PROVEDIt-Database-Naming-Convention-Laboratory-Methodsv1.pdf">the supplementary materials PDF</a>. We will build a complex regex in terms of simpler sub-patterns. First let’s just match the start of each file name, which has the row/column of the 96-well plate in which the sample was tested:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>well.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>  <span class="st">&quot;^&quot;</span>,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>  <span class="dt">well.letter=</span><span class="st">&quot;[A-H]&quot;</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>  <span class="dt">well.number=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(fsa.vec, well.pattern)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a><span class="co">#&gt;     well.letter well.number</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a><span class="co">#&gt;          &lt;char&gt;       &lt;int&gt;</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a><span class="co">#&gt;  1:           A           1</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a><span class="co">#&gt;  2:           D           7</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true"></a><span class="co">#&gt;  3:           A          12</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true"></a><span class="co">#&gt;  4:           A          10</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true"></a><span class="co">#&gt;  5:           A           2</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true"></a><span class="co">#&gt;  6:           G           1</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true"></a><span class="co">#&gt;  7:           A           6</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true"></a><span class="co">#&gt;  8:           A           8</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true"></a><span class="co">#&gt;  9:           A          10</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true"></a><span class="co">#&gt; 10:           C           2</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true"></a><span class="co">#&gt; 11:           A           2</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true"></a><span class="co">#&gt; 12:           H           7</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>well.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;^&quot;</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">well.letter=</span><span class="st">&quot;[A-H]&quot;</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">well.number=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(fsa.vec, well.pattern)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     well.letter well.number</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt;       &lt;int&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:           A           1</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:           D           7</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:           A          12</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:           A          10</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:           A           2</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:           G           1</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:           A           6</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:           A           8</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:           A          10</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:           C           2</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:           A           2</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:           H           7</span></span></code></pre></div>
 <p>Now, let’s match the end of each file name:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>end.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a>  <span class="st">&quot;[-_]&quot;</span>,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>  <span class="dt">capillary=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a>  <span class="dt">seconds=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a>  <span class="st">&quot;sec[.]fsa$&quot;</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(fsa.vec, end.pattern)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a><span class="co">#&gt;     capillary seconds</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a><span class="co">#&gt;         &lt;int&gt;   &lt;int&gt;</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a><span class="co">#&gt;  1:         1      10</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a><span class="co">#&gt;  2:         4       5</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a><span class="co">#&gt;  3:         1      10</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true"></a><span class="co">#&gt;  4:         1      10</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a><span class="co">#&gt;  5:         1      10</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true"></a><span class="co">#&gt;  6:         3      10</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true"></a><span class="co">#&gt;  7:         1      10</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true"></a><span class="co">#&gt;  8:         1      10</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true"></a><span class="co">#&gt;  9:         1      10</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true"></a><span class="co">#&gt; 10:         3       5</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true"></a><span class="co">#&gt; 11:         1      10</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true"></a><span class="co">#&gt; 12:         4       5</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>end.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[-_]&quot;</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">capillary=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[.]&quot;</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">seconds=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;sec[.]fsa$&quot;</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(fsa.vec, end.pattern)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     capillary seconds</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;   &lt;int&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         1      10</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         4       5</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         1      10</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         1      10</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         1      10</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         3      10</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         1      10</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         1      10</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         1      10</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         3       5</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         1      10</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:         4       5</span></span></code></pre></div>
 <p>Now, let’s take a look at what’s in between:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>between.dt &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a>  fsa.vec, well.pattern, <span class="dt">between=</span><span class="st">&quot;.*?&quot;</span>, end.pattern)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a>between.dt<span class="op">$</span>between</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a><span class="co">#&gt;  [1] &quot;-Ladder-PP16&quot;                                          </span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a><span class="co">#&gt;  [2] &quot;_Ladder-IP&quot;                                            </span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a><span class="co">#&gt;  [3] &quot;_RB121514ADG&quot;                                          </span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true"></a><span class="co">#&gt;  [4] &quot;_RB102191515LEA-IP&quot;                                    </span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true"></a><span class="co">#&gt;  [5] &quot;-RD12-0002-35-0.5PP16&quot;                                 </span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true"></a><span class="co">#&gt;  [6] &quot;_RD14-0003-35d3S30-0.01563P-Q10.0&quot;                     </span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true"></a><span class="co">#&gt;  [7] &quot;_RD14-0003-24d3a-0.0625IP-Q0.8&quot;                        </span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true"></a><span class="co">#&gt;  [8] &quot;-RD12-0002-01d-0.125PP16&quot;                              </span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true"></a><span class="co">#&gt;  [9] &quot;-RD12-0002-04d1-0.0625PP16&quot;                            </span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true"></a><span class="co">#&gt; [10] &quot;_RD14-0003-15d2b-0.25IP-Q0.5&quot;                          </span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true"></a><span class="co">#&gt; [11] &quot;-RD12-0002-1_2-1;9-0.125PP16&quot;                          </span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true"></a><span class="co">#&gt; [12] &quot;_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>between.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  fsa.vec, well.pattern, <span class="at">between=</span><span class="st">&quot;.*?&quot;</span>, end.pattern)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>between.dt<span class="sc">$</span>between</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;-Ladder-PP16&quot;                                          </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2] &quot;_Ladder-IP&quot;                                            </span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;_RB121514ADG&quot;                                          </span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;_RB102191515LEA-IP&quot;                                    </span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;-RD12-0002-35-0.5PP16&quot;                                 </span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;_RD14-0003-35d3S30-0.01563P-Q10.0&quot;                     </span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;_RD14-0003-24d3a-0.0625IP-Q0.8&quot;                        </span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] &quot;-RD12-0002-01d-0.125PP16&quot;                              </span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;-RD12-0002-04d1-0.0625PP16&quot;                            </span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;_RD14-0003-15d2b-0.25IP-Q0.5&quot;                          </span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;-RD12-0002-1_2-1;9-0.125PP16&quot;                          </span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [12] &quot;_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND&quot;</span></span></code></pre></div>
 <p>Notice that PP16/P/IP are the kit types. There may optionally be a DNA template mass before, and optionally a Q score after. Let’s match those:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>mass.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>  <span class="dt">template.nanograms=</span><span class="st">&quot;[0-9.]*&quot;</span>, as.numeric)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a>kit.pattern &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">quantifier</span>(</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a>  <span class="dt">kit=</span>nc<span class="op">::</span><span class="kw">alternatives</span>(<span class="st">&quot;PP16&quot;</span>, <span class="st">&quot;IP&quot;</span>, <span class="st">&quot;P&quot;</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a>  <span class="st">&quot;?&quot;</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a>q.pattern &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">quantifier</span>(</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a>  <span class="st">&quot;-Q&quot;</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a>  <span class="dt">Q.chr=</span>nc<span class="op">::</span><span class="kw">alternatives</span>(<span class="st">&quot;LAND&quot;</span>, <span class="st">&quot;[0-9.]+&quot;</span>),</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a>  <span class="st">&quot;?&quot;</span>)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a>old.opt &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">width=</span><span class="dv">100</span>)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a>(before.dt &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a>  between.dt<span class="op">$</span>between,</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true"></a>  <span class="st">&quot;^&quot;</span>,</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true"></a>  <span class="dt">before=</span><span class="st">&quot;.*?&quot;</span>,</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true"></a>  mass.pattern, kit.pattern, q.pattern, <span class="st">&quot;$&quot;</span>))</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true"></a><span class="co">#&gt;                                         before template.nanograms    kit  Q.chr</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true"></a><span class="co">#&gt;                                         &lt;char&gt;              &lt;num&gt; &lt;char&gt; &lt;char&gt;</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true"></a><span class="co">#&gt;  1:                                   -Ladder-                 NA   PP16       </span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true"></a><span class="co">#&gt;  2:                                   _Ladder-                 NA     IP       </span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true"></a><span class="co">#&gt;  3:                               _RB121514ADG                 NA              </span></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true"></a><span class="co">#&gt;  4:                           _RB102191515LEA-                 NA     IP       </span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true"></a><span class="co">#&gt;  5:                             -RD12-0002-35-            0.50000   PP16       </span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true"></a><span class="co">#&gt;  6:                        _RD14-0003-35d3S30-            0.01563      P   10.0</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true"></a><span class="co">#&gt;  7:                          _RD14-0003-24d3a-            0.06250     IP    0.8</span></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true"></a><span class="co">#&gt;  8:                            -RD12-0002-01d-            0.12500   PP16       </span></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true"></a><span class="co">#&gt;  9:                           -RD12-0002-04d1-            0.06250   PP16       </span></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true"></a><span class="co">#&gt; 10:                          _RD14-0003-15d2b-            0.25000     IP    0.5</span></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true"></a><span class="co">#&gt; 11:                        -RD12-0002-1_2-1;9-            0.12500   PP16       </span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true"></a><span class="co">#&gt; 12: _RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-            0.75000     IP   LAND</span></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true"></a><span class="kw">options</span>(old.opt)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mass.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">template.nanograms=</span><span class="st">&quot;[0-9.]*&quot;</span>, as.numeric)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>kit.pattern <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">quantifier</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">kit=</span>nc<span class="sc">::</span><span class="fu">alternatives</span>(<span class="st">&quot;PP16&quot;</span>, <span class="st">&quot;IP&quot;</span>, <span class="st">&quot;P&quot;</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;?&quot;</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>q.pattern <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">quantifier</span>(</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;-Q&quot;</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q.chr=</span>nc<span class="sc">::</span><span class="fu">alternatives</span>(<span class="st">&quot;LAND&quot;</span>, <span class="st">&quot;[0-9.]+&quot;</span>),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;?&quot;</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>old.opt <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">width=</span><span class="dv">100</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>(before.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  between.dt<span class="sc">$</span>between,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;^&quot;</span>,</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">before=</span><span class="st">&quot;.*?&quot;</span>,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  mass.pattern, kit.pattern, q.pattern, <span class="st">&quot;$&quot;</span>))</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                         before template.nanograms    kit  Q.chr</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                         &lt;char&gt;              &lt;num&gt; &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:                                   -Ladder-                 NA   PP16       </span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:                                   _Ladder-                 NA     IP       </span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:                               _RB121514ADG                 NA              </span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:                           _RB102191515LEA-                 NA     IP       </span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:                             -RD12-0002-35-            0.50000   PP16       </span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:                        _RD14-0003-35d3S30-            0.01563      P   10.0</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:                          _RD14-0003-24d3a-            0.06250     IP    0.8</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:                            -RD12-0002-01d-            0.12500   PP16       </span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:                           -RD12-0002-04d1-            0.06250   PP16       </span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:                          _RD14-0003-15d2b-            0.25000     IP    0.5</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:                        -RD12-0002-1_2-1;9-            0.12500   PP16       </span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: _RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-            0.75000     IP   LAND</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(old.opt)</span></code></pre></div>
 <p>Now to match the before column, we need some alternatives. The first four rows are controls, and the other rows are samples which are indicated by a project ID (prefix RD) and then a sample ID. The mixture samples at the bottom contain semicolon-delimited mixture proportions.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>project.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">project=</span><span class="st">&quot;RD[0-9]+-[0-9]+&quot;</span>, <span class="st">&quot;-&quot;</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>single.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">id=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a>mixture.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a>  <span class="dt">ids.chr=</span><span class="st">&quot;[0-9_]+&quot;</span>,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a>  <span class="st">&quot;-&quot;</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a>  <span class="dt">parts.chr=</span><span class="st">&quot;[0-9;]+&quot;</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a>  <span class="st">&quot;-&quot;</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a>single.or.mixture &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a>  project.pattern,</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">alternatives</span>(mixture.pattern, single.pattern))</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a>control.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">control=</span><span class="st">&quot;[^-_]+&quot;</span>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a>single.mixture.control &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;[-_]&quot;</span>, nc<span class="op">::</span><span class="kw">alternatives</span>(</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a>  single.or.mixture, control.pattern))</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a>(rest.dt &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true"></a>  before.dt<span class="op">$</span>before, single.mixture.control, <span class="dt">rest=</span><span class="st">&quot;.*&quot;</span>))</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true"></a><span class="co">#&gt;       project        ids.chr parts.chr    id        control   rest</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true"></a><span class="co">#&gt;        &lt;char&gt;         &lt;char&gt;    &lt;char&gt; &lt;int&gt;         &lt;char&gt; &lt;char&gt;</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true"></a><span class="co">#&gt;  1:                                       NA         Ladder      -</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true"></a><span class="co">#&gt;  2:                                       NA         Ladder      -</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true"></a><span class="co">#&gt;  3:                                       NA    RB121514ADG       </span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true"></a><span class="co">#&gt;  4:                                       NA RB102191515LEA      -</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true"></a><span class="co">#&gt;  5: RD12-0002                             35                     -</span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true"></a><span class="co">#&gt;  6: RD14-0003                             35                d3S30-</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true"></a><span class="co">#&gt;  7: RD14-0003                             24                  d3a-</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true"></a><span class="co">#&gt;  8: RD12-0002                              1                    d-</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true"></a><span class="co">#&gt;  9: RD12-0002                              4                   d1-</span></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true"></a><span class="co">#&gt; 10: RD14-0003                             15                  d2b-</span></span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true"></a><span class="co">#&gt; 11: RD12-0002            1_2       1;9    NA                      </span></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true"></a><span class="co">#&gt; 12: RD14-0003 35_36_37_38_39 1;4;4;4;1    NA                M2I35-</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>project.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">project=</span><span class="st">&quot;RD[0-9]+-[0-9]+&quot;</span>, <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>single.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">id=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>mixture.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids.chr=</span><span class="st">&quot;[0-9_]+&quot;</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;-&quot;</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">parts.chr=</span><span class="st">&quot;[0-9;]+&quot;</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>single.or.mixture <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  project.pattern,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">alternatives</span>(mixture.pattern, single.pattern))</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>control.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">control=</span><span class="st">&quot;[^-_]+&quot;</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>single.mixture.control <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;[-_]&quot;</span>, nc<span class="sc">::</span><span class="fu">alternatives</span>(</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  single.or.mixture, control.pattern))</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>(rest.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  before.dt<span class="sc">$</span>before, single.mixture.control, <span class="at">rest=</span><span class="st">&quot;.*&quot;</span>))</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       project        ids.chr parts.chr    id        control   rest</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;         &lt;char&gt;    &lt;char&gt; &lt;int&gt;         &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:                                       NA         Ladder      -</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:                                       NA         Ladder      -</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:                                       NA    RB121514ADG       </span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:                                       NA RB102191515LEA      -</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5: RD12-0002                             35                     -</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: RD14-0003                             35                d3S30-</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: RD14-0003                             24                  d3a-</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8: RD12-0002                              1                    d-</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: RD12-0002                              4                   d1-</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10: RD14-0003                             15                  d2b-</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11: RD12-0002            1_2       1;9    NA                      </span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: RD14-0003 35_36_37_38_39 1;4;4;4;1    NA                M2I35-</span></span></code></pre></div>
 <p>The rest may contain some information related to the dilution and treatment, which we can parse as follows:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>dilution.pattern &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">quantifier</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a>  <span class="st">&quot;[dM]&quot;</span>,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>  <span class="dt">dilution.number=</span><span class="st">&quot;[0-9]?&quot;</span>, as.integer,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a>  <span class="st">&quot;?&quot;</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a>treatment.pattern &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">quantifier</span>(</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a>  <span class="dt">treatment.letter=</span><span class="st">&quot;[a-zA-Z]&quot;</span>,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">quantifier</span>(<span class="dt">treatment.number=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer, <span class="st">&quot;?&quot;</span>),</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a>  <span class="st">&quot;?&quot;</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true"></a>dilution.treatment &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true"></a>  dilution.pattern,</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true"></a>  treatment.pattern,</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true"></a>  <span class="st">&quot;[_-]?&quot;</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(rest.dt<span class="op">$</span>rest, <span class="st">&quot;^&quot;</span>, dilution.treatment, <span class="st">&quot;$&quot;</span>)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true"></a><span class="co">#&gt;     dilution.number treatment.letter treatment.number</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true"></a><span class="co">#&gt;               &lt;int&gt;           &lt;char&gt;            &lt;int&gt;</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true"></a><span class="co">#&gt;  1:              NA                                NA</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true"></a><span class="co">#&gt;  2:              NA                                NA</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true"></a><span class="co">#&gt;  3:              NA                                NA</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true"></a><span class="co">#&gt;  4:              NA                                NA</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true"></a><span class="co">#&gt;  5:              NA                                NA</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true"></a><span class="co">#&gt;  6:               3                S               30</span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true"></a><span class="co">#&gt;  7:               3                a               NA</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true"></a><span class="co">#&gt;  8:              NA                                NA</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true"></a><span class="co">#&gt;  9:               1                                NA</span></span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true"></a><span class="co">#&gt; 10:               2                b               NA</span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true"></a><span class="co">#&gt; 11:              NA                                NA</span></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true"></a><span class="co">#&gt; 12:               2                I               35</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dilution.pattern <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">quantifier</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[dM]&quot;</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dilution.number=</span><span class="st">&quot;[0-9]?&quot;</span>, as.integer,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;?&quot;</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>treatment.pattern <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">quantifier</span>(</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatment.letter=</span><span class="st">&quot;[a-zA-Z]&quot;</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">quantifier</span>(<span class="at">treatment.number=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer, <span class="st">&quot;?&quot;</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;?&quot;</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>dilution.treatment <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  dilution.pattern,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  treatment.pattern,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[_-]?&quot;</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(rest.dt<span class="sc">$</span>rest, <span class="st">&quot;^&quot;</span>, dilution.treatment, <span class="st">&quot;$&quot;</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     dilution.number treatment.letter treatment.number</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               &lt;int&gt;           &lt;char&gt;            &lt;int&gt;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:              NA                                NA</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:              NA                                NA</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:              NA                                NA</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:              NA                                NA</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:              NA                                NA</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:               3                S               30</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:               3                a               NA</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:              NA                                NA</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:               1                                NA</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:               2                b               NA</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:              NA                                NA</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:               2                I               35</span></span></code></pre></div>
 <p>Now we just have to put all of those patterns together to get a full match:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>fsa.pattern &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a>  well.pattern,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a>  single.mixture.control,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a>  dilution.treatment,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a>  mass.pattern, kit.pattern, q.pattern,  </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true"></a>  end.pattern)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true"></a>(match.dt &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(fsa.vec, fsa.pattern))</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true"></a><span class="co">#&gt;     well.letter well.number   project        ids.chr parts.chr    id</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true"></a><span class="co">#&gt;          &lt;char&gt;       &lt;int&gt;    &lt;char&gt;         &lt;char&gt;    &lt;char&gt; &lt;int&gt;</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true"></a><span class="co">#&gt;  1:           A           1                                       NA</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true"></a><span class="co">#&gt;  2:           D           7                                       NA</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true"></a><span class="co">#&gt;  3:           A          12                                       NA</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true"></a><span class="co">#&gt;  4:           A          10                                       NA</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true"></a><span class="co">#&gt;  5:           A           2 RD12-0002                             35</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true"></a><span class="co">#&gt;  6:           G           1 RD14-0003                             35</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true"></a><span class="co">#&gt;  7:           A           6 RD14-0003                             24</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true"></a><span class="co">#&gt;  8:           A           8 RD12-0002                              1</span></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true"></a><span class="co">#&gt;  9:           A          10 RD12-0002                              4</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true"></a><span class="co">#&gt; 10:           C           2 RD14-0003                             15</span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true"></a><span class="co">#&gt; 11:           A           2 RD12-0002            1_2       1;9    NA</span></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true"></a><span class="co">#&gt; 12:           H           7 RD14-0003 35_36_37_38_39 1;4;4;4;1    NA</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true"></a><span class="co">#&gt;            control dilution.number treatment.letter treatment.number</span></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true"></a><span class="co">#&gt;             &lt;char&gt;           &lt;int&gt;           &lt;char&gt;            &lt;int&gt;</span></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true"></a><span class="co">#&gt;  1:         Ladder              NA                                NA</span></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true"></a><span class="co">#&gt;  2:         Ladder              NA                                NA</span></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true"></a><span class="co">#&gt;  3:    RB121514ADG              NA                                NA</span></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true"></a><span class="co">#&gt;  4: RB102191515LEA              NA                                NA</span></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true"></a><span class="co">#&gt;  5:                             NA                                NA</span></span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true"></a><span class="co">#&gt;  6:                              3                S               30</span></span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true"></a><span class="co">#&gt;  7:                              3                a               NA</span></span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true"></a><span class="co">#&gt;  8:                             NA                                NA</span></span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true"></a><span class="co">#&gt;  9:                              1                                NA</span></span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true"></a><span class="co">#&gt; 10:                              2                b               NA</span></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true"></a><span class="co">#&gt; 11:                             NA                                NA</span></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true"></a><span class="co">#&gt; 12:                              2                I               35</span></span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true"></a><span class="co">#&gt;     template.nanograms    kit  Q.chr capillary seconds</span></span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true"></a><span class="co">#&gt;                  &lt;num&gt; &lt;char&gt; &lt;char&gt;     &lt;int&gt;   &lt;int&gt;</span></span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true"></a><span class="co">#&gt;  1:                 NA   PP16                1      10</span></span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true"></a><span class="co">#&gt;  2:                 NA     IP                4       5</span></span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true"></a><span class="co">#&gt;  3:                 NA                       1      10</span></span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true"></a><span class="co">#&gt;  4:                 NA     IP                1      10</span></span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true"></a><span class="co">#&gt;  5:            0.50000   PP16                1      10</span></span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true"></a><span class="co">#&gt;  6:            0.01563      P   10.0         3      10</span></span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true"></a><span class="co">#&gt;  7:            0.06250     IP    0.8         1      10</span></span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true"></a><span class="co">#&gt;  8:            0.12500   PP16                1      10</span></span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true"></a><span class="co">#&gt;  9:            0.06250   PP16                1      10</span></span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true"></a><span class="co">#&gt; 10:            0.25000     IP    0.5         3       5</span></span>
-<span id="cb23-48"><a href="#cb23-48" aria-hidden="true"></a><span class="co">#&gt; 11:            0.12500   PP16                1      10</span></span>
-<span id="cb23-49"><a href="#cb23-49" aria-hidden="true"></a><span class="co">#&gt; 12:            0.75000     IP   LAND         4       5</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fsa.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  well.pattern,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  single.mixture.control,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  dilution.treatment,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  mass.pattern, kit.pattern, q.pattern,  </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  end.pattern)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>(match.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(fsa.vec, fsa.pattern))</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     well.letter well.number   project        ids.chr parts.chr    id</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt;       &lt;int&gt;    &lt;char&gt;         &lt;char&gt;    &lt;char&gt; &lt;int&gt;</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:           A           1                                       NA</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:           D           7                                       NA</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:           A          12                                       NA</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:           A          10                                       NA</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:           A           2 RD12-0002                             35</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:           G           1 RD14-0003                             35</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:           A           6 RD14-0003                             24</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:           A           8 RD12-0002                              1</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:           A          10 RD12-0002                              4</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:           C           2 RD14-0003                             15</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:           A           2 RD12-0002            1_2       1;9    NA</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:           H           7 RD14-0003 35_36_37_38_39 1;4;4;4;1    NA</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            control dilution.number treatment.letter treatment.number</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;char&gt;           &lt;int&gt;           &lt;char&gt;            &lt;int&gt;</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         Ladder              NA                                NA</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         Ladder              NA                                NA</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:    RB121514ADG              NA                                NA</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4: RB102191515LEA              NA                                NA</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:                             NA                                NA</span></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:                              3                S               30</span></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:                              3                a               NA</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:                             NA                                NA</span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:                              1                                NA</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:                              2                b               NA</span></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:                             NA                                NA</span></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:                              2                I               35</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     template.nanograms    kit  Q.chr capillary seconds</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  &lt;num&gt; &lt;char&gt; &lt;char&gt;     &lt;int&gt;   &lt;int&gt;</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:                 NA   PP16                1      10</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:                 NA     IP                4       5</span></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:                 NA                       1      10</span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:                 NA     IP                1      10</span></span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:            0.50000   PP16                1      10</span></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:            0.01563      P   10.0         3      10</span></span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:            0.06250     IP    0.8         1      10</span></span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:            0.12500   PP16                1      10</span></span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:            0.06250   PP16                1      10</span></span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:            0.25000     IP    0.5         3       5</span></span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:            0.12500   PP16                1      10</span></span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:            0.75000     IP   LAND         4       5</span></span></code></pre></div>
 <p>And to verify we parsed everything correctly we print the subjects next to each row:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a>disp.dt &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">data.table</span>(match.dt)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a><span class="kw">names</span>(disp.dt) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(disp.dt))</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a>old.opt &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="st">&quot;datatable.print.colnames&quot;</span>=<span class="st">&quot;none&quot;</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true"></a><span class="kw">split</span>(disp.dt, fsa.vec)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true"></a><span class="co">#&gt; $`A01-Ladder-PP16-001.10sec.fsa`</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true"></a><span class="co">#&gt; 1: A 1       NA Ladder NA   NA NA PP16     1 10</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true"></a><span class="co">#&gt; $`A02-RD12-0002-1_2-1;9-0.125PP16-001.10sec.fsa`</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true"></a><span class="co">#&gt; 1: A 2 RD12-0002 1_2 1;9 NA   NA   NA 0.125 PP16     1 10</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true"></a><span class="co">#&gt; $`A02-RD12-0002-35-0.5PP16-001.10sec.fsa`</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true"></a><span class="co">#&gt; 1: A 2 RD12-0002     35   NA   NA 0.5 PP16     1 10</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true"></a><span class="co">#&gt; $`A06_RD14-0003-24d3a-0.0625IP-Q0.8_001.10sec.fsa`</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true"></a><span class="co">#&gt; 1: A 6 RD14-0003     24   3 a NA 0.0625 IP 0.8  1 10</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true"></a><span class="co">#&gt; $`A08-RD12-0002-01d-0.125PP16-001.10sec.fsa`</span></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true"></a><span class="co">#&gt; 1: A 8 RD12-0002     1   NA   NA 0.125 PP16     1 10</span></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true"></a><span class="co">#&gt; $`A10-RD12-0002-04d1-0.0625PP16-001.10sec.fsa`</span></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true"></a><span class="co">#&gt; 1: A 10 RD12-0002     4   1   NA 0.0625 PP16     1 10</span></span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true"></a><span class="co">#&gt; $`A10_RB102191515LEA-IP_001.10sec.fsa`</span></span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true"></a><span class="co">#&gt; 1: A 10       NA RB102191515LEA NA   NA NA IP     1 10</span></span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true"></a><span class="co">#&gt; $A12_RB121514ADG_001.10sec.fsa</span></span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true"></a><span class="co">#&gt; 1: A 12       NA RB121514ADG NA   NA NA        1 10</span></span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true"></a><span class="co">#&gt; $`C02_RD14-0003-15d2b-0.25IP-Q0.5_003.5sec.fsa`</span></span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true"></a><span class="co">#&gt; 1: C 2 RD14-0003     15   2 b NA 0.25 IP 0.5  3  5</span></span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true"></a><span class="co">#&gt; $`D07_Ladder-IP_004.5sec.fsa`</span></span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true"></a><span class="co">#&gt; 1: D 7       NA Ladder NA   NA NA IP     4  5</span></span>
-<span id="cb24-44"><a href="#cb24-44" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-45"><a href="#cb24-45" aria-hidden="true"></a><span class="co">#&gt; $`G01_RD14-0003-35d3S30-0.01563P-Q10.0_003.10sec.fsa`</span></span>
-<span id="cb24-46"><a href="#cb24-46" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-47"><a href="#cb24-47" aria-hidden="true"></a><span class="co">#&gt; 1: G 1 RD14-0003     35   3 S 30 0.01563  P 10.0  3 10</span></span>
-<span id="cb24-48"><a href="#cb24-48" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb24-49"><a href="#cb24-49" aria-hidden="true"></a><span class="co">#&gt; $`H07_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND_004.5sec.fsa`</span></span>
-<span id="cb24-50"><a href="#cb24-50" aria-hidden="true"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
-<span id="cb24-51"><a href="#cb24-51" aria-hidden="true"></a><span class="co">#&gt; 1: H 7 RD14-0003 35_36_37_38_39 1;4;4;4;1 NA   2 I 35 0.75 IP LAND  4  5</span></span>
-<span id="cb24-52"><a href="#cb24-52" aria-hidden="true"></a><span class="kw">options</span>(old.opt)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>disp.dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(match.dt)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(disp.dt) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(disp.dt))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>old.opt <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="st">&quot;datatable.print.colnames&quot;</span><span class="ot">=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">split</span>(disp.dt, fsa.vec)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`A01-Ladder-PP16-001.10sec.fsa`</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: A 1       NA Ladder NA   NA NA PP16     1 10</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`A02-RD12-0002-1_2-1;9-0.125PP16-001.10sec.fsa`</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: A 2 RD12-0002 1_2 1;9 NA   NA   NA 0.125 PP16     1 10</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`A02-RD12-0002-35-0.5PP16-001.10sec.fsa`</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: A 2 RD12-0002     35   NA   NA 0.5 PP16     1 10</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`A06_RD14-0003-24d3a-0.0625IP-Q0.8_001.10sec.fsa`</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: A 6 RD14-0003     24   3 a NA 0.0625 IP 0.8  1 10</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`A08-RD12-0002-01d-0.125PP16-001.10sec.fsa`</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: A 8 RD12-0002     1   NA   NA 0.125 PP16     1 10</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`A10-RD12-0002-04d1-0.0625PP16-001.10sec.fsa`</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: A 10 RD12-0002     4   1   NA 0.0625 PP16     1 10</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`A10_RB102191515LEA-IP_001.10sec.fsa`</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: A 10       NA RB102191515LEA NA   NA NA IP     1 10</span></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $A12_RB121514ADG_001.10sec.fsa</span></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: A 12       NA RB121514ADG NA   NA NA        1 10</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`C02_RD14-0003-15d2b-0.25IP-Q0.5_003.5sec.fsa`</span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: C 2 RD14-0003     15   2 b NA 0.25 IP 0.5  3  5</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`D07_Ladder-IP_004.5sec.fsa`</span></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: D 7       NA Ladder NA   NA NA IP     4  5</span></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`G01_RD14-0003-35d3S30-0.01563P-Q10.0_003.10sec.fsa`</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: G 1 RD14-0003     35   3 S 30 0.01563  P 10.0  3 10</span></span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`H07_RD14-0003-35_36_37_38_39-1;4;4;4;1-M2I35-0.75IP-QLAND_004.5sec.fsa`</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Column classes will be suppressed when col.names is &#39;none&#39;</span></span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: H 7 RD14-0003 35_36_37_38_39 1;4;4;4;1 NA   2 I 35 0.75 IP LAND  4  5</span></span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(old.opt)</span></code></pre></div>
 <p>Incidentally, if you print the regex as a string it looks like something that would be essentially impossible to write/maintain by hand (without <code>nc</code> helper functions):</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">var_args_list</span>(fsa.pattern)<span class="op">$</span>pattern</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;(?:(?:^([A-H])([0-9]+))(?:[-_](?:(?:(?:(RD[0-9]+-[0-9]+)-)(?:(?:([0-9_]+)-([0-9;]+)-)|(?:([0-9]+))))|(?:([^-_]+))))(?:(?:(?:[dM]([0-9]?))?)(?:(?:([a-zA-Z])(?:(?:([0-9]+))?))?)[_-]?)(?:([0-9.]*))(?:(?:(PP16|IP|P))?)(?:(?:-Q(LAND|[0-9.]+))?)(?:[-_]([0-9]+)[.]([0-9]+)sec[.]fsa$))&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">var_args_list</span>(fsa.pattern)<span class="sc">$</span>pattern</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;(?:(?:^([A-H])([0-9]+))(?:[-_](?:(?:(?:(RD[0-9]+-[0-9]+)-)(?:(?:([0-9_]+)-([0-9;]+)-)|(?:([0-9]+))))|(?:([^-_]+))))(?:(?:(?:[dM]([0-9]?))?)(?:(?:([a-zA-Z])(?:(?:([0-9]+))?))?)[_-]?)(?:([0-9.]*))(?:(?:(PP16|IP|P))?)(?:(?:-Q(LAND|[0-9.]+))?)(?:[-_]([0-9]+)[.]([0-9]+)sec[.]fsa$))&quot;</span></span></code></pre></div>
 <p>In conclusion, we have shown how <code>nc</code> can help build complex regex patterns from simple, understandable sub-patterns in R code. The general workflow we have followed in this section can be generalized to other projects. First, identify a small set of subjects to use for testing (<code>fsa.vec</code> in the code above). Second, create some sub-patterns for the start/end of the subjects, and create a sub-pattern that will capture everything else in between. Third, create some more sub-patterns to match the “everything else” in the previous step (e.g. <code>before.dt$before</code>, <code>between.dt$between</code>, <code>rest.dt$rest</code> above). Repeat the process until there is nothing left to match, and then concatenate the sub-patterns to match the whole subject.</p>
 </div>
 </div>
