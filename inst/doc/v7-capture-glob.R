@@ -64,7 +64,8 @@ head(base.df)
 str(base.df)
 
 ## -------------------------------------------------------------------------------------------------
-if(requireNamespace("arrow")){
+arrow.available <- requireNamespace("arrow") && arrow::arrow_with_dataset()
+if(arrow.available){
   path <- tempfile()
   arrow::write_dataset(
     dataset=data.chunk.dt,
@@ -77,12 +78,12 @@ if(requireNamespace("arrow")){
 }
 
 ## -------------------------------------------------------------------------------------------------
-if(requireNamespace("arrow")){
+if(arrow.available){
   data.table::fread(hive.files[1])
 }
 
 ## -------------------------------------------------------------------------------------------------
-if(requireNamespace("arrow")){
+if(arrow.available){
   hive.pattern <- list(
     nc::field("data","=",".*?"),
     "/",

@@ -10,6 +10,9 @@ apply_type_funs <- function
 ){
   stopifnot(is.character(match.mat))
   stopifnot(is.matrix(match.mat))
+  if(length(fun.list) < ncol(match.mat)){
+    stop(domain=NA, gettext("regex contains more groups than names; please remove literal groups (parentheses) from the regex pattern, and use named arguments in R code instead"))
+  }
   colnames(match.mat) <- names(fun.list)
   dt <- data.table(match.mat)
   for(col.i in seq_along(fun.list)){
@@ -46,7 +49,7 @@ apply_type_funs <- function
     if(1 < length(dup.type.tab)){
       stop(domain=NA, gettextf("capture groups with identical names should have conversion functions that all return the same type; problem group name=%s has types %s", dup.name, paste(names(dup.type.tab), collapse = ",")))
     }
-    is.match.name <- is.match[, dup.col.indices]
+    is.match.name <- is.match[, dup.col.indices, drop=FALSE]
     if(any(1 < rowSums(is.match.name))){
       stop(domain=NA, gettextf("duplicate capture group names are only allowed in alternatives, problem: %s", dup.name))
     }

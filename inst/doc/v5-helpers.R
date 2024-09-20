@@ -61,8 +61,8 @@ pattern <- nc::alternatives_with_shared_groups(
   month="[a-z]{3}",
   day=list("[0-9]{2}", as.integer),
   year=list("[0-9]{4}", as.integer),
-  list(month, " ", day, ", ", year),
-  list(day, " ", month, " ", year))
+  list(american=list(month, " ", day, ", ", year)),
+  list(european=list(day, " ", month, " ", year)))
 
 ## -----------------------------------------------------------------------------
 (match.dt <- nc::capture_first_vec(subject.vec, pattern))
@@ -74,14 +74,13 @@ match.dt[, date := data.table::as.IDate(
 print(match.dt, class=TRUE)
 
 ## -----------------------------------------------------------------------------
-shared.groups <- nc::altlist(
-  month="[a-z]{3}",
-  day=list("[0-9]{2}", as.integer),
-  year=list("[0-9]{4}", as.integer))
-alt.args <- with(shared.groups, list(
-  american=list(month, " ", day, ", ", year),
-  european=list(day, " ", month, " ", year)))
-pattern <- do.call(nc::alternatives, alt.args)
-(match.dt <- nc::capture_first_vec(subject.vec, pattern))
-match.dt[, lapply(.SD, function(x)sum(x!="")), .SDcols=names(alt.args)]
+nc::capture_first_vec(
+  c("Toby Dylan Hocking","Hocking, Toby Dylan"),
+  nc::alternatives_with_shared_groups(
+    family="[A-Z][a-z]+",
+    given="[^,]+",
+    list(given_first=list(given, " ", family)),
+    list(family_first=list(family, ", ", given))
+  )
+)
 

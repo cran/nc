@@ -11,34 +11,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2024-02-21" />
+<meta name="date" content="2024-09-20" />
 
 <title>Reading regularly named files</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -49,58 +61,57 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -134,7 +145,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -147,391 +338,445 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Reading regularly named files</h1>
-<h4 class="date">2024-02-21</h4>
+<h4 class="date">2024-09-20</h4>
 
 
 
-<div id="reading-regularly-named-files" class="section level1">
-<h1>Reading regularly named files</h1>
-<p>This vignette contains a number of examples which explain how to use <code>capture_first_glob</code> to read data from a set of regularly named files.</p>
+<p>This vignette contains a number of examples which explain how to use
+<code>capture_first_glob</code> to read data from a set of regularly
+named files.</p>
 <div id="example-0-iris-data-one-file-per-species" class="section level2">
 <h2>Example 0: iris data, one file per species</h2>
-<p>We begin with a simple example: iris data have 150 rows, as shown below.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(iris.dir <span class="ot">&lt;-</span> <span class="fu">tempfile</span>())</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>icsv <span class="ot">&lt;-</span> <span class="cf">function</span>(sp)<span class="fu">file.path</span>(iris.dir, <span class="fu">paste0</span>(sp, <span class="st">&quot;.csv&quot;</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(iris.dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(iris))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:          5.1         3.5          1.4         0.2    setosa</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:          4.9         3.0          1.4         0.2    setosa</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:          4.7         3.2          1.3         0.2    setosa</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:          4.6         3.1          1.5         0.2    setosa</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:          5.0         3.6          1.4         0.2    setosa</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146:          6.7         3.0          5.2         2.3 virginica</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147:          6.3         2.5          5.0         1.9 virginica</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148:          6.5         3.0          5.2         2.0 virginica</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149:          6.2         3.4          5.4         2.3 virginica</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150:          5.9         3.0          5.1         1.8 virginica</span></span></code></pre></div>
-<p>In the code below, we save one CSV file for each of the three Species.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>iris.dt[, <span class="fu">fwrite</span>(.SD, <span class="fu">icsv</span>(Species)), by<span class="ot">=</span>Species]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Empty data.table (0 rows and 1 cols): Species</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>(iris.dir)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;setosa.csv&quot;     &quot;versicolor.csv&quot; &quot;virginica.csv&quot;</span></span></code></pre></div>
-<p>The output above shows that there are three CSV files, one for each Species in the iris data. Below we read the first two rows of one file,</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">file.path</span>(iris.dir,<span class="st">&quot;setosa.csv&quot;</span>), <span class="at">nrows=</span><span class="dv">2</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:          5.1         3.5          1.4         0.2</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:          4.9         3.0          1.4         0.2</span></span></code></pre></div>
-<p>The output above shows that the CSV data file itself does not contain a Species column (the Species is instead encoded in the file name). Below we construct a glob, which is a string for matching files,</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(iglob <span class="ot">&lt;-</span> <span class="fu">file.path</span>(iris.dir,<span class="st">&quot;*.csv&quot;</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b43cf649a8/*.csv&quot;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.glob</span>(iglob)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b43cf649a8/setosa.csv&quot;    </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b43cf649a8/versicolor.csv&quot;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b43cf649a8/virginica.csv&quot;</span></span></code></pre></div>
-<p>The output above indicates that <code>iglob</code> matches the three data files. Below we read those files into R, using the following syntax:</p>
+<p>We begin with a simple example: iris data have 150 rows, as shown
+below.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">dir.create</span>(iris.dir <span class="ot">&lt;-</span> <span class="fu">tempfile</span>())</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>icsv <span class="ot">&lt;-</span> <span class="cf">function</span>(sp)<span class="fu">file.path</span>(iris.dir, <span class="fu">paste0</span>(sp, <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>(iris.dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(iris))</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt;   1:          5.1         3.5          1.4         0.2    setosa</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt;   2:          4.9         3.0          1.4         0.2    setosa</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt;   3:          4.7         3.2          1.3         0.2    setosa</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt;   4:          4.6         3.1          1.5         0.2    setosa</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">#&gt;   5:          5.0         3.6          1.4         0.2    setosa</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#&gt; 146:          6.7         3.0          5.2         2.3 virginica</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#&gt; 147:          6.3         2.5          5.0         1.9 virginica</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt; 148:          6.5         3.0          5.2         2.0 virginica</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt; 149:          6.2         3.4          5.4         2.3 virginica</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt; 150:          5.9         3.0          5.1         1.8 virginica</span></span></code></pre></div>
+<p>In the code below, we save one CSV file for each of the three
+Species.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>iris.dt[, <span class="fu">fwrite</span>(.SD, <span class="fu">icsv</span>(Species)), by<span class="ot">=</span>Species]</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; Empty data.table (0 rows and 1 cols): Species</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">dir</span>(iris.dir)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;setosa.csv&quot;     &quot;versicolor.csv&quot; &quot;virginica.csv&quot;</span></span></code></pre></div>
+<p>The output above shows that there are three CSV files, one for each
+Species in the iris data. Below we read the first two rows of one
+file,</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">file.path</span>(iris.dir,<span class="st">&quot;setosa.csv&quot;</span>), <span class="at">nrows=</span><span class="dv">2</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; 1:          5.1         3.5          1.4         0.2</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt; 2:          4.9         3.0          1.4         0.2</span></span></code></pre></div>
+<p>The output above shows that the CSV data file itself does not contain
+a Species column (the Species is instead encoded in the file name).
+Below we construct a glob, which is a string for matching files,</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>(iglob <span class="ot">&lt;-</span> <span class="fu">file.path</span>(iris.dir,<span class="st">&quot;*.csv&quot;</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4736f6abe/*.csv&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">Sys.glob</span>(iglob)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4736f6abe/setosa.csv&quot;    </span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; [2] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4736f6abe/versicolor.csv&quot;</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt; [3] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4736f6abe/virginica.csv&quot;</span></span></code></pre></div>
+<p>The output above indicates that <code>iglob</code> matches the three
+data files. Below we read those files into R, using the following
+syntax:</p>
 <ul>
-<li>The first argument <code>iglob</code> is a string/glob which indicates the files to read,</li>
+<li>The first argument <code>iglob</code> is a string/glob which
+indicates the files to read,</li>
 <li>the other arguments form a regular expression pattern:
 <ul>
-<li>The named argument <code>Species</code> matches that part of the file name, and is captured to the resulting column of the same name,</li>
-<li>the un-name argument <code>&quot;[.]csv&quot;</code> indicates that suffix must be matched (but since the argument is not named, it is not captured, nor saved as a column in the output).</li>
+<li>The named argument <code>Species</code> matches that part of the
+file name, and is captured to the resulting column of the same
+name,</li>
+<li>the un-named argument <code>&quot;[.]csv&quot;</code> indicates that suffix
+must be matched (but since the argument is not named, it is not
+captured, nor saved as a column in the output).</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(iglob, <span class="at">Species=</span><span class="st">&quot;[^/]+&quot;</span>, <span class="st">&quot;[.]csv&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;char&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    setosa          5.1         3.5          1.4         0.2</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    setosa          4.9         3.0          1.4         0.2</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    setosa          4.7         3.2          1.3         0.2</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    setosa          4.6         3.1          1.5         0.2</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    setosa          5.0         3.6          1.4         0.2</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146: virginica          6.7         3.0          5.2         2.3</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147: virginica          6.3         2.5          5.0         1.9</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148: virginica          6.5         3.0          5.2         2.0</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149: virginica          6.2         3.4          5.4         2.3</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150: virginica          5.9         3.0          5.1         1.8</span></span></code></pre></div>
-<p>The output above indicates that we have successfully read the iris data back into R, including the <code>Species</code> column which was not present in the CSV data files.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(iglob, <span class="at">Species=</span><span class="st">&quot;[^/]+&quot;</span>, <span class="st">&quot;[.]csv&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt;        Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt;         &lt;char&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;   1:    setosa          5.1         3.5          1.4         0.2</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   2:    setosa          4.9         3.0          1.4         0.2</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt;   3:    setosa          4.7         3.2          1.3         0.2</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt;   4:    setosa          4.6         3.1          1.5         0.2</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt;   5:    setosa          5.0         3.6          1.4         0.2</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 146: virginica          6.7         3.0          5.2         2.3</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; 147: virginica          6.3         2.5          5.0         1.9</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt; 148: virginica          6.5         3.0          5.2         2.0</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt; 149: virginica          6.2         3.4          5.4         2.3</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 150: virginica          5.9         3.0          5.1         1.8</span></span></code></pre></div>
+<p>The output above indicates that we have successfully read the iris
+data back into R, including the <code>Species</code> column which was
+not present in the CSV data files.</p>
 </div>
 <div id="example-1-four-files-two-capture-groups-custom-read-function" class="section level2">
 <h2>Example 1: four files, two capture groups, custom read function</h2>
-<p>Consider the example below, which is slightly more complex. The code below defines a glob for matching several data files.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/chip-seq-chunk-db&quot;</span>, <span class="at">package=</span><span class="st">&quot;nc&quot;</span>, <span class="at">mustWork=</span><span class="cn">TRUE</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(glob <span class="ot">&lt;-</span> <span class="fu">paste0</span>(db, <span class="st">&quot;/*/*/counts/*gz&quot;</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/chip-seq-chunk-db/*/*/counts/*gz&quot;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>(matched.files <span class="ot">&lt;-</span> <span class="fu">Sys.glob</span>(glob))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/chip-seq-chunk-db/H3K36me3_AM_immune/9/counts/McGill0101.bedGraph.gz&quot;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/chip-seq-chunk-db/H3K36me3_TDH_other/1/counts/McGill0019.bedGraph.gz&quot;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/chip-seq-chunk-db/H3K4me3_TDH_immune/9/counts/McGill0024.bedGraph.gz&quot;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/chip-seq-chunk-db/H3K4me3_XJ_immune/2/counts/McGill0024.bedGraph.gz&quot;</span></span></code></pre></div>
-<p>The output above indicates there are four data files that are matched by the glob. Below we read the first one,</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readLines</span>(matched.files[<span class="dv">1</span>], <span class="at">n=</span><span class="dv">5</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;track type=bedGraph db=hg19 visibility=full graphType=points name=101K36monocyte description=\&quot;McGill0101 H3K36me3 aligned read counts\&quot;&quot;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] &quot;chr10\t111456281\t111456338\t2&quot;                                                                                                          </span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;chr10\t111456338\t111456381\t1&quot;                                                                                                          </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] &quot;chr10\t111456381\t111459312\t0&quot;                                                                                                          </span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] &quot;chr10\t111459312\t111459316\t5&quot;</span></span></code></pre></div>
-<p>We can see from the output above that this data file has a header of meta-data (not column names) on the first line, whereas the other lines contain tab-delimited data. We can read it with fread, as long as we provide a couple non-default arguments, as in the code below:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>read.bedGraph <span class="ot">&lt;-</span> <span class="cf">function</span>(f)data.table<span class="sc">::</span><span class="fu">fread</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  f, <span class="at">skip=</span><span class="dv">1</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;chrom&quot;</span>,<span class="st">&quot;start&quot;</span>, <span class="st">&quot;end&quot;</span>, <span class="st">&quot;count&quot;</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read.bedGraph</span>(matched.files[<span class="dv">1</span>])</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        chrom     start       end count</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1:  chr10 111456281 111456338     2</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2:  chr10 111456338 111456381     1</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3:  chr10 111456381 111459312     0</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4:  chr10 111459312 111459316     5</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5:  chr10 111459316 111459409    10</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                 </span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7130:  chr10 111721272 111721347     4</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7131:  chr10 111721347 111721354     2</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7132:  chr10 111721354 111722459     0</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7133:  chr10 111722459 111722461     2</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7134:  chr10 111722461 111722555     4</span></span></code></pre></div>
-<p>The output above indicates the data has been correctly read into R as a table with four columns. To do that for each of the files, we use this custom <code>READ</code> function in the code below,</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data.chunk.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span><span class="st">&quot;H.*?&quot;</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;/&quot;</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">chunk=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>(data.chunk.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(glob, data.chunk.pattern, <span class="at">READ=</span>read.bedGraph))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      data chunk  chrom     start       end count</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt; &lt;int&gt; &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: H3K36me3_AM_immune     9  chr10 111456281 111456338     2</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: H3K36me3_AM_immune     9  chr10 111456338 111456381     1</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: H3K36me3_AM_immune     9  chr10 111456381 111459312     0</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: H3K36me3_AM_immune     9  chr10 111459312 111459316     5</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: H3K36me3_AM_immune     9  chr10 111459316 111459409    10</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                          </span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20297:  H3K4me3_XJ_immune     2  chr22  20689768  20689770     0</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20298:  H3K4me3_XJ_immune     2  chr22  20689770  20689870     1</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20299:  H3K4me3_XJ_immune     2  chr22  20689870  20689995     0</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20300:  H3K4me3_XJ_immune     2  chr22  20689995  20690080     1</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20301:  H3K4me3_XJ_immune     2  chr22  20690080  20691400     0</span></span></code></pre></div>
-<p>The output above indicates the data files have been read into R as a table, with two additional columns (data and chunk), which correspond to the capture group names used in the regular expression pattern above.</p>
+<p>Consider the example below, which is slightly more complex. The code
+below defines a glob for matching several data files.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/chip-seq-chunk-db&quot;</span>, <span class="at">package=</span><span class="st">&quot;nc&quot;</span>, <span class="at">mustWork=</span><span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>(glob <span class="ot">&lt;-</span> <span class="fu">paste0</span>(db, <span class="st">&quot;/*/*/counts/*gz&quot;</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/chip-seq-chunk-db/*/*/counts/*gz&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>(matched.files <span class="ot">&lt;-</span> <span class="fu">Sys.glob</span>(glob))</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/chip-seq-chunk-db/H3K36me3_AM_immune/9/counts/McGill0101.bedGraph.gz&quot;</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; [2] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/chip-seq-chunk-db/H3K36me3_TDH_other/1/counts/McGill0019.bedGraph.gz&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; [3] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/chip-seq-chunk-db/H3K4me3_TDH_immune/9/counts/McGill0024.bedGraph.gz&quot;</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; [4] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/chip-seq-chunk-db/H3K4me3_XJ_immune/2/counts/McGill0024.bedGraph.gz&quot;</span></span></code></pre></div>
+<p>The output above indicates there are four data files that are matched
+by the glob. Below we read the first one,</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">readLines</span>(matched.files[<span class="dv">1</span>], <span class="at">n=</span><span class="dv">5</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;track type=bedGraph db=hg19 visibility=full graphType=points name=101K36monocyte description=\&quot;McGill0101 H3K36me3 aligned read counts\&quot;&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; [2] &quot;chr10\t111456281\t111456338\t2&quot;                                                                                                          </span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; [3] &quot;chr10\t111456338\t111456381\t1&quot;                                                                                                          </span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; [4] &quot;chr10\t111456381\t111459312\t0&quot;                                                                                                          </span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; [5] &quot;chr10\t111459312\t111459316\t5&quot;</span></span></code></pre></div>
+<p>We can see from the output above that this data file has a header of
+meta-data (not column names) on the first line, whereas the other lines
+contain tab-delimited data. We can read it with fread, as long as we
+provide a couple non-default arguments, as in the code below:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>read.bedGraph <span class="ot">&lt;-</span> <span class="cf">function</span>(f)data.table<span class="sc">::</span><span class="fu">fread</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  f, <span class="at">skip=</span><span class="dv">1</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;chrom&quot;</span>,<span class="st">&quot;start&quot;</span>, <span class="st">&quot;end&quot;</span>, <span class="st">&quot;count&quot;</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">read.bedGraph</span>(matched.files[<span class="dv">1</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt;        chrom     start       end count</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt;    1:  chr10 111456281 111456338     2</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt;    2:  chr10 111456338 111456381     1</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt;    3:  chr10 111456381 111459312     0</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt;    4:  chr10 111459312 111459316     5</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt;    5:  chr10 111459316 111459409    10</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt;   ---                                 </span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt; 7130:  chr10 111721272 111721347     4</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co">#&gt; 7131:  chr10 111721347 111721354     2</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt; 7132:  chr10 111721354 111722459     0</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt; 7133:  chr10 111722459 111722461     2</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co">#&gt; 7134:  chr10 111722461 111722555     4</span></span></code></pre></div>
+<p>The output above indicates the data has been correctly read into R as
+a table with four columns. To do that for each of the files, we use this
+custom <code>READ</code> function in the code below,</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>data.chunk.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="at">data=</span><span class="st">&quot;H.*?&quot;</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="st">&quot;/&quot;</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="at">chunk=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>(data.chunk.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(glob, data.chunk.pattern, <span class="at">READ=</span>read.bedGraph))</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt;                      data chunk  chrom     start       end count</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt; &lt;int&gt; &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt;     1: H3K36me3_AM_immune     9  chr10 111456281 111456338     2</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt;     2: H3K36me3_AM_immune     9  chr10 111456338 111456381     1</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt;     3: H3K36me3_AM_immune     9  chr10 111456381 111459312     0</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt;     4: H3K36me3_AM_immune     9  chr10 111459312 111459316     5</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt;     5: H3K36me3_AM_immune     9  chr10 111459316 111459409    10</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt;    ---                                                          </span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; 20297:  H3K4me3_XJ_immune     2  chr22  20689768  20689770     0</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt; 20298:  H3K4me3_XJ_immune     2  chr22  20689770  20689870     1</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt; 20299:  H3K4me3_XJ_immune     2  chr22  20689870  20689995     0</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; 20300:  H3K4me3_XJ_immune     2  chr22  20689995  20690080     1</span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt; 20301:  H3K4me3_XJ_immune     2  chr22  20690080  20691400     0</span></span></code></pre></div>
+<p>The output above indicates the data files have been read into R as a
+table, with two additional columns (data and chunk), which correspond to
+the capture group names used in the regular expression pattern
+above.</p>
 </div>
 <div id="why-not-base-r" class="section level2">
 <h2>Why not base R?</h2>
-<p>We can absolutely use base R to read these files, but it takes a bit more code, as shown below.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>base.df.list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file.csv <span class="cf">in</span> matched.files){</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  file.df <span class="ot">&lt;-</span> <span class="fu">read.bedGraph</span>(file.csv)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  counts.path <span class="ot">&lt;-</span> <span class="fu">dirname</span>(file.csv)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  chunk.path <span class="ot">&lt;-</span> <span class="fu">dirname</span>(counts.path)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  data.path <span class="ot">&lt;-</span> <span class="fu">dirname</span>(chunk.path)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  base.df.list[[file.csv]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span><span class="fu">basename</span>(data.path),</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">chunk=</span><span class="fu">basename</span>(chunk.path),</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    file.df)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>base.df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, base.df.list)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(base.df) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(base.df)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 data chunk chrom     start       end count</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 H3K36me3_AM_immune     9 chr10 111456281 111456338     2</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 H3K36me3_AM_immune     9 chr10 111456338 111456381     1</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 H3K36me3_AM_immune     9 chr10 111456381 111459312     0</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 H3K36me3_AM_immune     9 chr10 111459312 111459316     5</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 H3K36me3_AM_immune     9 chr10 111459316 111459409    10</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 H3K36me3_AM_immune     9 chr10 111459409 111459411     8</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(base.df)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    20301 obs. of  6 variables:</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ data : chr  &quot;H3K36me3_AM_immune&quot; &quot;H3K36me3_AM_immune&quot; &quot;H3K36me3_AM_immune&quot; &quot;H3K36me3_AM_immune&quot; ...</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ chunk: chr  &quot;9&quot; &quot;9&quot; &quot;9&quot; &quot;9&quot; ...</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ chrom: chr  &quot;chr10&quot; &quot;chr10&quot; &quot;chr10&quot; &quot;chr10&quot; ...</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ start: int  111456281 111456338 111456381 111459312 111459316 111459409 111459411 111459415 111463412 111463512 ...</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ end  : int  111456338 111456381 111459312 111459316 111459409 111459411 111459415 111463412 111463512 111466726 ...</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ count: int  2 1 0 5 10 8 5 0 2 0 ...</span></span></code></pre></div>
-<p>The output above shows that we have read a data frame into R, and that it is consistent with the data table returned by <code>nc::capture_first_glob</code>, which should be preferred for simplicity when the files are regularly named. In contrast, this section shows how arbitrary R code can be used, so this approach should be preferred when the data in the file path can not be captured using regular expressions.</p>
+<p>We can absolutely use base R to read these files, but it takes a bit
+more code, as shown below.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>base.df.list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="cf">for</span>(file.csv <span class="cf">in</span> matched.files){</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  file.df <span class="ot">&lt;-</span> <span class="fu">read.bedGraph</span>(file.csv)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  counts.path <span class="ot">&lt;-</span> <span class="fu">dirname</span>(file.csv)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  chunk.path <span class="ot">&lt;-</span> <span class="fu">dirname</span>(counts.path)</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  data.path <span class="ot">&lt;-</span> <span class="fu">dirname</span>(chunk.path)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  base.df.list[[file.csv]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    <span class="at">data=</span><span class="fu">basename</span>(data.path),</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    <span class="at">chunk=</span><span class="fu">basename</span>(chunk.path),</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>    file.df)</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>}</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>base.df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, base.df.list)</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="fu">rownames</span>(base.df) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="fu">head</span>(base.df)</span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt;                 data chunk chrom     start       end count</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt; 1 H3K36me3_AM_immune     9 chr10 111456281 111456338     2</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt; 2 H3K36me3_AM_immune     9 chr10 111456338 111456381     1</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt; 3 H3K36me3_AM_immune     9 chr10 111456381 111459312     0</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; 4 H3K36me3_AM_immune     9 chr10 111459312 111459316     5</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt; 5 H3K36me3_AM_immune     9 chr10 111459316 111459409    10</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt; 6 H3K36me3_AM_immune     9 chr10 111459409 111459411     8</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="fu">str</span>(base.df)</span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    20301 obs. of  6 variables:</span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt;  $ data : chr  &quot;H3K36me3_AM_immune&quot; &quot;H3K36me3_AM_immune&quot; &quot;H3K36me3_AM_immune&quot; &quot;H3K36me3_AM_immune&quot; ...</span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt;  $ chunk: chr  &quot;9&quot; &quot;9&quot; &quot;9&quot; &quot;9&quot; ...</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt;  $ chrom: chr  &quot;chr10&quot; &quot;chr10&quot; &quot;chr10&quot; &quot;chr10&quot; ...</span></span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt;  $ start: int  111456281 111456338 111456381 111459312 111459316 111459409 111459411 111459415 111463412 111463512 ...</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt;  $ end  : int  111456338 111456381 111459312 111459316 111459409 111459411 111459415 111463412 111463512 111466726 ...</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt;  $ count: int  2 1 0 5 10 8 5 0 2 0 ...</span></span></code></pre></div>
+<p>The output above shows that we have read a data frame into R, and
+that it is consistent with the data table returned by
+<code>nc::capture_first_glob</code>, which should be preferred for
+simplicity when the files are regularly named. In contrast, this section
+shows how arbitrary R code can be used, so this approach should be
+preferred when the data in the file path can not be captured using
+regular expressions.</p>
 </div>
 <div id="example-3-hive-partition-file-names" class="section level2">
 <h2>Example 3: Hive partition file names</h2>
-<p>In the code below, we write the same data to a set of CSV files with different names,</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">requireNamespace</span>(<span class="st">&quot;arrow&quot;</span>)){</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  arrow<span class="sc">::</span><span class="fu">write_dataset</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dataset=</span>data.chunk.dt,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">path=</span>path,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">format=</span><span class="st">&quot;csv&quot;</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">partitioning=</span><span class="fu">c</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;chunk&quot;</span>),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_rows_per_file=</span><span class="dv">1000</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  hive.glob <span class="ot">&lt;-</span> <span class="fu">file.path</span>(path, <span class="st">&quot;*&quot;</span>, <span class="st">&quot;*&quot;</span>, <span class="st">&quot;*.csv&quot;</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  (hive.files <span class="ot">&lt;-</span> <span class="fu">Sys.glob</span>(hive.glob))</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: arrow</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_AM_immune/chunk=9/part-0.csv&quot; </span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_AM_immune/chunk=9/part-1.csv&quot; </span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_AM_immune/chunk=9/part-2.csv&quot; </span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_AM_immune/chunk=9/part-3.csv&quot; </span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_AM_immune/chunk=9/part-4.csv&quot; </span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_AM_immune/chunk=9/part-5.csv&quot; </span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_AM_immune/chunk=9/part-6.csv&quot; </span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_AM_immune/chunk=9/part-7.csv&quot; </span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-0.csv&quot; </span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-1.csv&quot; </span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-10.csv&quot;</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [12] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-11.csv&quot;</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-12.csv&quot;</span></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [14] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-2.csv&quot; </span></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-3.csv&quot; </span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-4.csv&quot; </span></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-5.csv&quot; </span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [18] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-6.csv&quot; </span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-7.csv&quot; </span></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [20] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-8.csv&quot; </span></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K36me3_TDH_other/chunk=1/part-9.csv&quot; </span></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K4me3_TDH_immune/chunk=9/part-0.csv&quot; </span></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [23] &quot;C:\\Users\\th798\\AppData\\Local\\Temp\\RtmpQp0VxB\\file30b42bc95a18/data=H3K4me3_XJ_immune/chunk=2/part-0.csv&quot;</span></span></code></pre></div>
-<p>In the output above, we can see that there are regularly named files with three variables encoded in the file path (data, chunk, part). The code below reads one of the files back into R:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">requireNamespace</span>(<span class="st">&quot;arrow&quot;</span>)){</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  data.table<span class="sc">::</span><span class="fu">fread</span>(hive.files[<span class="dv">1</span>])</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        chrom     start       end count</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1:  chr10 111456281 111456338     2</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2:  chr10 111456338 111456381     1</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3:  chr10 111456381 111459312     0</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4:  chr10 111459312 111459316     5</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5:  chr10 111459316 111459409    10</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                 </span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  996:  chr10 111619010 111619035     1</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  997:  chr10 111619035 111619092     2</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  998:  chr10 111619092 111619101     3</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  999:  chr10 111619101 111619128     2</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1000:  chr10 111619128 111619129     3</span></span></code></pre></div>
-<p>The output above indicates that the file only has four columns (and is missing the variables which are encoded in the file path). In the code below, we read all those files back into R:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">requireNamespace</span>(<span class="st">&quot;arrow&quot;</span>)){</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  hive.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;=&quot;</span>,<span class="st">&quot;.*?&quot;</span>),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;/&quot;</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;chunk&quot;</span>,<span class="st">&quot;=&quot;</span>,<span class="st">&quot;.*?&quot;</span>, as.integer),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;/&quot;</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;part&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;[0-9]+&quot;</span>, as.integer))</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(hive.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(hive.glob, hive.pattern))</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  hive.dt[, .(<span class="at">rows=</span>.N), keyby<span class="ot">=</span>.(data,chunk,part)]</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      data chunk  part  chrom     start       end count</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: H3K36me3_AM_immune     9     0  chr10 111456281 111456338     2</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: H3K36me3_AM_immune     9     0  chr10 111456338 111456381     1</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: H3K36me3_AM_immune     9     0  chr10 111456381 111459312     0</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: H3K36me3_AM_immune     9     0  chr10 111459312 111459316     5</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: H3K36me3_AM_immune     9     0  chr10 111459316 111459409    10</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                </span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20297:  H3K4me3_XJ_immune     2     0  chr22  20689768  20689770     0</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20298:  H3K4me3_XJ_immune     2     0  chr22  20689770  20689870     1</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20299:  H3K4me3_XJ_immune     2     0  chr22  20689870  20689995     0</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20300:  H3K4me3_XJ_immune     2     0  chr22  20689995  20690080     1</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20301:  H3K4me3_XJ_immune     2     0  chr22  20690080  20691400     0</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Key: &lt;data, chunk, part&gt;</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                   data chunk  part  rows</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1: H3K36me3_AM_immune     9     0  1000</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2: H3K36me3_AM_immune     9     1  1000</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3: H3K36me3_AM_immune     9     2  1000</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4: H3K36me3_AM_immune     9     3  1000</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5: H3K36me3_AM_immune     9     4  1000</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: H3K36me3_AM_immune     9     5  1000</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: H3K36me3_AM_immune     9     6  1000</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8: H3K36me3_AM_immune     9     7   134</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: H3K36me3_TDH_other     1     0  1000</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10: H3K36me3_TDH_other     1     1  1000</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11: H3K36me3_TDH_other     1     2  1000</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: H3K36me3_TDH_other     1     3  1000</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13: H3K36me3_TDH_other     1     4  1000</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14: H3K36me3_TDH_other     1     5  1000</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15: H3K36me3_TDH_other     1     6  1000</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16: H3K36me3_TDH_other     1     7  1000</span></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17: H3K36me3_TDH_other     1     8  1000</span></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18: H3K36me3_TDH_other     1     9  1000</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19: H3K36me3_TDH_other     1    10  1000</span></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20: H3K36me3_TDH_other     1    11  1000</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21: H3K36me3_TDH_other     1    12   109</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22: H3K4me3_TDH_immune     9     0   886</span></span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:  H3K4me3_XJ_immune     2     0   172</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                   data chunk  part  rows</span></span></code></pre></div>
-<p>The output above indicates that we have successfully read the data back into R.</p>
+<p>In the code below, we write the same data to a set of CSV files with
+different names,</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>arrow.available <span class="ot">&lt;-</span> <span class="fu">requireNamespace</span>(<span class="st">&quot;arrow&quot;</span>) <span class="sc">&amp;&amp;</span> arrow<span class="sc">::</span><span class="fu">arrow_with_dataset</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: arrow</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="cf">if</span>(arrow.available){</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  arrow<span class="sc">::</span><span class="fu">write_dataset</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>    <span class="at">dataset=</span>data.chunk.dt,</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    <span class="at">path=</span>path,</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    <span class="at">format=</span><span class="st">&quot;csv&quot;</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    <span class="at">partitioning=</span><span class="fu">c</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;chunk&quot;</span>),</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>    <span class="at">max_rows_per_file=</span><span class="dv">1000</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>  hive.glob <span class="ot">&lt;-</span> <span class="fu">file.path</span>(path, <span class="st">&quot;*&quot;</span>, <span class="st">&quot;*&quot;</span>, <span class="st">&quot;*.csv&quot;</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>  (hive.files <span class="ot">&lt;-</span> <span class="fu">Sys.glob</span>(hive.glob))</span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>}</span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_AM_immune/chunk=9/part-0.csv&quot; </span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt;  [2] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_AM_immune/chunk=9/part-1.csv&quot; </span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_AM_immune/chunk=9/part-2.csv&quot; </span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_AM_immune/chunk=9/part-3.csv&quot; </span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_AM_immune/chunk=9/part-4.csv&quot; </span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_AM_immune/chunk=9/part-5.csv&quot; </span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_AM_immune/chunk=9/part-6.csv&quot; </span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt;  [8] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_AM_immune/chunk=9/part-7.csv&quot; </span></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-0.csv&quot; </span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt; [10] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-1.csv&quot; </span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt; [11] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-10.csv&quot;</span></span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="co">#&gt; [12] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-11.csv&quot;</span></span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a><span class="co">#&gt; [13] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-12.csv&quot;</span></span>
+<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a><span class="co">#&gt; [14] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-2.csv&quot; </span></span>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a><span class="co">#&gt; [15] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-3.csv&quot; </span></span>
+<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a><span class="co">#&gt; [16] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-4.csv&quot; </span></span>
+<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a><span class="co">#&gt; [17] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-5.csv&quot; </span></span>
+<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a><span class="co">#&gt; [18] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-6.csv&quot; </span></span>
+<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a><span class="co">#&gt; [19] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-7.csv&quot; </span></span>
+<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a><span class="co">#&gt; [20] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-8.csv&quot; </span></span>
+<span id="cb11-34"><a href="#cb11-34" tabindex="-1"></a><span class="co">#&gt; [21] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K36me3_TDH_other/chunk=1/part-9.csv&quot; </span></span>
+<span id="cb11-35"><a href="#cb11-35" tabindex="-1"></a><span class="co">#&gt; [22] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K4me3_TDH_immune/chunk=9/part-0.csv&quot; </span></span>
+<span id="cb11-36"><a href="#cb11-36" tabindex="-1"></a><span class="co">#&gt; [23] &quot;C:\\Users\\hoct2726\\AppData\\Local\\Temp\\RtmpqA2sBc\\file19d4407c6327/data=H3K4me3_XJ_immune/chunk=2/part-0.csv&quot;</span></span></code></pre></div>
+<p>In the output above, we can see that there are regularly named files
+with three variables encoded in the file path (data, chunk, part). The
+code below reads one of the files back into R:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="cf">if</span>(arrow.available){</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  data.table<span class="sc">::</span><span class="fu">fread</span>(hive.files[<span class="dv">1</span>])</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>}</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt;        chrom     start       end count</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt;    1:  chr10 111456281 111456338     2</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt;    2:  chr10 111456338 111456381     1</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt;    3:  chr10 111456381 111459312     0</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt;    4:  chr10 111459312 111459316     5</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt;    5:  chr10 111459316 111459409    10</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt;   ---                                 </span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt;  996:  chr10 111619010 111619035     1</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt;  997:  chr10 111619035 111619092     2</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt;  998:  chr10 111619092 111619101     3</span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt;  999:  chr10 111619101 111619128     2</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt; 1000:  chr10 111619128 111619129     3</span></span></code></pre></div>
+<p>The output above indicates that the file only has four columns (and
+is missing the variables which are encoded in the file path). In the
+code below, we read all those files back into R:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="cf">if</span>(arrow.available){</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  hive.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>    nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;=&quot;</span>,<span class="st">&quot;.*?&quot;</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>    <span class="st">&quot;/&quot;</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>    nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;chunk&quot;</span>,<span class="st">&quot;=&quot;</span>,<span class="st">&quot;.*?&quot;</span>, as.integer),</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    <span class="st">&quot;/&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>    nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;part&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;[0-9]+&quot;</span>, as.integer))</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  <span class="fu">print</span>(hive.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(hive.glob, hive.pattern))</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>  hive.dt[, .(<span class="at">rows=</span>.N), keyby<span class="ot">=</span>.(data,chunk,part)]</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>}</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt;                      data chunk  part  chrom     start       end count</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co">#&gt;     1: H3K36me3_AM_immune     9     0  chr10 111456281 111456338     2</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co">#&gt;     2: H3K36me3_AM_immune     9     0  chr10 111456338 111456381     1</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="co">#&gt;     3: H3K36me3_AM_immune     9     0  chr10 111456381 111459312     0</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co">#&gt;     4: H3K36me3_AM_immune     9     0  chr10 111459312 111459316     5</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="co">#&gt;     5: H3K36me3_AM_immune     9     0  chr10 111459316 111459409    10</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co">#&gt;    ---                                                                </span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co">#&gt; 20297:  H3K4me3_XJ_immune     2     0  chr22  20689768  20689770     0</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="co">#&gt; 20298:  H3K4me3_XJ_immune     2     0  chr22  20689770  20689870     1</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="co">#&gt; 20299:  H3K4me3_XJ_immune     2     0  chr22  20689870  20689995     0</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="co">#&gt; 20300:  H3K4me3_XJ_immune     2     0  chr22  20689995  20690080     1</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="co">#&gt; 20301:  H3K4me3_XJ_immune     2     0  chr22  20690080  20691400     0</span></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="co">#&gt; Key: &lt;data, chunk, part&gt;</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="co">#&gt;                   data chunk  part  rows</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="co">#&gt;                 &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a><span class="co">#&gt;  1: H3K36me3_AM_immune     9     0  1000</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="co">#&gt;  2: H3K36me3_AM_immune     9     1  1000</span></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="co">#&gt;  3: H3K36me3_AM_immune     9     2  1000</span></span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a><span class="co">#&gt;  4: H3K36me3_AM_immune     9     3  1000</span></span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a><span class="co">#&gt;  5: H3K36me3_AM_immune     9     4  1000</span></span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="co">#&gt;  6: H3K36me3_AM_immune     9     5  1000</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="co">#&gt;  7: H3K36me3_AM_immune     9     6  1000</span></span>
+<span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a><span class="co">#&gt;  8: H3K36me3_AM_immune     9     7   134</span></span>
+<span id="cb13-35"><a href="#cb13-35" tabindex="-1"></a><span class="co">#&gt;  9: H3K36me3_TDH_other     1     0  1000</span></span>
+<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a><span class="co">#&gt; 10: H3K36me3_TDH_other     1     1  1000</span></span>
+<span id="cb13-37"><a href="#cb13-37" tabindex="-1"></a><span class="co">#&gt; 11: H3K36me3_TDH_other     1     2  1000</span></span>
+<span id="cb13-38"><a href="#cb13-38" tabindex="-1"></a><span class="co">#&gt; 12: H3K36me3_TDH_other     1     3  1000</span></span>
+<span id="cb13-39"><a href="#cb13-39" tabindex="-1"></a><span class="co">#&gt; 13: H3K36me3_TDH_other     1     4  1000</span></span>
+<span id="cb13-40"><a href="#cb13-40" tabindex="-1"></a><span class="co">#&gt; 14: H3K36me3_TDH_other     1     5  1000</span></span>
+<span id="cb13-41"><a href="#cb13-41" tabindex="-1"></a><span class="co">#&gt; 15: H3K36me3_TDH_other     1     6  1000</span></span>
+<span id="cb13-42"><a href="#cb13-42" tabindex="-1"></a><span class="co">#&gt; 16: H3K36me3_TDH_other     1     7  1000</span></span>
+<span id="cb13-43"><a href="#cb13-43" tabindex="-1"></a><span class="co">#&gt; 17: H3K36me3_TDH_other     1     8  1000</span></span>
+<span id="cb13-44"><a href="#cb13-44" tabindex="-1"></a><span class="co">#&gt; 18: H3K36me3_TDH_other     1     9  1000</span></span>
+<span id="cb13-45"><a href="#cb13-45" tabindex="-1"></a><span class="co">#&gt; 19: H3K36me3_TDH_other     1    10  1000</span></span>
+<span id="cb13-46"><a href="#cb13-46" tabindex="-1"></a><span class="co">#&gt; 20: H3K36me3_TDH_other     1    11  1000</span></span>
+<span id="cb13-47"><a href="#cb13-47" tabindex="-1"></a><span class="co">#&gt; 21: H3K36me3_TDH_other     1    12   109</span></span>
+<span id="cb13-48"><a href="#cb13-48" tabindex="-1"></a><span class="co">#&gt; 22: H3K4me3_TDH_immune     9     0   886</span></span>
+<span id="cb13-49"><a href="#cb13-49" tabindex="-1"></a><span class="co">#&gt; 23:  H3K4me3_XJ_immune     2     0   172</span></span>
+<span id="cb13-50"><a href="#cb13-50" tabindex="-1"></a><span class="co">#&gt;                   data chunk  part  rows</span></span></code></pre></div>
+<p>The output above indicates that we have successfully read the data
+back into R.</p>
 </div>
 <div id="example-4-pattern-with-two-more-capture-groups" class="section level2">
 <h2>Example 4: pattern with two more capture groups</h2>
-<p>In the code below, we read the same data files, with a more complex pattern that has two additional capture groups (name and id).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(count.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  glob,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  data.chunk.pattern,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;/counts/&quot;</span>, </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">name=</span><span class="fu">list</span>(<span class="st">&quot;McGill&quot;</span>, <span class="at">id=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer),</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">READ=</span>read.bedGraph))</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      data chunk       name    id  chrom     start       end count</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt; &lt;int&gt;     &lt;char&gt; &lt;int&gt; &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: H3K36me3_AM_immune     9 McGill0101   101  chr10 111456281 111456338     2</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: H3K36me3_AM_immune     9 McGill0101   101  chr10 111456338 111456381     1</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: H3K36me3_AM_immune     9 McGill0101   101  chr10 111456381 111459312     0</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: H3K36me3_AM_immune     9 McGill0101   101  chr10 111459312 111459316     5</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: H3K36me3_AM_immune     9 McGill0101   101  chr10 111459316 111459409    10</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                           </span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20297:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20689768  20689770     0</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20298:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20689770  20689870     1</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20299:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20689870  20689995     0</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20300:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20689995  20690080     1</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20301:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20690080  20691400     0</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>count.dt[, .(<span class="at">count=</span>.N), by<span class="ot">=</span>.(data, chunk, name, id, chrom)]</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  data chunk       name    id  chrom count</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt; &lt;int&gt;     &lt;char&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt;</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: H3K36me3_AM_immune     9 McGill0101   101  chr10  7134</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: H3K36me3_TDH_other     1 McGill0019    19  chr21 12109</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: H3K4me3_TDH_immune     9 McGill0024    24   chr1   886</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:  H3K4me3_XJ_immune     2 McGill0024    24  chr22   172</span></span></code></pre></div>
-<p>The output above indicates that we have successfully read the data into R, with two additional columns (name and id). These data can be visualized using the code below,</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(ggplot2)){</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>data<span class="sc">+</span>chunk<span class="sc">+</span>name<span class="sc">+</span>chrom, <span class="at">labeller=</span>label_both, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)<span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_step</span>(<span class="fu">aes</span>(</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      start<span class="sc">/</span><span class="fl">1e3</span>, count),</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">data=</span>count.dt)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
-<p>The plot above includes panel/facet titles which come from the variables which were stored in the file names.</p>
+<p>In the code below, we read the same data files, with a more complex
+pattern that has two additional capture groups (name and id).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>(count.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  glob,</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  data.chunk.pattern,</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="st">&quot;/counts/&quot;</span>, </span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="at">name=</span><span class="fu">list</span>(<span class="st">&quot;McGill&quot;</span>, <span class="at">id=</span><span class="st">&quot;[0-9]+&quot;</span>, as.integer),</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="at">READ=</span>read.bedGraph))</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co">#&gt;                      data chunk       name    id  chrom     start       end count</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="co">#&gt;                    &lt;char&gt; &lt;int&gt;     &lt;char&gt; &lt;int&gt; &lt;char&gt;     &lt;int&gt;     &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="co">#&gt;     1: H3K36me3_AM_immune     9 McGill0101   101  chr10 111456281 111456338     2</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="co">#&gt;     2: H3K36me3_AM_immune     9 McGill0101   101  chr10 111456338 111456381     1</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="co">#&gt;     3: H3K36me3_AM_immune     9 McGill0101   101  chr10 111456381 111459312     0</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co">#&gt;     4: H3K36me3_AM_immune     9 McGill0101   101  chr10 111459312 111459316     5</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="co">#&gt;     5: H3K36me3_AM_immune     9 McGill0101   101  chr10 111459316 111459409    10</span></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="co">#&gt;    ---                                                                           </span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="co">#&gt; 20297:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20689768  20689770     0</span></span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="co">#&gt; 20298:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20689770  20689870     1</span></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="co">#&gt; 20299:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20689870  20689995     0</span></span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="co">#&gt; 20300:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20689995  20690080     1</span></span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="co">#&gt; 20301:  H3K4me3_XJ_immune     2 McGill0024    24  chr22  20690080  20691400     0</span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a>count.dt[, .(<span class="at">count=</span>.N), by<span class="ot">=</span>.(data, chunk, name, id, chrom)]</span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="co">#&gt;                  data chunk       name    id  chrom count</span></span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt; &lt;int&gt;     &lt;char&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt;</span></span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a><span class="co">#&gt; 1: H3K36me3_AM_immune     9 McGill0101   101  chr10  7134</span></span>
+<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a><span class="co">#&gt; 2: H3K36me3_TDH_other     1 McGill0019    19  chr21 12109</span></span>
+<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a><span class="co">#&gt; 3: H3K4me3_TDH_immune     9 McGill0024    24   chr1   886</span></span>
+<span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a><span class="co">#&gt; 4:  H3K4me3_XJ_immune     2 McGill0024    24  chr22   172</span></span></code></pre></div>
+<p>The output above indicates that we have successfully read the data
+into R, with two additional columns (name and id). These data can be
+visualized using the code below,</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">require</span>(ggplot2)){</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>data<span class="sc">+</span>chunk<span class="sc">+</span>name<span class="sc">+</span>chrom, <span class="at">labeller=</span>label_both, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)<span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>    <span class="fu">geom_step</span>(<span class="fu">aes</span>(</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>      start<span class="sc">/</span><span class="fl">1e3</span>, count),</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>      <span class="at">data=</span>count.dt)</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>}</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+<p>The plot above includes panel/facet titles which come from the
+variables which were stored in the file names.</p>
 </div>
 <div id="example-5-parsing-non-csv-data" class="section level2">
 <h2>Example 5: parsing non-CSV data</h2>
-<p>The following example demonstrates how non-CSV data may be parsed, using a custom <code>READ</code> function. Consider the vignette data files,</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>vignettes <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/vignettes&quot;</span>, <span class="at">package=</span><span class="st">&quot;nc&quot;</span>, <span class="at">mustWork=</span><span class="cn">TRUE</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>(vglob <span class="ot">&lt;-</span> <span class="fu">paste0</span>(vignettes, <span class="st">&quot;/*.Rmd&quot;</span>))</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/vignettes/*.Rmd&quot;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>(vfiles <span class="ot">&lt;-</span> <span class="fu">Sys.glob</span>(vglob))</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/vignettes/v0-overview.Rmd&quot;     </span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/vignettes/v1-capture-first.Rmd&quot;</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/vignettes/v2-capture-all.Rmd&quot;  </span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/vignettes/v3-capture-melt.Rmd&quot; </span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/vignettes/v4-comparisons.Rmd&quot;  </span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/vignettes/v5-helpers.Rmd&quot;      </span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [7] &quot;C:/Users/th798/AppData/Local/Temp/RtmpuomohO/Rinst2d2832e776f2/nc/extdata/vignettes/v6-engines.Rmd&quot;</span></span></code></pre></div>
-<p>The output above includes the glob and the files it matches. Below we define a function for parsing one of those files,</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>non.greedy.lines <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;.*</span><span class="sc">\n</span><span class="st">&quot;</span>), <span class="st">&quot;*?&quot;</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>optional.name <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot; &quot;</span>, <span class="at">chunk_name=</span><span class="st">&quot;[^,}]+&quot;</span>), <span class="st">&quot;?&quot;</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>chunk.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">before=</span>non.greedy.lines,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;```</span><span class="sc">\\</span><span class="st">{r&quot;</span>,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  optional.name,</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameters=</span><span class="st">&quot;.*&quot;</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">}</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">code=</span>non.greedy.lines,</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;```&quot;</span>)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>READ.vignette <span class="ot">&lt;-</span> <span class="cf">function</span>(f)nc<span class="sc">::</span><span class="fu">capture_all_str</span>(f, chunk.pattern)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">READ.vignette</span>(vfiles[<span class="dv">1</span>]))</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   7 obs. of  4 variables:</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ before    : chr  &quot;&lt;!--\n%\\VignetteEngine{knitr::knitr}\n%\\VignetteIndexEntry{vignette 0: Overview}\n--&gt;\n\n# Overview of nc functionality\n\n&quot; &quot;\n\nHere is an index of topics which are explained in the different\nvignettes, along with an overview of funct&quot;| __truncated__ &quot;\n\nA variant is doing the same thing, but with input\nsubjects coming from a data table/frame with character columns.\n\n&quot; &quot;\n\n## Capture all matches in a single subject\n  \n[Capture all](v2-capture-all.html) is for the situation whe&quot;| __truncated__ ...</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ chunk_name: chr  &quot;setup&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ parameters: chr  &quot;, include = FALSE&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ code      : chr  &quot;knitr::opts_chunk$set(\n  collapse = TRUE,\n  comment = \&quot;#&gt;\&quot;\n)\n&quot; &quot;subject.vec &lt;- c(\n  \&quot;chr10:213054000-213,055,000\&quot;,\n  \&quot;chrM:111000\&quot;,\n  \&quot;chr1:110-111 chr2:220-222\&quot;)\nnc&quot;| __truncated__ &quot;subject.dt &lt;- data.table::data.table(\n  JobID = c(\&quot;13937810_25\&quot;, \&quot;14022192_1\&quot;),\n  Elapsed = c(\&quot;07:04:42\&quot;| __truncated__ &quot;nc::capture_all_str(\n  subject.vec, chrom=\&quot;chr.*?\&quot;, \&quot;:\&quot;, chromStart=\&quot;[0-9,]+\&quot;, as.integer)\n&quot; ...</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
-<p>The output above shows a data table with 7 rows, one for each code chunk defined in the vignette data file. We read all of the vignette files using the code below.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>chunk.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  vglob,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;/v&quot;</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">vignette_number=</span><span class="st">&quot;[0-9]&quot;</span>, as.integer,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;-&quot;</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">vignette_name=</span><span class="st">&quot;.*?&quot;</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;.Rmd&quot;</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">READ=</span>READ.vignette</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>)[</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>, chunk_number <span class="sc">:</span><span class="er">=</span> <span class="fu">seq_along</span>(chunk_name), by<span class="ot">=</span>vignette_number</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>chunk.dt[, .(</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  vignette_number, vignette_name, chunk_number, chunk_name, </span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">lines=</span><span class="fu">nchar</span>(code))]</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      vignette_number vignette_name chunk_number chunk_name lines</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                &lt;int&gt;        &lt;char&gt;        &lt;int&gt;     &lt;char&gt; &lt;int&gt;</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:               0      overview            1      setup    61</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:               0      overview            2              192</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:               0      overview            3              314</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:               0      overview            4               91</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:               0      overview            5              242</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 104:               6       engines            1      setup    61</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 105:               6       engines            2              115</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 106:               6       engines            3               67</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 107:               6       engines            4              122</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 108:               6       engines            5              320</span></span></code></pre></div>
-<p>The output above is a data table with one row for each chunk in each data file. Some columns (<code>vignette_number</code> and <code>vignette_name</code>) come from the file path, and others come from the data file contents, including chunk number, name, and line count. The files also contain code which has been parsed and can be extracted via the code below, for example:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(chunk.dt<span class="sc">$</span>code[<span class="dv">2</span>])</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; subject.vec &lt;- c(</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &quot;chr10:213054000-213,055,000&quot;,</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &quot;chrM:111000&quot;,</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &quot;chr1:110-111 chr2:220-222&quot;)</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; nc::capture_first_vec(</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject.vec, chrom=&quot;chr.*?&quot;, &quot;:&quot;, chromStart=&quot;[0-9,]+&quot;, as.integer)</span></span></code></pre></div>
+<p>The following example demonstrates how non-CSV data may be parsed,
+using a custom <code>READ</code> function. Consider the vignette data
+files,</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>vignettes <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/vignettes&quot;</span>, <span class="at">package=</span><span class="st">&quot;nc&quot;</span>, <span class="at">mustWork=</span><span class="cn">TRUE</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>(vglob <span class="ot">&lt;-</span> <span class="fu">paste0</span>(vignettes, <span class="st">&quot;/*.Rmd&quot;</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/vignettes/*.Rmd&quot;</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>(vfiles <span class="ot">&lt;-</span> <span class="fu">Sys.glob</span>(vglob))</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/vignettes/v0-overview.Rmd&quot;     </span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co">#&gt; [2] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/vignettes/v1-capture-first.Rmd&quot;</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co">#&gt; [3] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/vignettes/v2-capture-all.Rmd&quot;  </span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="co">#&gt; [4] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/vignettes/v3-capture-melt.Rmd&quot; </span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="co">#&gt; [5] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/vignettes/v4-comparisons.Rmd&quot;  </span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co">#&gt; [6] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/vignettes/v5-helpers.Rmd&quot;      </span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="co">#&gt; [7] &quot;C:/Users/hoct2726/AppData/Local/Temp/RtmpmCMFIy/Rinst229474d550a6/nc/extdata/vignettes/v6-engines.Rmd&quot;</span></span></code></pre></div>
+<p>The output above includes the glob and the files it matches. Below we
+define a function for parsing one of those files,</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>non.greedy.lines <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;.*</span><span class="sc">\n</span><span class="st">&quot;</span>), <span class="st">&quot;*?&quot;</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>optional.name <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot; &quot;</span>, <span class="at">chunk_name=</span><span class="st">&quot;[^,}]+&quot;</span>), <span class="st">&quot;?&quot;</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>chunk.pattern <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="at">before=</span>non.greedy.lines,</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  <span class="st">&quot;```</span><span class="sc">\\</span><span class="st">{r&quot;</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>  optional.name,</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>  <span class="at">parameters=</span><span class="st">&quot;.*&quot;</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">}</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>  <span class="at">code=</span>non.greedy.lines,</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>  <span class="st">&quot;```&quot;</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>READ.vignette <span class="ot">&lt;-</span> <span class="cf">function</span>(f)nc<span class="sc">::</span><span class="fu">capture_all_str</span>(f, chunk.pattern)</span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">READ.vignette</span>(vfiles[<span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   7 obs. of  4 variables:
+#&gt;  $ before    : chr  &quot;&lt;!--\n%\\VignetteEngine{knitr::knitr}\n%\\VignetteIndexEntry{vignette 0: Overview}\n--&gt;\n\n# Overview of nc functionality\n\n&quot; &quot;\n\nHere is an index of topics which are explained in the different\nvignettes, along with an overview of funct&quot;| __truncated__ &quot;\n\nA variant is doing the same thing, but with input\nsubjects coming from a data table/frame with character columns.\n\n&quot; &quot;\n\n## Capture all matches in a single subject\n  \n[Capture all](v2-capture-all.html) is for the situation whe&quot;| __truncated__ ...
+#&gt;  $ chunk_name: chr  &quot;setup&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+#&gt;  $ parameters: chr  &quot;, include = FALSE&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+#&gt;  $ code      : chr  &quot;knitr::opts_chunk$set(\n  collapse = TRUE,\n  comment = \&quot;#&gt;\&quot;\n)\n&quot; &quot;subject.vec &lt;- c(\n  \&quot;chr10:213054000-213,055,000\&quot;,\n  \&quot;chrM:111000\&quot;,\n  \&quot;chr1:110-111 chr2:220-222\&quot;)\nnc&quot;| __truncated__ &quot;subject.dt &lt;- data.table::data.table(\n  JobID = c(\&quot;13937810_25\&quot;, \&quot;14022192_1\&quot;),\n  Elapsed = c(\&quot;07:04:42\&quot;| __truncated__ &quot;nc::capture_all_str(\n  subject.vec, chrom=\&quot;chr.*?\&quot;, \&quot;:\&quot;, chromStart=\&quot;[0-9,]+\&quot;, as.integer)\n&quot; ...
+#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
+<p>The output above shows a data table with 7 rows, one for each code
+chunk defined in the vignette data file. We read all of the vignette
+files using the code below.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>chunk.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_glob</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  vglob,</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="st">&quot;/v&quot;</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="at">vignette_number=</span><span class="st">&quot;[0-9]&quot;</span>, as.integer,</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>  <span class="st">&quot;-&quot;</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>  <span class="at">vignette_name=</span><span class="st">&quot;.*?&quot;</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>  <span class="st">&quot;.Rmd&quot;</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>  <span class="at">READ=</span>READ.vignette</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>)[</span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>, chunk_number <span class="sc">:=</span> <span class="fu">seq_along</span>(chunk_name), by<span class="ot">=</span>vignette_number</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>]</span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>chunk.dt[, .(</span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>  vignette_number, vignette_name, chunk_number, chunk_name, </span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>  <span class="at">lines=</span><span class="fu">nchar</span>(code))]</span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a><span class="co">#&gt;      vignette_number vignette_name chunk_number chunk_name lines</span></span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a><span class="co">#&gt;                &lt;int&gt;        &lt;char&gt;        &lt;int&gt;     &lt;char&gt; &lt;int&gt;</span></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a><span class="co">#&gt;   1:               0      overview            1      setup    61</span></span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a><span class="co">#&gt;   2:               0      overview            2              192</span></span>
+<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a><span class="co">#&gt;   3:               0      overview            3              314</span></span>
+<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a><span class="co">#&gt;   4:               0      overview            4               91</span></span>
+<span id="cb19-21"><a href="#cb19-21" tabindex="-1"></a><span class="co">#&gt;   5:               0      overview            5              242</span></span>
+<span id="cb19-22"><a href="#cb19-22" tabindex="-1"></a><span class="co">#&gt;  ---                                                            </span></span>
+<span id="cb19-23"><a href="#cb19-23" tabindex="-1"></a><span class="co">#&gt; 104:               6       engines            1      setup    61</span></span>
+<span id="cb19-24"><a href="#cb19-24" tabindex="-1"></a><span class="co">#&gt; 105:               6       engines            2              115</span></span>
+<span id="cb19-25"><a href="#cb19-25" tabindex="-1"></a><span class="co">#&gt; 106:               6       engines            3               67</span></span>
+<span id="cb19-26"><a href="#cb19-26" tabindex="-1"></a><span class="co">#&gt; 107:               6       engines            4              122</span></span>
+<span id="cb19-27"><a href="#cb19-27" tabindex="-1"></a><span class="co">#&gt; 108:               6       engines            5              320</span></span></code></pre></div>
+<p>The output above is a data table with one row for each chunk in each
+data file. Some columns (<code>vignette_number</code> and
+<code>vignette_name</code>) come from the file path, and others come
+from the data file contents, including chunk number, name, and line
+count. The files also contain code which has been parsed and can be
+extracted via the code below, for example:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">cat</span>(chunk.dt<span class="sc">$</span>code[<span class="dv">2</span>])</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="co">#&gt; subject.vec &lt;- c(</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co">#&gt;   &quot;chr10:213054000-213,055,000&quot;,</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co">#&gt;   &quot;chrM:111000&quot;,</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="co">#&gt;   &quot;chr1:110-111 chr2:220-222&quot;)</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co">#&gt; nc::capture_first_vec(</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="co">#&gt;   subject.vec, chrom=&quot;chr.*?&quot;, &quot;:&quot;, chromStart=&quot;[0-9,]+&quot;, as.integer)</span></span></code></pre></div>
 </div>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>In this vignette we have seen how to read regularly named data files into R, by providing a glob and a regular expression to <code>nc::capture_first_glob</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(old.opt)</span></code></pre></div>
-</div>
+<p>In this vignette we have seen how to read regularly named data files
+into R, by providing a glob and a regular expression to
+<code>nc::capture_first_glob</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">options</span>(old.opt)</span></code></pre></div>
 </div>
 
 
