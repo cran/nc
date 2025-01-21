@@ -3,7 +3,7 @@ Authors@R: c(
     person("Toby", "Hocking",
      email="toby.hocking@r-project.org",
      role=c("aut", "cre")))
-Version: 2024.9.20
+Version: 2025.1.21
 License: GPL-3
 Title: Named Capture to Data Tables
 Description: User-friendly functions for extracting a data
@@ -28,8 +28,8 @@ VignetteBuilder: knitr
 URL: https://github.com/tdhock/nc
 BugReports: https://github.com/tdhock/nc/issues
 NeedsCompilation: no
-Packaged: 2024-09-20 16:20:25 UTC; hoct2726
+Packaged: 2025-01-21 11:15:11 UTC; tdhock
 Author: Toby Hocking [aut, cre]
 Maintainer: Toby Hocking <toby.hocking@r-project.org>
 Repository: CRAN
-Date/Publication: 2024-09-20 17:20:05 UTC
+Date/Publication: 2025-01-21 16:20:02 UTC

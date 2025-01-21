@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2024-09-20" />
+<meta name="date" content="2025-01-21" />
 
 <title>Helper functions</title>
 
@@ -28,31 +28,46 @@ document.addEventListener('DOMContentLoaded', function(e) {
   }
 });
 </script>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 <style type="text/css">
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 
 <style type="text/css">
-code {
-white-space: pre;
-}
-.sourceCode {
-overflow: visible;
-}
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -61,57 +76,58 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-{ counter-reset: source-line 0; }
+  { counter-reset: source-line 0; }
 pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
+  { position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-color: #aaaaaa;
-}
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-{ }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } 
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.at { color: #7d9029; } 
-code span.bn { color: #40a070; } 
-code span.bu { color: #008000; } 
-code span.cf { color: #007020; font-weight: bold; } 
-code span.ch { color: #4070a0; } 
-code span.cn { color: #880000; } 
-code span.co { color: #60a0b0; font-style: italic; } 
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.do { color: #ba2121; font-style: italic; } 
-code span.dt { color: #902000; } 
-code span.dv { color: #40a070; } 
-code span.er { color: #ff0000; font-weight: bold; } 
-code span.ex { } 
-code span.fl { color: #40a070; } 
-code span.fu { color: #06287e; } 
-code span.im { color: #008000; font-weight: bold; } 
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.kw { color: #007020; font-weight: bold; } 
-code span.op { color: #666666; } 
-code span.ot { color: #007020; } 
-code span.pp { color: #bc7a00; } 
-code span.sc { color: #4070a0; } 
-code span.ss { color: #bb6688; } 
-code span.st { color: #4070a0; } 
-code span.va { color: #19177c; } 
-code span.vs { color: #4070a0; } 
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -338,162 +354,134 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Helper functions</h1>
-<h4 class="date">2024-09-20</h4>
+<h4 class="date">2025-01-21</h4>
 
 
 
-<p>There are several “helper” functions which can simplify the
-definition of complex patterns. First we define some functions that will
-help us display the patterns:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>one.pattern <span class="ot">&lt;-</span> <span class="cf">function</span>(pat){</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.character</span>(pat)){</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    pat</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    nc<span class="sc">::</span><span class="fu">var_args_list</span>(pat)[[<span class="st">&quot;pattern&quot;</span>]]</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  }</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>}</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>show.patterns <span class="ot">&lt;-</span> <span class="cf">function</span>(...){</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  L <span class="ot">&lt;-</span> <span class="fu">list</span>(...)</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="fu">str</span>(<span class="fu">lapply</span>(L, one.pattern))</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>There are several “helper” functions which can simplify the definition of complex patterns. First we define some functions that will help us display the patterns:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>one.pattern &lt;-<span class="st"> </span><span class="cf">function</span>(pat){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="cf">if</span>(<span class="kw">is.character</span>(pat)){</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    pat</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  }<span class="cf">else</span>{</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    nc<span class="op">::</span><span class="kw">var_args_list</span>(pat)[[<span class="st">&quot;pattern&quot;</span>]]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  }</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>show.patterns &lt;-<span class="st"> </span><span class="cf">function</span>(...){</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  L &lt;-<span class="st"> </span><span class="kw">list</span>(...)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="kw">str</span>(<span class="kw">lapply</span>(L, one.pattern))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>}</span></code></pre></div>
 <div id="ncfield-for-reducing-repetition" class="section level1">
 <h1><code>nc::field</code> for reducing repetition</h1>
-<p>The <code>nc::field</code> function can be used to avoid repetition
-when defining patterns of the form <code>variable: value</code>. The
-example below shows three (mostly) equivalent ways to write a regex that
-captures the text after the colon and space; the captured text is stored
-in the <code>variable</code> group or output column:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">show.patterns</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="st">&quot;variable: (?&lt;variable&gt;.*)&quot;</span>,      <span class="co">#repetitive regex string</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;variable: &quot;</span>, <span class="at">variable=</span><span class="st">&quot;.*&quot;</span>),<span class="co">#repetitive nc R code</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;: &quot;</span>, <span class="st">&quot;.*&quot;</span>))<span class="co">#helper function avoids repetition</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;variable: (?&lt;variable&gt;.*)&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:variable: (.*))&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:variable: (?:(.*)))&quot;</span></span></code></pre></div>
-<p>Note that the first version above has a named capture group, whereas
-the second and third patterns generated by nc have an un-named capture
-group and some non-capturing groups (but they all match the same
-pattern).</p>
+<p>The <code>nc::field</code> function can be used to avoid repetition when defining patterns of the form <code>variable: value</code>. The example below shows three (mostly) equivalent ways to write a regex that captures the text after the colon and space; the captured text is stored in the <code>variable</code> group or output column:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">show.patterns</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="st">&quot;variable: (?&lt;variable&gt;.*)&quot;</span>,      <span class="co">#repetitive regex string</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="st">&quot;variable: &quot;</span>, <span class="dt">variable=</span><span class="st">&quot;.*&quot;</span>),<span class="co">#repetitive nc R code</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">field</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;: &quot;</span>, <span class="st">&quot;.*&quot;</span>))<span class="co">#helper function avoids repetition</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">#&gt; List of 3</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;variable: (?&lt;variable&gt;.*)&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:variable: (.*))&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:variable: (?:(.*)))&quot;</span></span></code></pre></div>
+<p>Note that the first version above has a named capture group, whereas the second and third patterns generated by nc have an un-named capture group and some non-capturing groups (but they all match the same pattern).</p>
 <p>Another example:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">show.patterns</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="st">&quot;Alignment (?&lt;Alignment&gt;[0-9]+)&quot;</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;Alignment &quot;</span>, <span class="at">Alignment=</span><span class="st">&quot;[0-9]+&quot;</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;Alignment&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;[0-9]+&quot;</span>))</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;Alignment (?&lt;Alignment&gt;[0-9]+)&quot;</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:Alignment ([0-9]+))&quot;</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:Alignment (?:([0-9]+)))&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">show.patterns</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="st">&quot;Alignment (?&lt;Alignment&gt;[0-9]+)&quot;</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="st">&quot;Alignment &quot;</span>, <span class="dt">Alignment=</span><span class="st">&quot;[0-9]+&quot;</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">field</span>(<span class="st">&quot;Alignment&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;[0-9]+&quot;</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">#&gt; List of 3</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;Alignment (?&lt;Alignment&gt;[0-9]+)&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:Alignment ([0-9]+))&quot;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:Alignment (?:([0-9]+)))&quot;</span></span></code></pre></div>
 <p>Another example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">show.patterns</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="st">&quot;Chromosome:</span><span class="sc">\t</span><span class="st">+(?&lt;Chromosome&gt;.*)&quot;</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;Chromosome:</span><span class="sc">\t</span><span class="st">+&quot;</span>, <span class="at">Chromosome=</span><span class="st">&quot;.*&quot;</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">field</span>(<span class="st">&quot;Chromosome&quot;</span>, <span class="st">&quot;:</span><span class="sc">\t</span><span class="st">+&quot;</span>, <span class="st">&quot;.*&quot;</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;Chromosome:\t+(?&lt;Chromosome&gt;.*)&quot;</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:Chromosome:\t+(.*))&quot;</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:Chromosome:\t+(?:(.*)))&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">show.patterns</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  <span class="st">&quot;Chromosome:</span><span class="ch">\t</span><span class="st">+(?&lt;Chromosome&gt;.*)&quot;</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="st">&quot;Chromosome:</span><span class="ch">\t</span><span class="st">+&quot;</span>, <span class="dt">Chromosome=</span><span class="st">&quot;.*&quot;</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">field</span>(<span class="st">&quot;Chromosome&quot;</span>, <span class="st">&quot;:</span><span class="ch">\t</span><span class="st">+&quot;</span>, <span class="st">&quot;.*&quot;</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">#&gt; List of 3</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;Chromosome:\t+(?&lt;Chromosome&gt;.*)&quot;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:Chromosome:\t+(.*))&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:Chromosome:\t+(?:(.*)))&quot;</span></span></code></pre></div>
 </div>
 <div id="ncquantifier-for-fewer-parentheses" class="section level1">
 <h1><code>nc::quantifier</code> for fewer parentheses</h1>
-<p>Another helper function is <code>nc::quantifier</code> which makes
-patterns easier to read by reducing the number of parentheses required
-to define sub-patterns with quantifiers. For example all three patterns
-below create an optional non-capturing group which contains a named
-capture group:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">show.patterns</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="st">&quot;(?:-(?&lt;chromEnd&gt;[0-9]+))?&quot;</span>,                <span class="co">#regex string</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">list</span>(<span class="fu">list</span>(<span class="st">&quot;-&quot;</span>, <span class="at">chromEnd=</span><span class="st">&quot;[0-9]+&quot;</span>), <span class="st">&quot;?&quot;</span>),    <span class="co">#nc pattern using lists</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">quantifier</span>(<span class="st">&quot;-&quot;</span>, <span class="at">chromEnd=</span><span class="st">&quot;[0-9]+&quot;</span>, <span class="st">&quot;?&quot;</span>))<span class="co">#quantifier helper function</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:-(?&lt;chromEnd&gt;[0-9]+))?&quot;</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:(?:-([0-9]+))?)&quot;</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:(?:-([0-9]+))?)&quot;</span></span></code></pre></div>
-<p>Another example with a named capture group inside an optional
-non-capturing group:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">show.patterns</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="st">&quot;(?: (?&lt;name&gt;[^,}]+))?&quot;</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">list</span>(<span class="fu">list</span>(<span class="st">&quot; &quot;</span>, <span class="at">name=</span><span class="st">&quot;[^,}]+&quot;</span>), <span class="st">&quot;?&quot;</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">quantifier</span>(<span class="st">&quot; &quot;</span>, <span class="at">name=</span><span class="st">&quot;[^,}]+&quot;</span>, <span class="st">&quot;?&quot;</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?: (?&lt;name&gt;[^,}]+))?&quot;</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:(?: ([^,}]+))?)&quot;</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:(?: ([^,}]+))?)&quot;</span></span></code></pre></div>
+<p>Another helper function is <code>nc::quantifier</code> which makes patterns easier to read by reducing the number of parentheses required to define sub-patterns with quantifiers. For example all three patterns below create an optional non-capturing group which contains a named capture group:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">show.patterns</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>  <span class="st">&quot;(?:-(?&lt;chromEnd&gt;[0-9]+))?&quot;</span>,                <span class="co">#regex string</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="kw">list</span>(<span class="st">&quot;-&quot;</span>, <span class="dt">chromEnd=</span><span class="st">&quot;[0-9]+&quot;</span>), <span class="st">&quot;?&quot;</span>),    <span class="co">#nc pattern using lists</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">quantifier</span>(<span class="st">&quot;-&quot;</span>, <span class="dt">chromEnd=</span><span class="st">&quot;[0-9]+&quot;</span>, <span class="st">&quot;?&quot;</span>))<span class="co">#quantifier helper function</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">#&gt; List of 3</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:-(?&lt;chromEnd&gt;[0-9]+))?&quot;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:(?:-([0-9]+))?)&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:(?:-([0-9]+))?)&quot;</span></span></code></pre></div>
+<p>Another example with a named capture group inside an optional non-capturing group:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">show.patterns</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>  <span class="st">&quot;(?: (?&lt;name&gt;[^,}]+))?&quot;</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="kw">list</span>(<span class="st">&quot; &quot;</span>, <span class="dt">name=</span><span class="st">&quot;[^,}]+&quot;</span>), <span class="st">&quot;?&quot;</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">quantifier</span>(<span class="st">&quot; &quot;</span>, <span class="dt">name=</span><span class="st">&quot;[^,}]+&quot;</span>, <span class="st">&quot;?&quot;</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">#&gt; List of 3</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?: (?&lt;name&gt;[^,}]+))?&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:(?: ([^,}]+))?)&quot;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:(?: ([^,}]+))?)&quot;</span></span></code></pre></div>
 </div>
 <div id="ncalternatives-for-simplified-alternation" class="section level1">
 <h1><code>nc::alternatives</code> for simplified alternation</h1>
-<p>We also provide a helper function for defining regex patterns with <a href="https://www.regular-expressions.info/alternation.html">alternation</a>.
-The following three lines are equivalent.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">show.patterns</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="st">&quot;(?:(?&lt;first&gt;bar+)|(?&lt;second&gt;fo+))&quot;</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">first=</span><span class="st">&quot;bar+&quot;</span>, <span class="st">&quot;|&quot;</span>, <span class="at">second=</span><span class="st">&quot;fo+&quot;</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">alternatives</span>(<span class="at">first=</span><span class="st">&quot;bar+&quot;</span>, <span class="at">second=</span><span class="st">&quot;fo+&quot;</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:(?&lt;first&gt;bar+)|(?&lt;second&gt;fo+))&quot;</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:(bar+)|(fo+))&quot;</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;  $ : chr &quot;(?:(bar+)|(fo+))&quot;</span></span></code></pre></div>
+<p>We also provide a helper function for defining regex patterns with <a href="https://www.regular-expressions.info/alternation.html">alternation</a>. The following three lines are equivalent.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">show.patterns</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>  <span class="st">&quot;(?:(?&lt;first&gt;bar+)|(?&lt;second&gt;fo+))&quot;</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="dt">first=</span><span class="st">&quot;bar+&quot;</span>, <span class="st">&quot;|&quot;</span>, <span class="dt">second=</span><span class="st">&quot;fo+&quot;</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">alternatives</span>(<span class="dt">first=</span><span class="st">&quot;bar+&quot;</span>, <span class="dt">second=</span><span class="st">&quot;fo+&quot;</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">#&gt; List of 3</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:(?&lt;first&gt;bar+)|(?&lt;second&gt;fo+))&quot;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:(bar+)|(fo+))&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co">#&gt;  $ : chr &quot;(?:(bar+)|(fo+))&quot;</span></span></code></pre></div>
 </div>
 <div id="ncalternatives_with_shared_groups-for-alternatives-with-identical-named-sub-pattern-groups" class="section level1">
-<h1><code>nc::alternatives_with_shared_groups</code> for alternatives
-with identical named sub-pattern groups</h1>
-<p>Sometimes each alternative is just a re-arrangement of the same
-sub-patterns. For example consider the following subjects, each of which
-are dates, in one of two formats.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>subject.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mar 17, 1983&quot;</span>, <span class="st">&quot;26 sep 2017&quot;</span>, <span class="st">&quot;17 mar 1984&quot;</span>)</span></code></pre></div>
-<p>In each of the two formats, the month consists of three lower-case
-letters, the day consists of two digits, and the year consists of four
-digits. Is there a single pattern that can match each of these subjects?
-Yes, such a pattern can be defined using the code below,</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>pattern <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">alternatives_with_shared_groups</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="at">month=</span><span class="st">&quot;[a-z]{3}&quot;</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="at">day=</span><span class="fu">list</span>(<span class="st">&quot;[0-9]{2}&quot;</span>, as.integer),</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="at">year=</span><span class="fu">list</span>(<span class="st">&quot;[0-9]{4}&quot;</span>, as.integer),</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">american=</span><span class="fu">list</span>(month, <span class="st">&quot; &quot;</span>, day, <span class="st">&quot;, &quot;</span>, year)),</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">european=</span><span class="fu">list</span>(day, <span class="st">&quot; &quot;</span>, month, <span class="st">&quot; &quot;</span>, year)))</span></code></pre></div>
-<p>In the code above, we used
-<code>nc::alternatives_with_shared_groups</code>, which requires two
-kinds of arguments:</p>
+<h1><code>nc::alternatives_with_shared_groups</code> for alternatives with identical named sub-pattern groups</h1>
+<p>Sometimes each alternative is just a re-arrangement of the same sub-patterns. For example consider the following subjects, each of which are dates, in one of two formats.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>subject.vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mar 17, 1983&quot;</span>, <span class="st">&quot;26 sep 2017&quot;</span>, <span class="st">&quot;17 mar 1984&quot;</span>)</span></code></pre></div>
+<p>In each of the two formats, the month consists of three lower-case letters, the day consists of two digits, and the year consists of four digits. Is there a single pattern that can match each of these subjects? Yes, such a pattern can be defined using the code below,</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>pattern &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">alternatives_with_shared_groups</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>  <span class="dt">month=</span><span class="st">&quot;[a-z]{3}&quot;</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>  <span class="dt">day=</span><span class="kw">list</span>(<span class="st">&quot;[0-9]{2}&quot;</span>, as.integer),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>  <span class="dt">year=</span><span class="kw">list</span>(<span class="st">&quot;[0-9]{4}&quot;</span>, as.integer),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="dt">american=</span><span class="kw">list</span>(month, <span class="st">&quot; &quot;</span>, day, <span class="st">&quot;, &quot;</span>, year)),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="dt">european=</span><span class="kw">list</span>(day, <span class="st">&quot; &quot;</span>, month, <span class="st">&quot; &quot;</span>, year)))</span></code></pre></div>
+<p>In the code above, we used <code>nc::alternatives_with_shared_groups</code>, which requires two kinds of arguments:</p>
 <ul>
-<li>named arguments (month, day, year) define sub-pattern groups that
-are used in each alternative.</li>
-<li>un-named arguments (last two) define alternative patterns, each
-which can use the sub-pattern group names (month, day, year).</li>
+<li>named arguments (month, day, year) define sub-pattern groups that are used in each alternative.</li>
+<li>un-named arguments (last two) define alternative patterns, each which can use the sub-pattern group names (month, day, year).</li>
 </ul>
-<p>The pattern can be used for matching, and the result is a data table
-with one column for each unique name,</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>(match.dt <span class="ot">&lt;-</span> nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(subject.vec, pattern))</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">#&gt;        american  month   day  year    european</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;      &lt;char&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; 1: mar 17, 1983    mar    17  1983            </span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; 2:                 sep    26  2017 26 sep 2017</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; 3:                 mar    17  1984 17 mar 1984</span></span></code></pre></div>
-<p>After having parsed the dates into these three columns, we can add a
-date column:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="at">locale=</span><span class="st">&quot;C&quot;</span>)<span class="co">#to recognize months in English.</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;C&quot;</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>match.dt[, date <span class="sc">:=</span> data.table<span class="sc">::</span><span class="fu">as.IDate</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="fu">paste</span>(month, day, year), <span class="at">format=</span><span class="st">&quot;%b %d %Y&quot;</span>)]</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">print</span>(match.dt, <span class="at">class=</span><span class="cn">TRUE</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;        american  month   day  year    european       date</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;      &lt;char&gt;     &lt;IDat&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 1: mar 17, 1983    mar    17  1983             1983-03-17</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 2:                 sep    26  2017 26 sep 2017 2017-09-26</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 3:                 mar    17  1984 17 mar 1984 1984-03-17</span></span></code></pre></div>
-<p>Another example is parsing given and family names, in two different
-formats:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>nc<span class="sc">::</span><span class="fu">capture_first_vec</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;Toby Dylan Hocking&quot;</span>,<span class="st">&quot;Hocking, Toby Dylan&quot;</span>),</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  nc<span class="sc">::</span><span class="fu">alternatives_with_shared_groups</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    <span class="at">family=</span><span class="st">&quot;[A-Z][a-z]+&quot;</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>    <span class="at">given=</span><span class="st">&quot;[^,]+&quot;</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">given_first=</span><span class="fu">list</span>(given, <span class="st">&quot; &quot;</span>, family)),</span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">family_first=</span><span class="fu">list</span>(family, <span class="st">&quot;, &quot;</span>, given))</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>  )</span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>)</span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt;           given_first      given  family        family_first</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt;     &lt;char&gt;  &lt;char&gt;              &lt;char&gt;</span></span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt; 1: Toby Dylan Hocking Toby Dylan Hocking                    </span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt; 2:                    Toby Dylan Hocking Hocking, Toby Dylan</span></span></code></pre></div>
+<p>The pattern can be used for matching, and the result is a data table with one column for each unique name,</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>(match.dt &lt;-<span class="st"> </span>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(subject.vec, pattern))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">#&gt;        american  month   day  year    european</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;      &lt;char&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co">#&gt; 1: mar 17, 1983    mar    17  1983            </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="co">#&gt; 2:                 sep    26  2017 26 sep 2017</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="co">#&gt; 3:                 mar    17  1984 17 mar 1984</span></span></code></pre></div>
+<p>After having parsed the dates into these three columns, we can add a date column:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">Sys.setlocale</span>(<span class="dt">locale=</span><span class="st">&quot;C&quot;</span>)<span class="co">#to recognize months in English.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;LC_CTYPE=C;LC_NUMERIC=C;LC_TIME=C;LC_COLLATE=C;LC_MONETARY=C;LC_MESSAGES=fr_FR.UTF-8;LC_PAPER=fr_FR.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=fr_FR.UTF-8;LC_IDENTIFICATION=C&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>match.dt[, date <span class="op">:</span><span class="er">=</span><span class="st"> </span>data.table<span class="op">::</span><span class="kw">as.IDate</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>  <span class="kw">paste</span>(month, day, year), <span class="dt">format=</span><span class="st">&quot;%b %d %Y&quot;</span>)]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">print</span>(match.dt, <span class="dt">class=</span><span class="ot">TRUE</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co">#&gt;        american  month   day  year    european       date</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;      &lt;char&gt;     &lt;IDat&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co">#&gt; 1: mar 17, 1983    mar    17  1983             1983-03-17</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co">#&gt; 2:                 sep    26  2017 26 sep 2017 2017-09-26</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">#&gt; 3:                 mar    17  1984 17 mar 1984 1984-03-17</span></span></code></pre></div>
+<p>Another example is parsing given and family names, in two different formats:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>nc<span class="op">::</span><span class="kw">capture_first_vec</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>  <span class="kw">c</span>(<span class="st">&quot;Toby Dylan Hocking&quot;</span>,<span class="st">&quot;Hocking, Toby Dylan&quot;</span>),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>  nc<span class="op">::</span><span class="kw">alternatives_with_shared_groups</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>    <span class="dt">family=</span><span class="st">&quot;[A-Z][a-z]+&quot;</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>    <span class="dt">given=</span><span class="st">&quot;[^,]+&quot;</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>    <span class="kw">list</span>(<span class="dt">given_first=</span><span class="kw">list</span>(given, <span class="st">&quot; &quot;</span>, family)),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a>    <span class="kw">list</span>(<span class="dt">family_first=</span><span class="kw">list</span>(family, <span class="st">&quot;, &quot;</span>, given))</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>  )</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="co">#&gt;           given_first      given  family        family_first</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a><span class="co">#&gt;                &lt;char&gt;     &lt;char&gt;  &lt;char&gt;              &lt;char&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="co">#&gt; 1: Toby Dylan Hocking Toby Dylan Hocking                    </span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a><span class="co">#&gt; 2:                    Toby Dylan Hocking Hocking, Toby Dylan</span></span></code></pre></div>
 </div>
 
 
